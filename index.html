@@ -4,435 +4,466 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a1410">
 <title>Linatravelss — Content Studio</title>
-<style>@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');</style>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
 :root{
   --ink:#1a1410;--sand:#f5efe6;--terra:#c4714a;--terra-l:#fce4d6;
   --sage:#7a8c6e;--sage-l:#e3ede0;--cream:#faf7f2;--stone:#9e8f7e;
   --stone-l:#d4c8b8;--warm:#fefcf8;--gold:#c8a96a;--gold-l:#fdf3de;
-  --sidebar:220px;
+  --r:14px;--sidebar:220px;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;font-family:'DM Sans',system-ui,-apple-system,sans-serif;background:var(--cream);color:var(--ink);}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{height:100%;-webkit-text-size-adjust:100%;}
+body{min-height:100%;font-family:'DM Sans',system-ui,-apple-system,sans-serif;background:var(--cream);color:var(--ink);overscroll-behavior:none;}
+img,button{user-select:none;-webkit-user-select:none;}
+button{-webkit-appearance:none;touch-action:manipulation;}
 
 /* ── LAYOUT ── */
-.shell{display:grid;grid-template-columns:var(--sidebar) 1fr;grid-template-rows:auto 1fr;min-height:100vh;}
-.sidebar{grid-row:1/-1;background:var(--ink);padding:28px 16px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh;overflow-y:auto;}
-.topbar{background:var(--warm);border-bottom:1px solid var(--stone-l);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;}
-.main{padding:24px 28px;overflow-y:auto;}
+.shell{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:100vh;}
+.sidebar{grid-row:1/-1;background:var(--ink);padding:24px 14px;display:flex;flex-direction:column;gap:5px;position:sticky;top:0;height:100vh;overflow-y:auto;z-index:30;}
+.topbar{background:var(--warm);border-bottom:1px solid var(--stone-l);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:20;}
+.main{padding:22px 24px;overflow-y:auto;min-height:0;}
 
 /* ── SIDEBAR ── */
-.logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;font-weight:500;color:var(--sand);letter-spacing:.04em;line-height:1.3;}
-.logo small{display:block;font-size:9px;font-family:'DM Sans',sans-serif;font-weight:300;color:var(--stone);letter-spacing:.18em;text-transform:uppercase;margin-top:2px;}
-.divider{height:1px;background:rgba(255,255,255,.07);margin:14px 0;}
-.nav-label{font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);font-weight:600;padding:0 8px;margin-bottom:2px;margin-top:6px;}
-.nb{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;border:none;background:transparent;color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif;font-size:12.5px;cursor:pointer;transition:all .18s;text-align:left;width:100%;}
-.nb:hover{background:rgba(255,255,255,.07);color:var(--sand);}
+.logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;font-weight:500;color:var(--sand);letter-spacing:.04em;line-height:1.3;padding:0 4px;}
+.logo small{display:block;font-size:8.5px;font-family:'DM Sans',sans-serif;font-weight:300;color:var(--stone);letter-spacing:.2em;text-transform:uppercase;margin-top:2px;}
+.div{height:1px;background:rgba(255,255,255,.07);margin:12px 0;}
+.nlbl{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);font-weight:600;padding:0 8px;margin-bottom:1px;margin-top:5px;}
+.nb{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:8px;border:none;background:transparent;color:rgba(255,255,255,.48);font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;transition:all .15s;text-align:left;width:100%;}
+.nb:hover,.nb:active{background:rgba(255,255,255,.08);color:var(--sand);}
 .nb.active{background:var(--terra);color:#fff;}
-.nb .ic{font-size:14px;width:16px;flex-shrink:0;}
-.stats-mini{margin-top:auto;background:rgba(255,255,255,.04);border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,.06);}
-.sml{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:10px;}
-.sr{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
-.sl{font-size:10.5px;color:rgba(255,255,255,.45);}
-.sv{font-size:13px;font-weight:500;color:var(--sand);}
+.nb .ic{font-size:13px;width:15px;flex-shrink:0;}
+.smini{margin-top:auto;background:rgba(255,255,255,.04);border-radius:9px;padding:12px;border:1px solid rgba(255,255,255,.06);}
+.smini-lbl{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-bottom:9px;}
+.sr{display:flex;justify-content:space-between;margin-bottom:6px;}
+.sl{font-size:10px;color:rgba(255,255,255,.4);}
+.sv{font-size:12.5px;font-weight:500;color:var(--sand);}
 .sv.g{color:var(--gold);}
 
 /* ── TOPBAR ── */
-.page-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:400;font-style:italic;white-space:nowrap;}
-.topbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.pill-filter{display:flex;gap:4px;background:var(--sand);padding:3px;border-radius:18px;}
-.pill-filter button{padding:4px 12px;border-radius:14px;border:none;font-family:'DM Sans',sans-serif;font-size:10.5px;font-weight:500;cursor:pointer;background:transparent;color:var(--stone);transition:all .18s;}
-.pill-filter button.active{background:var(--ink);color:#fff;}
-.sync-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:500;cursor:pointer;transition:all .2s;}
-.sync-btn.save{background:var(--terra);color:#fff;}
-.sync-btn.save:hover{background:#b05e38;}
-.sync-btn.load{background:var(--sand);color:var(--ink);border:1px solid var(--stone-l);}
-.sync-btn.load:hover{background:var(--stone-l);}
-.sync-btn.add{background:var(--ink);color:#fff;}
-.sync-btn.add:hover{background:#3d2b1f;}
-.sync-status{font-size:10px;color:var(--stone);font-style:italic;}
+.ptitle{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:400;font-style:italic;white-space:nowrap;}
+.tr{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.pf{display:flex;gap:3px;background:var(--sand);padding:3px;border-radius:16px;}
+.pf button{padding:4px 11px;border-radius:13px;border:none;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;cursor:pointer;background:transparent;color:var(--stone);transition:all .15s;}
+.pf button.active{background:var(--ink);color:#fff;}
+.tbtn{display:flex;align-items:center;gap:5px;padding:7px 13px;border-radius:9px;border:none;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.tbtn.save{background:var(--terra);color:#fff;}
+.tbtn.load{background:var(--sand);color:var(--ink);border:1px solid var(--stone-l);}
+.tbtn.add{background:var(--ink);color:#fff;}
+.hamburger{display:none;background:none;border:none;cursor:pointer;font-size:22px;color:var(--ink);padding:4px;}
 
 /* ── VIEWS ── */
-.view{display:none;}.view.active{display:block;}
+.view{display:none;animation:fadeUp .25s ease forwards;}
+.view.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── WEEK BLOCKS ── */
-.week-block{margin-bottom:40px;}
-.week-header{display:flex;align-items:baseline;gap:14px;margin-bottom:16px;}
-.wl{font-family:'Cormorant Garamond',Georgia,serif;font-size:21px;font-weight:400;font-style:italic;}
-.wt{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);font-weight:500;}
-.wline{height:1px;background:var(--stone-l);flex:1;}
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;}
+.wblk{margin-bottom:36px;}
+.whdr{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+.wl{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:400;font-style:italic;}
+.wt{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);font-weight:500;}
+.wline{height:1px;background:var(--stone-l);flex:1;min-width:20px;}
+.wdt{font-size:9.5px;color:var(--terra);font-weight:500;white-space:nowrap;}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;}
 
 /* ── CARDS ── */
-.card{background:var(--warm);border-radius:14px;border:1px solid var(--stone-l);overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer;}
-.card:hover{box-shadow:0 6px 28px rgba(26,20,16,.1);transform:translateY(-2px);}
-.card-top{padding:14px 16px 12px;border-bottom:1px solid var(--stone-l);display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
-.cdb{display:flex;flex-direction:column;gap:3px;}
-.cd-day{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);font-weight:600;}
-.cd-date{font-size:12.5px;color:var(--ink);font-weight:400;}
-.cd-time{font-size:10.5px;color:var(--terra);font-weight:500;}
-.cd-city{font-size:9.5px;color:var(--sage);font-weight:500;margin-top:1px;}
-.cbadges{display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
-.badge{font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:8px;font-weight:600;}
-.b-ig{background:#fce4d6;color:#c4714a;}
-.b-tt{background:#e8f0e3;color:#5a7a4a;}
-.b-posted{background:#e3ede0;color:#5a7a4a;}
-.b-editing{background:#fce4d6;color:#c4714a;}
-.b-scheduled{background:#fdf3de;color:#a07830;}
-.b-draft{background:var(--sand);color:var(--stone);}
+.card{background:var(--warm);border-radius:var(--r);border:1px solid var(--stone-l);overflow:hidden;transition:box-shadow .18s,transform .18s;cursor:pointer;position:relative;}
+.card:hover{box-shadow:0 5px 24px rgba(26,20,16,.1);transform:translateY(-1px);}
+.card-edit-btn{position:absolute;top:10px;right:10px;background:var(--sand);border:1px solid var(--stone-l);border-radius:6px;padding:3px 8px;font-size:9px;font-weight:600;color:var(--stone);cursor:pointer;z-index:2;opacity:0;transition:opacity .15s;}
+.card:hover .card-edit-btn{opacity:1;}
+.ctop{padding:13px 14px 11px;border-bottom:1px solid var(--stone-l);display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.cdb{display:flex;flex-direction:column;gap:2px;}
+.cday{font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);font-weight:600;}
+.cdate{font-size:12px;color:var(--ink);}
+.ctime{font-size:10px;color:var(--terra);font-weight:500;}
+.ccity{font-size:9px;color:var(--sage);font-weight:500;margin-top:1px;}
+.cbdg{display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.bdg{font-size:8px;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:7px;font-weight:700;}
+.b-ig{background:#fce4d6;color:#c4714a;}.b-tt{background:#e3ede0;color:#5a7a4a;}
+.b-posted{background:#e3ede0;color:#5a7a4a;}.b-editing{background:#fce4d6;color:#c4714a;}
+.b-scheduled{background:#fdf3de;color:#a07830;}.b-draft{background:var(--sand);color:var(--stone);}
 .b-type{background:var(--sand);color:var(--ink);}
-.card-body{padding:14px 16px;}
-.c-hook{font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;font-weight:500;line-height:1.4;color:var(--ink);margin-bottom:8px;font-style:italic;}
-.c-angle{font-size:11.5px;color:var(--stone);line-height:1.5;margin-bottom:10px;}
-.c-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
-.chip{font-size:9.5px;background:var(--sand);color:var(--ink);padding:2px 8px;border-radius:6px;font-weight:500;}
-.c-tags{font-size:9.5px;color:var(--sage);line-height:1.9;font-weight:500;}
-.card-footer{padding:10px 16px;background:var(--sand);display:flex;justify-content:space-between;align-items:center;gap:8px;}
-.c-seo{font-size:9.5px;color:var(--stone);font-style:italic;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.c-seo strong{color:var(--ink);font-style:normal;}
-.status-sel{font-family:'DM Sans',sans-serif;font-size:10.5px;border:1px solid var(--stone-l);background:var(--warm);color:var(--ink);cursor:pointer;padding:3px 6px;border-radius:6px;font-weight:500;}
+.cbody{padding:13px 14px;}
+.chook{font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;font-weight:500;line-height:1.4;color:var(--ink);margin-bottom:7px;font-style:italic;}
+.cangle{font-size:11px;color:var(--stone);line-height:1.5;margin-bottom:9px;}
+.cmeta{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px;}
+.chip{font-size:9px;background:var(--sand);color:var(--ink);padding:2px 7px;border-radius:5px;font-weight:500;}
+.ctags{font-size:9px;color:var(--sage);line-height:1.9;font-weight:500;}
+.cfoot{padding:9px 14px;background:var(--sand);display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.cseo{font-size:9px;color:var(--stone);font-style:italic;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cseo strong{color:var(--ink);font-style:normal;}
+.ssel{font-family:'DM Sans',sans-serif;font-size:10px;border:1px solid var(--stone-l);background:var(--warm);color:var(--ink);cursor:pointer;padding:3px 5px;border-radius:5px;font-weight:500;-webkit-appearance:none;appearance:none;}
 
-/* ── MODAL ── */
-.overlay{display:none;position:fixed;inset:0;background:rgba(26,20,16,.65);z-index:100;backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:16px;}
-.overlay.open{display:flex;}
-.modal{background:var(--warm);border-radius:18px;width:min(680px,100%);max-height:90vh;overflow-y:auto;box-shadow:0 20px 70px rgba(26,20,16,.25);}
-.modal-hdr{padding:24px 28px 18px;border-bottom:1px solid var(--stone-l);position:sticky;top:0;background:var(--warm);z-index:1;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
-.modal-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-style:italic;font-weight:400;color:var(--ink);line-height:1.3;}
-.mc{background:var(--sand);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:14px;color:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.mc:hover{background:var(--stone-l);}
-.modal-body{padding:22px 28px 28px;}
-.ms-title{font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);font-weight:600;margin-bottom:8px;}
-.ms{margin-bottom:20px;}
-.mt{font-size:12.5px;line-height:1.75;color:var(--ink);}
-.mg2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.ib{background:var(--sand);border-radius:9px;padding:12px 14px;}
-.ibl{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:3px;}
-.ibv{font-size:13.5px;font-weight:500;color:var(--ink);}
+/* ── MODALS ── */
+.ov{display:none;position:fixed;inset:0;background:rgba(26,20,16,.65);z-index:200;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-end;justify-content:center;padding:0;}
+.ov.open{display:flex;}
+@media(min-width:600px){.ov{align-items:center;padding:16px;}}
+.modal{background:var(--warm);border-radius:20px 20px 0 0;width:100%;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+@media(min-width:600px){.modal{border-radius:18px;width:min(680px,100%);max-height:88vh;}}
+.mhdr{padding:20px 22px 16px;border-bottom:1px solid var(--stone-l);position:sticky;top:0;background:var(--warm);z-index:1;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+.mtitle{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-style:italic;font-weight:400;color:var(--ink);line-height:1.3;max-width:85%;}
+.mclose{background:var(--sand);border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:14px;color:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mbody{padding:20px 22px 32px;}
+.ms{margin-bottom:18px;}
+.ms-title{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);font-weight:700;margin-bottom:8px;}
+.mtext{font-size:12.5px;line-height:1.75;color:var(--ink);}
+.mg2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ib{background:var(--sand);border-radius:8px;padding:11px 13px;}
+.ibl{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:3px;}
+.ibv{font-size:13px;font-weight:500;color:var(--ink);}
 .ibv.t{color:var(--terra);}
-.caption-box{background:var(--sand);border-radius:9px;padding:14px;font-size:12px;line-height:1.85;color:var(--ink);white-space:pre-wrap;font-style:italic;}
-.modal-tags{display:flex;flex-wrap:wrap;gap:5px;}
-.mt-tag{font-size:10.5px;background:var(--sand);color:var(--ink);padding:3px 9px;border-radius:8px;}
-.mt-tag.ht{background:#e8f0e3;color:#3a6030;}
-.mt-tag.se{background:#fce4d6;color:#8a3a1a;}
+.capbox{background:var(--sand);border-radius:8px;padding:13px;font-size:11.5px;line-height:1.85;color:var(--ink);white-space:pre-wrap;font-style:italic;}
+.mtags{display:flex;flex-wrap:wrap;gap:5px;}
+.mt-ht{font-size:10px;background:#e8f0e3;color:#3a6030;padding:3px 8px;border-radius:7px;}
+.mt-se{font-size:10px;background:#fce4d6;color:#8a3a1a;padding:3px 8px;border-radius:7px;}
 
 /* ── HOOK PICKER ── */
-.hooks-grid{display:flex;flex-direction:column;gap:8px;}
-.hook-opt{border:1.5px solid var(--stone-l);border-radius:10px;padding:11px 14px;cursor:pointer;transition:all .18s;display:flex;align-items:flex-start;gap:10px;}
-.hook-opt:hover{border-color:var(--terra);background:#fce4d640;}
-.hook-opt.selected{border-color:var(--terra);background:var(--terra-l);}
-.hook-num{font-size:9px;font-weight:700;color:var(--terra);letter-spacing:.08em;margin-top:2px;flex-shrink:0;}
-.hook-text{font-family:'Cormorant Garamond',Georgia,serif;font-size:15.5px;font-style:italic;color:var(--ink);line-height:1.4;}
-.hook-why{font-size:10px;color:var(--stone);margin-top:3px;line-height:1.4;}
-.use-hook-btn{margin-top:10px;padding:9px 18px;background:var(--terra);color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:background .18s;}
-.use-hook-btn:hover{background:#b05e38;}
+.hooks-list{display:flex;flex-direction:column;gap:7px;}
+.hopt{border:1.5px solid var(--stone-l);border-radius:9px;padding:10px 13px;cursor:pointer;transition:all .15s;display:flex;gap:9px;}
+.hopt:hover,.hopt:active{border-color:var(--terra);background:#fce4d630;}
+.hopt.sel{border-color:var(--terra);background:var(--terra-l);}
+.hnum{font-size:8.5px;font-weight:700;color:var(--terra);margin-top:2px;flex-shrink:0;}
+.htxt{font-family:'Cormorant Garamond',Georgia,serif;font-size:14.5px;font-style:italic;line-height:1.4;}
+.hwhy{font-size:9.5px;color:var(--stone);margin-top:2px;line-height:1.4;}
+.use-hook{margin-top:9px;padding:9px 18px;background:var(--terra);color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;}
 
-/* ── ADD VIDEO FORM ── */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.fg-full{grid-column:1/-1;}
-.fl{display:flex;flex-direction:column;gap:5px;}
-.fl label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);font-weight:600;}
-.fl input,.fl select,.fl textarea{font-family:'DM Sans',sans-serif;font-size:12.5px;border:1.5px solid var(--stone-l);border-radius:8px;padding:9px 12px;background:var(--warm);color:var(--ink);transition:border-color .18s;}
+/* ── EDIT FORM ── */
+.eform{display:flex;flex-direction:column;gap:14px;}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.fgfull{grid-column:1/-1;}
+.fl{display:flex;flex-direction:column;gap:4px;}
+.fl label{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);font-weight:700;}
+.fl input,.fl select,.fl textarea{font-family:'DM Sans',sans-serif;font-size:13px;border:1.5px solid var(--stone-l);border-radius:8px;padding:9px 11px;background:var(--warm);color:var(--ink);width:100%;-webkit-appearance:none;}
 .fl input:focus,.fl select:focus,.fl textarea:focus{outline:none;border-color:var(--terra);}
-.fl textarea{resize:vertical;min-height:80px;}
-.form-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end;}
-.btn-primary{padding:10px 20px;background:var(--terra);color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:500;cursor:pointer;}
-.btn-secondary{padding:10px 20px;background:var(--sand);color:var(--ink);border:1px solid var(--stone-l);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:12.5px;cursor:pointer;}
+.fl textarea{resize:vertical;min-height:80px;line-height:1.6;}
+.fact{display:flex;gap:8px;margin-top:6px;justify-content:space-between;}
+.btn-p{padding:11px 20px;background:var(--terra);color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;flex:1;}
+.btn-s{padding:11px 16px;background:var(--sand);color:var(--ink);border:1px solid var(--stone-l);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;}
+.btn-d{padding:11px 16px;background:#fce4d6;color:#8a3a1a;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;}
 
-/* ── SCHEDULE VIEW ── */
-.schedule-grid{display:grid;grid-template-columns:70px repeat(7,1fr);border-radius:14px;overflow:hidden;border:1px solid var(--stone-l);background:var(--warm);margin-bottom:28px;}
-.sh{background:var(--ink);color:var(--sand);padding:12px 6px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;text-align:center;}
-.st{padding:12px 6px;font-size:9.5px;color:var(--stone);text-align:center;border-right:1px solid var(--stone-l);border-bottom:1px solid var(--stone-l);background:var(--sand);font-weight:600;}
-.sc{padding:6px;border-right:1px solid var(--stone-l);border-bottom:1px solid var(--stone-l);min-height:56px;}
-.se{border-radius:7px;padding:5px 7px;font-size:9.5px;line-height:1.3;font-weight:500;margin-bottom:3px;}
-.se.post{background:#fce4d6;color:#8a3a1a;}
-.se.edit{background:var(--ink);color:var(--sand);}
-.se.batch{background:#e3ede0;color:#2a4a20;}
+/* ── ANALYTICS UPLOAD ── */
+.upload-zone{border:2px dashed var(--stone-l);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:all .18s;background:var(--sand);}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--terra);background:var(--terra-l);}
+.upload-zone input{display:none;}
+.upload-icon{font-size:28px;margin-bottom:8px;}
+.upload-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px;}
+.upload-sub{font-size:11px;color:var(--stone);}
+.ai-result{background:var(--sage-l);border-radius:10px;padding:14px;margin-top:12px;display:none;}
+.ai-result.show{display:block;}
+.ai-result-title{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);font-weight:700;margin-bottom:8px;}
+.ai-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;}
+.ai-stat{background:white;border-radius:7px;padding:8px 10px;text-align:center;}
+.ai-stat-val{font-size:16px;font-weight:600;color:var(--ink);}
+.ai-stat-lbl{font-size:8.5px;color:var(--stone);text-transform:uppercase;letter-spacing:.1em;}
+.ai-comment{font-size:12px;line-height:1.6;color:var(--ink);background:white;border-radius:7px;padding:10px 12px;}
+.apply-stats-btn{margin-top:10px;padding:9px 18px;background:var(--sage);color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;width:100%;}
 
-/* ── METRICS ── */
-.metrics-table{width:100%;border-collapse:collapse;background:var(--warm);border-radius:14px;overflow:hidden;border:1px solid var(--stone-l);}
-.metrics-table th{background:var(--ink);color:var(--sand);padding:12px 14px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;text-align:left;}
-.metrics-table td{padding:11px 14px;border-bottom:1px solid var(--stone-l);font-size:11.5px;}
-.metrics-table tr:last-child td{border-bottom:none;}
-.metrics-table tr:hover td{background:var(--sand);}
-.mi{border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:11.5px;color:var(--ink);width:75px;padding:3px 5px;border-radius:5px;}
+/* ── AI ASSISTANT ── */
+.ai-chat{display:flex;flex-direction:column;height:420px;}
+.ai-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;background:var(--sand);border-radius:10px;margin-bottom:10px;}
+.ai-msg{max-width:85%;padding:10px 13px;border-radius:12px;font-size:12.5px;line-height:1.6;}
+.ai-msg.user{background:var(--terra);color:#fff;align-self:flex-end;border-radius:12px 12px 2px 12px;}
+.ai-msg.bot{background:var(--warm);color:var(--ink);align-self:flex-start;border-radius:12px 12px 12px 2px;border:1px solid var(--stone-l);}
+.ai-msg.loading{color:var(--stone);font-style:italic;}
+.ai-input-row{display:flex;gap:8px;}
+.ai-input{flex:1;font-family:'DM Sans',sans-serif;font-size:13px;border:1.5px solid var(--stone-l);border-radius:10px;padding:10px 13px;background:var(--warm);-webkit-appearance:none;}
+.ai-input:focus{outline:none;border-color:var(--terra);}
+.ai-send{padding:10px 16px;background:var(--terra);color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;}
+.ai-quick{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+.ai-quick button{font-size:10px;padding:4px 10px;border-radius:8px;border:1px solid var(--stone-l);background:var(--warm);color:var(--ink);cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+/* ── UGC ── */
+.ugc-board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.ucol{min-height:200px;}
+.ucol-hdr{font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding-bottom:9px;border-bottom:2px solid var(--stone-l);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+.ucol-hdr.p{border-color:#9e8f7e;}.ucol-hdr.pt{border-color:var(--gold);}.ucol-hdr.w{border-color:var(--sage);}
+.ucol-count{background:var(--sand);border-radius:10px;padding:1px 7px;font-size:9px;color:var(--stone);}
+.ucard{background:var(--warm);border-radius:10px;padding:12px 13px;border:1px solid var(--stone-l);margin-bottom:8px;cursor:grab;transition:all .15s;user-select:none;}
+.ucard:active{cursor:grabbing;transform:scale(1.02);box-shadow:0 4px 16px rgba(26,20,16,.15);}
+.ucard.dragging{opacity:.5;}
+.ucol.drag-over .ucol-drop{background:var(--terra-l);border-color:var(--terra);}
+.ucol-drop{border:2px dashed var(--stone-l);border-radius:10px;padding:16px;text-align:center;font-size:11px;color:var(--stone);transition:all .18s;margin-bottom:8px;min-height:52px;}
+.ub{font-size:12.5px;font-weight:600;margin-bottom:2px;display:flex;justify-content:space-between;align-items:flex-start;gap:6px;}
+.ub-name{flex:1;}
+.ucard-edit{font-size:9px;background:var(--sand);border:none;border-radius:5px;padding:2px 6px;cursor:pointer;color:var(--stone);flex-shrink:0;}
+.ut{font-size:9.5px;color:var(--stone);margin-bottom:5px;}
+.ur{font-size:11.5px;color:var(--terra);font-weight:600;}
+.un{font-size:9.5px;color:var(--stone);margin-top:4px;font-style:italic;}
+.ugc-status-sel{font-size:9px;border:1px solid var(--stone-l);background:var(--sand);padding:2px 5px;border-radius:5px;font-family:'DM Sans',sans-serif;cursor:pointer;-webkit-appearance:none;margin-top:5px;}
+.add-ugc-btn{width:100%;padding:9px;border:1.5px dashed var(--stone-l);border-radius:9px;background:transparent;color:var(--stone);font-family:'DM Sans',sans-serif;font-size:11px;cursor:pointer;transition:all .15s;}
+.add-ugc-btn:hover{border-color:var(--terra);color:var(--terra);background:var(--terra-l);}
+
+/* ── SCHEDULE / INFO SECTIONS ── */
+.sgrid{display:grid;grid-template-columns:60px repeat(7,1fr);border-radius:12px;overflow:hidden;border:1px solid var(--stone-l);background:var(--warm);margin-bottom:22px;}
+.sh{background:var(--ink);color:var(--sand);padding:10px 4px;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;text-align:center;}
+.st{padding:10px 4px;font-size:8.5px;color:var(--stone);text-align:center;border-right:1px solid var(--stone-l);border-bottom:1px solid var(--stone-l);background:var(--sand);font-weight:600;}
+.sc{padding:5px;border-right:1px solid var(--stone-l);border-bottom:1px solid var(--stone-l);min-height:52px;}
+.se{border-radius:6px;padding:4px 6px;font-size:8.5px;line-height:1.3;font-weight:500;margin-bottom:2px;}
+.se.post{background:#fce4d6;color:#8a3a1a;}.se.edit{background:var(--ink);color:var(--sand);}.se.batch{background:#e3ede0;color:#2a4a20;}
+.irow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
+.ibox{background:var(--warm);border-radius:9px;padding:12px 14px;border:1px solid var(--stone-l);}
+.ibxl{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:2px;}
+.ibxv{font-size:13px;font-weight:500;color:var(--ink);}
+.ibxv.t{color:var(--terra);}
+
+/* ── METRICS TABLE ── */
+.mtbl{width:100%;border-collapse:collapse;background:var(--warm);border-radius:12px;overflow:hidden;border:1px solid var(--stone-l);}
+.mtbl th{background:var(--ink);color:var(--sand);padding:11px 12px;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;text-align:left;}
+.mtbl td{padding:10px 12px;border-bottom:1px solid var(--stone-l);font-size:11.5px;}
+.mtbl tr:last-child td{border-bottom:none;}
+.mtbl tr:hover td{background:var(--sand);}
+.mi{border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:11.5px;color:var(--ink);width:68px;padding:3px 4px;border-radius:5px;}
 .mi:focus{outline:none;background:var(--sand);}
 .mi::placeholder{color:var(--stone-l);}
 
-/* ── UGC ── */
-.ugc-board{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:28px;}
-.uc-hdr{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;padding-bottom:10px;border-bottom:2px solid var(--stone-l);margin-bottom:10px;}
-.uc-hdr.p{border-color:var(--stone);}
-.uc-hdr.pt{border-color:var(--gold);}
-.uc-hdr.w{border-color:var(--sage);}
-.ugc-card{background:var(--warm);border-radius:10px;padding:12px 14px;border:1px solid var(--stone-l);margin-bottom:8px;}
-.ub{font-size:12.5px;font-weight:500;margin-bottom:3px;}
-.ut{font-size:9.5px;color:var(--stone);margin-bottom:6px;}
-.ur{font-size:11.5px;color:var(--terra);font-weight:600;}
-.un{font-size:9.5px;color:var(--stone);margin-top:5px;font-style:italic;}
-.add-ugc{width:100%;padding:9px;border:1.5px dashed var(--stone-l);border-radius:10px;background:transparent;color:var(--stone);font-family:'DM Sans',sans-serif;font-size:11.5px;cursor:pointer;transition:all .18s;margin-top:3px;}
-.add-ugc:hover{border-color:var(--terra);color:var(--terra);background:#fce4d640;}
+/* ── SHEETS VIEW ── */
+.setup-box{background:var(--warm);border-radius:12px;border:1.5px solid var(--terra);padding:20px 22px;margin-bottom:22px;}
+.step-row{display:flex;gap:10px;margin-bottom:12px;font-size:12.5px;line-height:1.6;}
+.snum{background:var(--terra);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px;}
+code{background:var(--sand);padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px;}
+.url-inp{width:100%;padding:10px 13px;border:1.5px solid var(--stone-l);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:12.5px;background:var(--cream);color:var(--ink);margin-top:10px;-webkit-appearance:none;}
+.url-inp:focus{outline:none;border-color:var(--terra);}
 
 /* ── COLOMBIA BANNER ── */
-.col-banner{background:linear-gradient(135deg,#3d2a1a,#2a3d2a);border-radius:14px;padding:20px 24px;margin-bottom:28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
-.col-flag{font-size:32px;}
-.col-info{flex:1;}
-.col-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:500;color:#f5efe6;font-style:italic;margin-bottom:4px;}
-.col-sub{font-size:11.5px;color:rgba(255,255,255,.55);}
-.col-dates{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
-.col-pill{background:rgba(255,255,255,.1);border-radius:8px;padding:5px 12px;font-size:10.5px;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.12);}
-.col-pill strong{color:#fff;font-weight:600;}
-
-/* ── INFO BOXES ── */
-.info-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;}
-.ibox{background:var(--warm);border-radius:10px;padding:14px 16px;border:1px solid var(--stone-l);}
-.ibox-l{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:3px;}
-.ibox-v{font-size:14px;font-weight:500;color:var(--ink);}
-.ibox-v.t{color:var(--terra);}
+.col-bnr{background:linear-gradient(135deg,#3d2a1a,#2a3d2a);border-radius:12px;padding:18px 22px;margin-bottom:24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.col-flag{font-size:30px;}
+.col-info{flex:1;min-width:200px;}
+.col-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-weight:500;color:#f5efe6;font-style:italic;margin-bottom:3px;}
+.col-sub{font-size:11px;color:rgba(255,255,255,.5);}
+.col-dates{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px;}
+.cpill{background:rgba(255,255,255,.1);border-radius:7px;padding:4px 10px;font-size:10px;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.11);}
+.cpill strong{color:#fff;}
 
 /* ── TOAST ── */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--ink);color:var(--sand);padding:12px 20px;border-radius:10px;font-size:12.5px;z-index:999;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;}
-.toast.show{opacity:1;transform:translateY(0);}
-.toast.ok{background:#2a4a20;color:#e3ede0;}
-.toast.err{background:#6a1a0a;color:#fce4d6;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--ink);color:var(--sand);padding:11px 20px;border-radius:10px;font-size:12px;z-index:999;opacity:0;transition:all .25s;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.ok{background:#2a4a20;color:#e3ede0;}.toast.err{background:#6a1a0a;color:#fce4d6;}
 
-/* ── SHEETS SETUP ── */
-.setup-box{background:var(--warm);border-radius:14px;border:1.5px solid var(--terra);padding:24px 28px;margin-bottom:28px;}
-.setup-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-style:italic;margin-bottom:12px;color:var(--terra);}
-.setup-steps{counter-reset:step;}
-.setup-step{display:flex;gap:12px;margin-bottom:14px;font-size:12.5px;line-height:1.6;}
-.step-num{background:var(--terra);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px;}
-.url-input{width:100%;padding:10px 14px;border:1.5px solid var(--stone-l);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:12.5px;background:var(--cream);color:var(--ink);margin-top:8px;}
-.url-input:focus{outline:none;border-color:var(--terra);}
-code{background:var(--sand);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:11.5px;}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar{width:3px;height:3px;}
-::-webkit-scrollbar-thumb{background:var(--stone-l);border-radius:3px;}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-.view.active .week-block{animation:fadeUp .3s ease forwards;}
-.view.active .week-block:nth-child(2){animation-delay:.05s;}
-.view.active .week-block:nth-child(3){animation-delay:.1s;}
-.view.active .week-block:nth-child(4){animation-delay:.15s;}
+/* ── MOB OVERLAY ── */
+.mob-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:25;}
+.mob-ov.open{display:block;}
 
 /* ── MOBILE ── */
-@media(max-width:700px){
+@media(max-width:680px){
   :root{--sidebar:0px;}
-  .shell{grid-template-columns:1fr;grid-template-rows:auto auto 1fr;}
-  .sidebar{display:none;position:fixed;left:0;top:0;height:100vh;width:240px;z-index:200;transform:translateX(-100%);transition:transform .25s;}
-  .sidebar.open{display:flex;transform:translateX(0);}
+  .shell{grid-template-columns:1fr;}
+  .sidebar{position:fixed;left:0;top:0;height:100vh;width:240px;z-index:30;transform:translateX(-100%);transition:transform .25s;display:flex;}
+  .sidebar.open{transform:translateX(0);}
   .topbar{padding:12px 16px;}
-  .main{padding:16px;}
-  .cards-grid{grid-template-columns:1fr;}
-  .ugc-board{grid-template-columns:1fr;}
-  .info-row{grid-template-columns:1fr 1fr;}
-  .mg2{grid-template-columns:1fr;}
-  .form-grid{grid-template-columns:1fr;}
-  .schedule-grid{grid-template-columns:50px repeat(7,1fr);font-size:8px;}
-  .sh{padding:8px 3px;font-size:8px;}
-  .page-title{font-size:20px;}
-  .pill-filter{display:none;}
-  .hamburger{display:flex;}
+  .main{padding:14px 16px;}
+  .hamburger{display:block;}
+  .pf{display:none;}
+  .tr .tbtn span:not(.ic){display:none;}
+  .tbtn{padding:8px 10px;}
+  .cgrid{grid-template-columns:1fr;}
+  .ugc-board{grid-template-columns:1fr;gap:12px;}
+  .mg2,.fg2{grid-template-columns:1fr;}
+  .irow{grid-template-columns:1fr 1fr;}
+  .sgrid{font-size:7.5px;}
+  .ai-stat-row{grid-template-columns:repeat(3,1fr);}
   .col-dates{flex-direction:column;}
+  .card-edit-btn{opacity:1;}
 }
-.hamburger{display:none;background:none;border:none;cursor:pointer;font-size:22px;color:var(--ink);}
-.mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:190;}
-.mob-overlay.open{display:block;}
+@media(max-width:380px){
+  .irow{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
-
 <div class="shell" id="shell">
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
   <div class="logo">Linatravelss<small>Content Studio</small></div>
-  <div class="divider"></div>
-  <div class="nav-label">Views</div>
-  <button class="nb active" onclick="switchView('calendar')" id="nav-calendar"><span class="ic">📅</span>Content Calendar</button>
-  <button class="nb" onclick="switchView('schedule')" id="nav-schedule"><span class="ic">⏱️</span>Work Schedule</button>
-  <button class="nb" onclick="switchView('metrics')" id="nav-metrics"><span class="ic">📊</span>Performance</button>
-  <button class="nb" onclick="switchView('ugc')" id="nav-ugc"><span class="ic">💼</span>UGC & Collabs</button>
-  <button class="nb" onclick="switchView('sheets')" id="nav-sheets"><span class="ic">🔗</span>Sheets Sync</button>
-  <div class="divider"></div>
-  <div class="nav-label">Filter status</div>
-  <button class="nb" onclick="filterStatus('all')"><span class="ic">🗂️</span>All videos</button>
-  <button class="nb" onclick="filterStatus('Draft')"><span class="ic">✏️</span>Draft</button>
-  <button class="nb" onclick="filterStatus('Editing')"><span class="ic">🎬</span>Editing</button>
-  <button class="nb" onclick="filterStatus('Scheduled')"><span class="ic">🕐</span>Scheduled</button>
-  <button class="nb" onclick="filterStatus('Posted')"><span class="ic">✅</span>Posted</button>
-  <div class="stats-mini">
-    <div class="sml">Your accounts</div>
+  <div class="div"></div>
+  <div class="nlbl">Views</div>
+  <button class="nb active" onclick="sw('calendar')" id="nav-calendar"><span class="ic">📅</span>Calendar</button>
+  <button class="nb" onclick="sw('schedule')" id="nav-schedule"><span class="ic">⏱️</span>Work Schedule</button>
+  <button class="nb" onclick="sw('metrics')" id="nav-metrics"><span class="ic">📊</span>Performance</button>
+  <button class="nb" onclick="sw('ugc')" id="nav-ugc"><span class="ic">💼</span>UGC & Collabs</button>
+  <button class="nb" onclick="sw('ai')" id="nav-ai"><span class="ic">🤖</span>AI Assistant</button>
+  <button class="nb" onclick="sw('sheets')" id="nav-sheets"><span class="ic">🔗</span>Sheets Sync</button>
+  <div class="div"></div>
+  <div class="nlbl">Filter</div>
+  <button class="nb" onclick="fs('all')"><span class="ic">🗂️</span>All videos</button>
+  <button class="nb" onclick="fs('Draft')"><span class="ic">✏️</span>Draft</button>
+  <button class="nb" onclick="fs('Editing')"><span class="ic">🎬</span>Editing</button>
+  <button class="nb" onclick="fs('Scheduled')"><span class="ic">🕐</span>Scheduled</button>
+  <button class="nb" onclick="fs('Posted')"><span class="ic">✅</span>Posted</button>
+  <div class="smini">
+    <div class="smini-lbl">Your accounts</div>
     <div class="sr"><span class="sl">IG followers</span><span class="sv">3,791</span></div>
     <div class="sr"><span class="sl">TikTok</span><span class="sv">1,045</span></div>
     <div class="sr"><span class="sl">IG monthly views</span><span class="sv g">830K</span></div>
-    <div class="sr"><span class="sl">Videos planned</span><span class="sv" id="total-count">20</span></div>
+    <div class="sr"><span class="sl">Videos</span><span class="sv" id="tc">20</span></div>
   </div>
 </aside>
-
-<div class="mob-overlay" id="mob-overlay" onclick="closeSidebar()"></div>
+<div class="mob-ov" id="mob-ov" onclick="closeSB()"></div>
 
 <!-- TOPBAR -->
 <header class="topbar">
-  <div style="display:flex;align-items:center;gap:12px;">
-    <button class="hamburger" id="hamburger" onclick="toggleSidebar()">☰</button>
-    <h1 class="page-title" id="view-title">Content Calendar</h1>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="hamburger" onclick="toggleSB()">☰</button>
+    <h1 class="ptitle" id="ptitle">Content Calendar</h1>
   </div>
-  <div class="topbar-right">
-    <div class="pill-filter" id="phase-filter">
-      <button class="active" onclick="filterPhase('all',this)">All</button>
-      <button onclick="filterPhase('1',this)">Wk 1</button>
-      <button onclick="filterPhase('2',this)">Wk 2</button>
-      <button onclick="filterPhase('3',this)">Wk 3</button>
-      <button onclick="filterPhase('4',this)">Wk 4</button>
-      <button onclick="filterPhase('colombia',this)">🇨🇴 Col</button>
+  <div class="tr">
+    <div class="pf" id="pf">
+      <button class="active" onclick="fp('all',this)">All</button>
+      <button onclick="fp('1',this)">W1</button>
+      <button onclick="fp('2',this)">W2</button>
+      <button onclick="fp('3',this)">W3</button>
+      <button onclick="fp('4',this)">W4</button>
+      <button onclick="fp('colombia',this)">🇨🇴</button>
     </div>
-    <button class="sync-btn add" onclick="openAddModal()">+ Add video</button>
-    <button class="sync-btn save" onclick="saveToSheets()">↑ Save to Sheets</button>
-    <button class="sync-btn load" onclick="loadFromSheets()">↓ Load from Sheets</button>
+    <button class="tbtn add" onclick="openAdd()"><span class="ic">+</span><span>Add</span></button>
+    <button class="tbtn save" onclick="saveSheets()"><span class="ic">↑</span><span>Save</span></button>
+    <button class="tbtn load" onclick="loadSheets()"><span class="ic">↓</span><span>Load</span></button>
   </div>
 </header>
 
 <!-- MAIN -->
 <main class="main">
 
-<!-- CALENDAR VIEW -->
+<!-- CALENDAR -->
 <div class="view active" id="view-calendar"></div>
 
-<!-- SCHEDULE VIEW -->
+<!-- SCHEDULE -->
 <div class="view" id="view-schedule">
-  <div class="col-banner" style="margin-bottom:24px;">
-    <span class="col-flag">📋</span>
-    <div class="col-info">
-      <div class="col-title">Your weekly production system</div>
-      <div class="col-sub">10 hours/week · Batch Saturdays · Post Tue–Thu–Sat–Sun · Colombia from Apr 18</div>
-    </div>
+  <p style="font-size:12px;color:var(--stone);margin-bottom:18px;line-height:1.7;">Your weekly production rhythm — 10 hrs/week. Batch Saturdays. Colombia posts at 8am AEST.</p>
+  <div class="sgrid">
+    <div class="sh" style="font-size:7.5px;">TIME</div>
+    <div class="sh">Mon</div><div class="sh">Wed</div><div class="sh">Thu</div><div class="sh">Fri</div><div class="sh">Sat</div><div class="sh">Sun</div><div class="sh">Mon</div>
+    <div class="st">AM</div>
+    <div class="sc"></div><div class="sc"><div class="se post">📤 Post IG+TT<br>12pm</div></div><div class="sc"></div>
+    <div class="sc"><div class="se post">📤 Post IG+TT<br>12pm</div></div>
+    <div class="sc"><div class="se batch">🎬 BATCH<br>4 vids·2hr</div></div>
+    <div class="sc"><div class="se batch">✍️ Hooks &<br>captions</div></div><div class="sc"></div>
+    <div class="st">PM</div>
+    <div class="sc"></div><div class="sc"></div><div class="sc"><div class="se post">📤 TikTok<br>6pm</div></div>
+    <div class="sc"><div class="se post">📤 TikTok<br>6pm</div></div>
+    <div class="sc"><div class="se post">📤 Post<br>1pm</div></div>
+    <div class="sc"><div class="se post">📤 Post<br>1pm</div></div><div class="sc"></div>
+    <div class="st">EVE</div>
+    <div class="sc"><div class="se edit" style="font-size:7.5px;">Metrics<br>20min</div></div>
+    <div class="sc"><div class="se edit" style="font-size:7.5px;">Replies<br>20min</div></div>
+    <div class="sc"><div class="se edit" style="font-size:7.5px;">Replies<br>20min</div></div>
+    <div class="sc"><div class="se edit" style="font-size:7.5px;">Plan next<br>week</div></div>
+    <div class="sc"></div>
+    <div class="sc"><div class="se edit" style="font-size:7.5px;">Schedule<br>posts</div></div><div class="sc"></div>
   </div>
-  <div class="schedule-grid">
-    <div class="sh" style="font-size:8px;padding:8px 2px;">TIME</div>
-    <div class="sh">Mon</div><div class="sh">Tue</div><div class="sh">Wed</div>
-    <div class="sh">Thu</div><div class="sh">Fri</div><div class="sh">Sat</div><div class="sh">Sun</div>
-    <div class="st">Morning</div>
-    <div class="sc"></div>
-    <div class="sc"><div class="se post">📤 Post IG+TT<br>12pm AEST</div></div>
-    <div class="sc"></div>
-    <div class="sc"><div class="se post">📤 Post IG+TT<br>12pm AEST</div></div>
-    <div class="sc"></div>
-    <div class="sc"><div class="se batch">🎬 BATCH EDIT<br>4 videos · 2–3hrs</div></div>
-    <div class="sc"><div class="se batch">✍️ Hooks &<br>caption writing</div></div>
-    <div class="st">Afternoon</div>
-    <div class="sc"></div>
-    <div class="sc"></div>
-    <div class="sc"><div class="se post">📤 TikTok extra<br>6pm AEST</div></div>
-    <div class="sc"></div>
-    <div class="sc"><div class="se post">📤 TikTok extra<br>6pm AEST</div></div>
-    <div class="sc"><div class="se post">📤 Post IG+TT<br>1pm AEST</div></div>
-    <div class="sc"><div class="se post">📤 Post IG+TT<br>1pm AEST</div></div>
-    <div class="st">Evening</div>
-    <div class="sc"><div class="se edit" style="font-size:8.5px;">Review metrics<br>20 min</div></div>
-    <div class="sc"><div class="se edit" style="font-size:8.5px;">Reply comments<br>20 min</div></div>
-    <div class="sc"><div class="se edit" style="font-size:8.5px;">Reply comments<br>20 min</div></div>
-    <div class="sc"><div class="se edit" style="font-size:8.5px;">Reply comments<br>20 min</div></div>
-    <div class="sc"><div class="se edit" style="font-size:8.5px;">Plan next week<br>30 min</div></div>
-    <div class="sc"></div>
-    <div class="sc"><div class="se edit" style="font-size:8.5px;">Schedule all<br>posts · 30 min</div></div>
+  <div class="irow">
+    <div class="ibox"><div class="ibxl">Weekly hours</div><div class="ibxv">~9–10 hrs</div></div>
+    <div class="ibox"><div class="ibxl">Batch edit day</div><div class="ibxv t">Saturday AM</div></div>
+    <div class="ibox"><div class="ibxl">Best times (AEST)</div><div class="ibxv">12pm & 6pm</div></div>
   </div>
-  <div class="info-row">
-    <div class="ibox"><div class="ibox-l">Total weekly hours</div><div class="ibox-v">~9–10 hrs</div></div>
-    <div class="ibox"><div class="ibox-l">Batch edit day</div><div class="ibox-v t">Saturday morning</div></div>
-    <div class="ibox"><div class="ibox-l">Best posting times</div><div class="ibox-v">12pm & 6pm AEST</div></div>
-  </div>
-  <div style="margin-top:24px;" class="week-block">
-    <div class="week-header"><span class="wl">Colombia posting rhythm</span><div class="wline"></div></div>
-    <div class="cards-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr));">
-      <div class="ugc-card"><div class="ub">🇨🇴 In Colombia (Apr 18 – May 21)</div><div class="ut">Work hours 4pm–12am</div><div class="un">Film in mornings/afternoons. Edit in first hour of work window. Post same day or next morning. Time zone: Colombia = AEST − 14hrs. Post 8am Colombia = 10pm AEST day before.</div></div>
-      <div class="ugc-card"><div class="ub">📱 Content pace in Colombia</div><div class="ut">Post every 2 days minimum</div><div class="un">You have a dermatologist Apr 20 — film Bogotá content Tue 21 Apr (arrive Sun 19). Cartagena Wed 22 – Mon 26 Apr = prime content window. Pereira Apr 27 – May 2 = Eje Cafetero content.</div></div>
-      <div class="ugc-card"><div class="ub">✈️ Return window (May 21–23)</div><div class="ut">Departure May 21 · Arrive Melbourne May 23</div><div class="un">Schedule 5–6 posts to auto-publish during travel days so momentum doesn't drop while you're in transit.</div></div>
+  <div style="margin-top:22px;">
+    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-style:italic;margin-bottom:12px;">Analytics check-in timing</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+      <div class="ibox"><div class="ibxl">First check (48hrs)</div><div class="ibxv t">Views & watch time</div><div style="font-size:10.5px;color:var(--stone);margin-top:4px;">If under 500 views at 48hrs, the algorithm didn't push it. Note the hook and angle.</div></div>
+      <div class="ibox"><div class="ibxl">Main check (7 days)</div><div class="ibxv t">All metrics</div><div style="font-size:10.5px;color:var(--stone);margin-top:4px;">This is when to upload your screenshot to the app. Full picture of saves, shares, follows.</div></div>
+      <div class="ibox"><div class="ibxl">Monthly review</div><div class="ibxv t">Pattern analysis</div><div style="font-size:10.5px;color:var(--stone);margin-top:4px;">Compare your top 3 and bottom 3. Find what the winners share and replicate it.</div></div>
     </div>
   </div>
 </div>
 
-<!-- METRICS VIEW -->
+<!-- METRICS -->
 <div class="view" id="view-metrics">
-  <p style="font-size:12.5px;color:var(--stone);margin-bottom:20px;line-height:1.7;">Track performance after each post. Update every Monday morning — 5 minutes to log, invaluable for spotting what to replicate.</p>
-  <table class="metrics-table"><thead><tr><th>#</th><th>Hook (short)</th><th>Date</th><th>Platform</th><th>Views</th><th>Likes</th><th>Saves</th><th>Shares</th><th>Follows</th><th>Watch time</th></tr></thead><tbody id="metrics-tbody"></tbody></table>
-  <div style="margin-top:20px;background:var(--warm);border:1px solid var(--stone-l);border-radius:14px;padding:20px;">
-    <div class="ms-title">What to look for each week</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:12px;">
-      <div class="ugc-card"><div class="ub">🔁 Replicate immediately</div><div class="un">Saves &gt; 50 or shares &gt; 30 → make 2 more with the same hook structure within 7 days.</div></div>
-      <div class="ugc-card"><div class="ub">❌ Drop the format</div><div class="un">Under 1,000 views after 48hrs → note the angle and avoid repeating that combination.</div></div>
-      <div class="ugc-card"><div class="ub">✅ Watch time &gt; 50%</div><div class="un">Average watch time over half the video = hook and content are working. Strongest signal.</div></div>
-      <div class="ugc-card"><div class="ub">📈 Follower conversion</div><div class="un">Aim for 5–10 follows per viral video. Low follows = hook without identity.</div></div>
-    </div>
+  <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;align-items:center;">
+    <p style="font-size:12px;color:var(--stone);line-height:1.6;flex:1;">Upload a screenshot of your IG/TikTok analytics after 7 days and the AI will read the numbers and fill in the stats automatically.</p>
+    <button class="tbtn save" onclick="openUploadModal()" style="white-space:nowrap;">📸 Upload analytics</button>
+  </div>
+  <div style="overflow-x:auto;">
+    <table class="mtbl"><thead><tr><th>#</th><th>Hook</th><th>Date</th><th>Platform</th><th>Views</th><th>Likes</th><th>Saves</th><th>Shares</th><th>Follows</th><th>Watch time</th></tr></thead>
+    <tbody id="mtbody"></tbody></table>
   </div>
 </div>
 
-<!-- UGC VIEW -->
+<!-- UGC -->
 <div class="view" id="view-ugc">
-  <p style="font-size:12.5px;color:var(--stone);margin-bottom:20px;line-height:1.7;">Track brand outreach and deals. 830K monthly views is your number — start pitching now.</p>
-  <div class="ugc-board">
-    <div>
-      <div class="uc-hdr p">🎯 Prospects — to pitch</div>
-      <div class="ugc-card"><div class="ub">Away / July Luggage</div><div class="ut">Travel luggage · UGC video</div><div class="ur">$150–300 AUD</div><div class="un">Pitch with Colombia trip angle.</div></div>
-      <div class="ugc-card"><div class="ub">Ultra Violette Sunscreen</div><div class="ut">Travel skincare · UGC reel</div><div class="ur">$200–350 AUD</div><div class="un">Australian brand, travel use case.</div></div>
-      <div class="ugc-card"><div class="ub">Booking.com</div><div class="ut">Travel booking · UGC reel</div><div class="ur">$300–500 AUD</div><div class="un">Large UGC budgets. Apply via creator portal.</div></div>
-      <div class="ugc-card"><div class="ub">CapCut (creator partner)</div><div class="ut">App · Tutorial content</div><div class="ur">$200–400 AUD</div><div class="un">You already use it — authentic pitch.</div></div>
-      <button class="add-ugc">+ Add prospect</button>
-    </div>
-    <div>
-      <div class="uc-hdr pt">📩 Pitched — awaiting</div>
-      <button class="add-ugc">+ Add pitched brand</button>
-    </div>
-    <div>
-      <div class="uc-hdr w">🎉 Won — active/done</div>
-      <div class="ugc-card"><div class="ub">Monopoly Dreams Melbourne</div><div class="ut">Experience · Unpaid collab</div><div class="ur">Portfolio piece ✓</div><div class="un">Use as case study in media kit.</div></div>
-      <button class="add-ugc">+ Add won deal</button>
-    </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+    <p style="font-size:12px;color:var(--stone);line-height:1.6;flex:1;">Drag cards between columns or use the status dropdown. 830K monthly views is your pitch number.</p>
+    <button class="tbtn add" onclick="openAddUGC()">+ Add brand</button>
   </div>
-  <div style="background:var(--warm);border:1px solid var(--stone-l);border-radius:14px;padding:22px;">
-    <div class="ms-title">Your UGC pitch email (ready to send)</div>
-    <div class="caption-box" style="margin-top:10px;">Subject: UGC Creator Partnership — Linatravelss
+  <div class="ugc-board" id="ugc-board"></div>
+  <div style="background:var(--warm);border:1px solid var(--stone-l);border-radius:12px;padding:20px;margin-top:16px;">
+    <div class="ms-title">Your UGC pitch email</div>
+    <div class="capbox" style="margin-top:10px;">Subject: UGC Creator Partnership — Linatravelss
 
 Hi [Name],
 
 I'm Lina, a travel content creator based in Melbourne with 830K+ monthly views on Instagram and an engaged audience of 25–44 year old travellers across Colombia, Australia, the US, and the UAE.
 
-I'd love to create [X videos] for [Brand] showcasing [specific use case — e.g. your luggage on my upcoming Colombia trip]. My style is experiential and relatable — text-on-screen, trending audio, real moments.
+I'd love to create [X videos] for [Brand] showcasing [specific use case]. My content style is experiential and relatable — text-on-screen, trending audio, real moments.
 
-UGC rate: $[X] per video (usage rights included).
+UGC rate: $[X] per video (usage rights included, no posting required from my end).
 
-Happy to send my media kit. Let me know!
+Happy to send my media kit. Would love to connect!
 
 Lina · @linatravelss · @linatravelss_</div>
   </div>
 </div>
 
-<!-- SHEETS SYNC VIEW -->
+<!-- AI ASSISTANT -->
+<div class="view" id="view-ai">
+  <p style="font-size:12px;color:var(--stone);margin-bottom:16px;line-height:1.6;">Ask me anything about your content strategy, hook writing, or post analysis. Paste your Apps Script URL in Sheets Sync first, then enter your Anthropic API key below to activate.</p>
+  <div style="background:var(--warm);border:1.5px solid var(--terra);border-radius:12px;padding:18px;margin-bottom:18px;">
+    <div class="ms-title" style="margin-bottom:8px;">Activate AI Assistant</div>
+    <div class="fl" style="margin-bottom:10px;">
+      <label>Anthropic API Key (stored locally only, never sent anywhere else)</label>
+      <input type="password" id="api-key-input" placeholder="sk-ant-api03-..." style="font-size:12px;">
+    </div>
+    <button class="btn-p" style="padding:9px 18px;font-size:12px;" onclick="saveApiKey()">Save API key</button>
+    <div id="api-status" style="font-size:10.5px;color:var(--stone);margin-top:8px;font-style:italic;"></div>
+  </div>
+  <div style="background:var(--warm);border:1px solid var(--stone-l);border-radius:12px;overflow:hidden;">
+    <div style="padding:14px 18px;border-bottom:1px solid var(--stone-l);">
+      <div class="ms-title" style="margin-bottom:8px;">Quick questions</div>
+      <div class="ai-quick">
+        <button onclick="askAI('What hook should I write for my next Cartagena video?')">Hook for Cartagena</button>
+        <button onclick="askAI('Which of my current videos is most likely to go viral and why?')">Viral prediction</button>
+        <button onclick="askAI('Suggest 3 UGC brands I should pitch this week')">UGC brand ideas</button>
+        <button onclick="askAI('How do I grow faster on TikTok right now?')">TikTok growth</button>
+        <button onclick="askAI('Give me 5 hooks for a video about living abroad as a Latina')">Living abroad hooks</button>
+      </div>
+    </div>
+    <div style="padding:14px 18px;">
+      <div class="ai-chat">
+        <div class="ai-msgs" id="ai-msgs">
+          <div class="ai-msg bot">Hi Lina! I'm your content strategy assistant. Ask me anything about hooks, UGC pitches, platform strategy, or your Colombia content plan. I have full context on your accounts and videos. 🇨🇴✨</div>
+        </div>
+        <div class="ai-input-row">
+          <input class="ai-input" id="ai-input" placeholder="Ask me anything about your content..." onkeydown="if(event.key==='Enter')sendAI()">
+          <button class="ai-send" onclick="sendAI()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHEETS SYNC -->
 <div class="view" id="view-sheets">
   <div class="setup-box">
-    <div class="setup-title">Connect to Google Sheets</div>
-    <div class="setup-steps">
-      <div class="setup-step"><div class="step-num">1</div><div>Go to <strong>script.google.com</strong> → New project → paste the <code>Code.gs</code> file contents</div></div>
-      <div class="setup-step"><div class="step-num">2</div><div>Click <strong>Deploy → New deployment → Web App</strong><br>Execute as: <strong>Me</strong> · Access: <strong>Anyone</strong></div></div>
-      <div class="setup-step"><div class="step-num">3</div><div>Copy the Web App URL and paste it below</div></div>
-      <div class="setup-step"><div class="step-num">4</div><div>Click <strong>"Save to Sheets"</strong> in the top bar to push all your content to a beautifully formatted Google Sheet</div></div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-style:italic;color:var(--terra);margin-bottom:14px;">Connect Google Sheets</div>
+    <div class="step-row"><div class="snum">1</div><div>Go to <strong>script.google.com</strong> → New project → paste the <code>Code.gs</code> file</div></div>
+    <div class="step-row"><div class="snum">2</div><div>Click <strong>Deploy → New deployment → Web App</strong><br>Execute as: <strong>Me</strong> · Access: <strong>Anyone</strong></div></div>
+    <div class="step-row"><div class="snum">3</div><div>Copy the Web App URL and paste below</div></div>
+    <div class="step-row"><div class="snum">4</div><div>Click <strong>Save to Sheets</strong> to push everything</div></div>
+    <input type="url" class="url-inp" id="sheets-url" placeholder="https://script.google.com/macros/s/YOUR_ID/exec">
+    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+      <button class="btn-p" style="flex:none;padding:10px 18px;" onclick="saveUrl()">Save URL</button>
+      <button class="btn-s" onclick="testConn()">Test connection</button>
     </div>
-    <input type="url" class="url-input" id="sheets-url" placeholder="https://script.google.com/macros/s/YOUR_ID/exec" value="">
-    <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;">
-      <button class="sync-btn save" onclick="saveUrl()">Save URL</button>
-      <button class="sync-btn load" onclick="testConnection()">Test connection</button>
-    </div>
-    <div id="conn-status" style="margin-top:10px;font-size:11.5px;color:var(--stone);"></div>
+    <div id="conn-st" style="margin-top:10px;font-size:11.5px;color:var(--stone);"></div>
   </div>
-  <div style="background:var(--warm);border:1px solid var(--stone-l);border-radius:14px;padding:22px;">
-    <div class="ms-title">What syncs to Google Sheets</div>
-    <div style="font-size:12.5px;line-height:1.9;color:var(--ink);margin-top:10px;">
-      Your sheet will have two tabs: <strong>Content Calendar</strong> (all 33 columns, colour-coded by status, week headers, Status dropdown) and <strong>Meta</strong> (your stats, posting schedule, Colombia itinerary summary).<br><br>
-      You can edit Status, Selected Hook, and metrics directly in Sheets — then click <strong>Load from Sheets</strong> in the app to pull changes back.
+  <div style="background:var(--warm);border:1px solid var(--stone-l);border-radius:12px;padding:20px;">
+    <div class="ms-title">What syncs</div>
+    <div style="font-size:12.5px;line-height:1.9;color:var(--ink);margin-top:8px;">
+      <strong>Content Calendar tab:</strong> all 33 columns, colour-coded by status, week headers, Status dropdown validation.<br>
+      <strong>Meta tab:</strong> your stats, posting schedule, Colombia itinerary summary.<br><br>
+      You can edit Status and metrics directly in Sheets, then click <strong>Load from Sheets</strong> to pull changes back.
     </div>
   </div>
 </div>
@@ -441,657 +472,293 @@ Lina · @linatravelss · @linatravelss_</div>
 </div>
 
 <!-- DETAIL MODAL -->
-<div class="overlay" id="modal" onclick="closeModalOutside(event)">
-  <div class="modal" id="modal-content">
-    <div class="modal-hdr"><div class="modal-title" id="modal-title"></div><button class="mc" onclick="closeModal()">✕</button></div>
-    <div class="modal-body" id="modal-body"></div>
-  </div>
+<div class="ov" id="detail-ov" onclick="closeOv('detail-ov',event)">
+  <div class="modal"><div class="mhdr"><div class="mtitle" id="dm-title"></div><button class="mclose" onclick="closeM('detail-ov')">✕</button></div><div class="mbody" id="dm-body"></div></div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="ov" id="edit-ov" onclick="closeOv('edit-ov',event)">
+  <div class="modal"><div class="mhdr"><div class="mtitle" id="em-title">Edit video</div><button class="mclose" onclick="closeM('edit-ov')">✕</button></div><div class="mbody"><div class="eform" id="eform"></div></div></div>
 </div>
 
 <!-- ADD VIDEO MODAL -->
-<div class="overlay" id="add-modal" onclick="closeAddOutside(event)">
-  <div class="modal">
-    <div class="modal-hdr">
-      <div class="modal-title">Add new video</div>
-      <button class="mc" onclick="closeAddModal()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="fl"><label>Week</label><select id="f-week"><option>1</option><option>2</option><option>3</option><option>4</option><option>5 — Colombia</option></select></div>
-        <div class="fl"><label>Day</label><input id="f-day" placeholder="e.g. Tuesday"></div>
-        <div class="fl"><label>Date</label><input id="f-date" placeholder="e.g. 22/04/2026"></div>
-        <div class="fl"><label>Post time (AEST)</label><input id="f-time" placeholder="12:00pm AEST"></div>
-        <div class="fl"><label>City / Location</label><input id="f-city" placeholder="e.g. Cartagena, Colombia"></div>
-        <div class="fl"><label>Content type</label>
-          <select id="f-type"><option>Experience</option><option>Couple</option><option>Hidden Gem</option><option>Cheat Sheet</option><option>Living Abroad</option><option>Humor</option><option>Aesthetic</option><option>Teaser</option><option>Recommendation</option><option>Other</option></select>
+<div class="ov" id="add-ov" onclick="closeOv('add-ov',event)">
+  <div class="modal"><div class="mhdr"><div class="mtitle">Add new video</div><button class="mclose" onclick="closeM('add-ov')">✕</button></div>
+  <div class="mbody">
+    <div class="eform" id="add-form"></div>
+  </div></div>
+</div>
+
+<!-- ADD UGC MODAL -->
+<div class="ov" id="ugc-ov" onclick="closeOv('ugc-ov',event)">
+  <div class="modal"><div class="mhdr"><div class="mtitle" id="ugc-m-title">Add brand</div><button class="mclose" onclick="closeM('ugc-ov')">✕</button></div>
+  <div class="mbody">
+    <div class="eform">
+      <div class="fg2">
+        <div class="fl fgfull"><label>Brand name</label><input id="ub-name" placeholder="e.g. Sunscreen brand Australia"></div>
+        <div class="fl"><label>Type / content</label><input id="ub-type" placeholder="e.g. UGC reel, 30 sec"></div>
+        <div class="fl"><label>Rate (AUD)</label><input id="ub-rate" placeholder="e.g. $200–350"></div>
+        <div class="fl"><label>Column</label>
+          <select id="ub-col"><option value="prospects">🎯 Prospects</option><option value="pitched">📩 Pitched</option><option value="won">🎉 Won</option></select>
         </div>
-        <div class="fl"><label>Platform</label>
-          <select id="f-platform"><option>IG + TikTok</option><option>IG only</option><option>TikTok only</option></select>
-        </div>
-        <div class="fl"><label>Video length</label><input id="f-length" placeholder="e.g. 20–30 sec"></div>
-        <div class="fg-full fl"><label>Hook (main — you can add more later)</label><input id="f-hook" placeholder="Your opening text on screen..."></div>
-        <div class="fg-full fl"><label>Angle / why it works</label><textarea id="f-angle" placeholder="Why will this video perform?"></textarea></div>
-        <div class="fg-full fl"><label>Footage to use</label><textarea id="f-footage" placeholder="Which clips to use..."></textarea></div>
-        <div class="fg-full fl"><label>Caption</label><textarea id="f-caption" style="min-height:120px;" placeholder="Ready-to-post caption..."></textarea></div>
-        <div class="fg-full fl"><label>Hashtags (space separated)</label><input id="f-hashtags" placeholder="#Colombia #Travel #Cartagena..."></div>
-        <div class="fg-full fl"><label>SEO keywords</label><input id="f-seo" placeholder="Cartagena Colombia, things to do Cartagena..."></div>
-        <div class="fg-full fl"><label>Audio direction</label><input id="f-audio" placeholder="Trending upbeat — search 'tropical'..."></div>
-        <div class="fg-full fl"><label>Pro tip</label><input id="f-tip" placeholder="Key thing to remember for this video..."></div>
+        <div class="fl fgfull"><label>Notes</label><input id="ub-notes" placeholder="e.g. Pitch with Colombia trip angle"></div>
       </div>
-      <div class="form-actions">
-        <button class="btn-secondary" onclick="closeAddModal()">Cancel</button>
-        <button class="btn-primary" onclick="submitAddVideo()">Add video</button>
+      <div class="fact"><button class="btn-s" onclick="closeM('ugc-ov')">Cancel</button><button class="btn-p" onclick="submitUGC()">Add brand</button></div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ANALYTICS UPLOAD MODAL -->
+<div class="ov" id="upload-ov" onclick="closeOv('upload-ov',event)">
+  <div class="modal"><div class="mhdr"><div class="mtitle">Upload analytics screenshot</div><button class="mclose" onclick="closeM('upload-ov')">✕</button></div>
+  <div class="mbody">
+    <div class="ms"><div class="ms-title">Which video?</div>
+      <select id="upload-vid-sel" style="width:100%;font-family:'DM Sans',sans-serif;font-size:13px;border:1.5px solid var(--stone-l);border-radius:8px;padding:9px 11px;background:var(--warm);-webkit-appearance:none;">
+        <option value="">Select a video…</option>
+      </select>
+    </div>
+    <div class="ms"><div class="ms-title">When to upload</div>
+      <div style="background:var(--sand);border-radius:8px;padding:12px 14px;font-size:12px;line-height:1.7;">
+        📅 <strong>7 days after posting</strong> is the sweet spot — saves and shares stabilise by then.<br>
+        📊 Take the screenshot from <strong>IG Professional Dashboard → Content → [your reel]</strong> or TikTok Analytics → Videos.
       </div>
     </div>
-  </div>
+    <div class="ms"><div class="ms-title">Screenshot</div>
+      <div class="upload-zone" id="upload-zone" onclick="document.getElementById('upload-input').click()" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="handleDrop(event)">
+        <input type="file" id="upload-input" accept="image/*" onchange="handleUpload(event)">
+        <div class="upload-icon">📸</div>
+        <div class="upload-title">Tap to upload or drag & drop</div>
+        <div class="upload-sub">Screenshot from IG or TikTok analytics</div>
+      </div>
+      <div class="ai-result" id="ai-result">
+        <div class="ai-result-title">📊 AI reading your analytics…</div>
+        <div class="ai-stat-row" id="ai-stat-row"></div>
+        <div class="ai-comment" id="ai-comment"></div>
+        <button class="apply-stats-btn" id="apply-btn" onclick="applyStats()">✓ Apply these stats to video</button>
+      </div>
+    </div>
+  </div></div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// ─────────────────────────────────────────────
+// ══════════════════════════════════════════════
 // DATA
-// ─────────────────────────────────────────────
+// ══════════════════════════════════════════════
 let videos = [
-  // ── WEEK 1 ──
   {id:1,week:1,day:"Wednesday",date:"01/04/2026",time:"12:00pm AEST",city:"Hobart, Tasmania",platform:["IG","TikTok"],type:"Controversy",status:"Draft",length:"20–30 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"This museum might be the most unsettling place I've ever been to",why:"Controversy triggers curiosity — 'unsettling' stops the scroll immediately"},
-     {text:"I walked into this museum and genuinely didn't know if I should leave",why:"First-person discomfort creates vicarious tension — viewers stay to see if you leave"},
-     {text:"Nobody warned me that this Australian museum would haunt me",why:"'Nobody warned me' is a proven viral hook structure — implies insider knowledge"},
-     {text:"POV: you visit Australia's most controversial museum",why:"POV format performs consistently — frames the viewer inside your experience"},
-     {text:"This place is either genius or deeply wrong — you decide",why:"Invites audience opinion → drives comments, which the algorithm rewards"}
-   ],
-   angle:"Controversy + curiosity. MONA's provocative art stops the scroll and drives comments = algorithm push.",
-   footage:"MONA exterior, interior installations, weirdest pieces, your reaction face at the end.",
-   audio:"Trending dark/mysterious — search 'unsettling' or 'eerie' in TikTok sounds",
-   caption:`Mona Museum in Hobart, Tasmania — equal parts fascinating and deeply unsettling. I genuinely didn't know what to make of this place and I haven't stopped thinking about it since.
-
-Would you visit? 👀
-
-📍 MONA, Hobart, Tasmania
-Save this for your Australia bucket list
-
-#Tasmania #Australia #MONA #TravelAustralia #HiddenGems #Hobart #AustraliaTravel #WeirdPlaces`,
-   hashtags:["#Tasmania","#Australia","#MONA","#TravelAustralia","#HiddenGems","#Hobart","#AustraliaTravel","#WeirdPlaces"],
-   seo:"MONA Hobart Tasmania, weird museum Australia, Tasmania travel, unusual places Australia",
-   tip:"Post this first — controversy drives comments which signals the algorithm early.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"This museum might be the most unsettling place I've ever been to",why:"Controversy triggers curiosity — stops the scroll immediately"},{text:"I walked into this museum and genuinely didn't know if I should leave",why:"First-person discomfort creates vicarious tension"},{text:"Nobody warned me that this Australian museum would haunt me",why:"'Nobody warned me' implies insider knowledge"},{text:"POV: you visit Australia's most controversial museum",why:"POV format frames viewer inside your experience"},{text:"This place is either genius or deeply wrong — you decide",why:"Invites audience opinion → drives comments"}],
+   angle:"Controversy + curiosity. MONA's provocative art stops the scroll and drives comments.",footage:"MONA exterior, interior installations, weirdest pieces, your reaction face.",audio:"Trending dark/mysterious — search 'unsettling' in TikTok sounds",
+   caption:"Mona Museum in Hobart, Tasmania — equal parts fascinating and deeply unsettling. I genuinely didn't know what to make of this place.\n\nWould you visit? 👀\n\n📍 MONA, Hobart, Tasmania\n\n#Tasmania #Australia #MONA #TravelAustralia #HiddenGems #Hobart #AustraliaTravel #WeirdPlaces",
+   hashtags:["#Tasmania","#Australia","#MONA","#TravelAustralia","#HiddenGems","#Hobart","#AustraliaTravel","#WeirdPlaces"],seo:"MONA Hobart Tasmania, weird museum Australia, Tasmania travel, unusual places Australia",tip:"Post this first — controversy drives comments which signals the algorithm early.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:2,week:1,day:"Friday",date:"03/04/2026",time:"12:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Experience",status:"Draft",length:"15–25 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"POV: you drove 2 hours and accidentally found 300 kangaroos",why:"POV + 'accidentally' = perfect surprise hook. Numbers make it specific and credible"},
-     {text:"I wasn't expecting this to be the best part of Tasmania",why:"Subverted expectations hook — triggers curiosity about what 'this' is"},
-     {text:"No one told me Australia had a place like this",why:"'No one told me' implies insider knowledge — triggers FOMO in viewers"},
-     {text:"We almost skipped this and it would have been the biggest mistake",why:"Regret-avoidance hook — people stay to find out what to not miss"},
-     {text:"They were literally everywhere and I lost my mind",why:"Intrigue hook — who is 'they'? Forces viewer to watch to find out"}
-   ],
-   angle:"Surprise + delight. Sahand's reaction to kangaroos up close is pure gold — couple content outperforms solo.",
-   footage:"Arrival at sanctuary, kangaroos everywhere, Sahand feeding them, close-up kangaroo eyes, your reaction.",
-   audio:"Trending upbeat/joyful — search 'surprise' or 'wholesome' in TikTok sounds",
-   caption:`Not on the itinerary but somehow the best part of the whole trip 🦘
-
-We had no idea this sanctuary existed until a local mentioned it — and nothing could have prepared us for how many there were.
-
-Save this if you're planning a Tasmania trip — this is unmissable.
-
-📍 Bonorong Wildlife Sanctuary, Tasmania
-
-#Tasmania #Kangaroos #Australia #WildlifeAustralia #AustraliaTravel #TasmaniaTravel #CoupleTravel #HiddenGems`,
-   hashtags:["#Tasmania","#Kangaroos","#Australia","#WildlifeAustralia","#AustraliaTravel","#TasmaniaTravel","#CoupleTravel","#HiddenGems"],
-   seo:"kangaroo sanctuary Tasmania, Bonorong Wildlife, things to do Tasmania, Tasmania travel tips",
-   tip:"Film Sahand feeding a kangaroo if possible — his reaction is pure share-bait.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"POV: you drove 2 hours and accidentally found 300 kangaroos",why:"POV + 'accidentally' = perfect surprise hook. Numbers add credibility"},{text:"I wasn't expecting this to be the best part of Tasmania",why:"Subverted expectations — triggers curiosity about what 'this' is"},{text:"No one told me Australia had a place like this",why:"'No one told me' implies insider knowledge — triggers FOMO"},{text:"We almost skipped this and it would have been the biggest mistake",why:"Regret-avoidance hook — people stay to find out what not to miss"},{text:"They were literally everywhere and I lost my mind",why:"'They' as mystery hook forces the viewer to watch to find out who"}],
+   angle:"Surprise + delight. Sahand's reaction to kangaroos up close — couple content outperforms solo.",footage:"Arrival at sanctuary, kangaroos everywhere, Sahand feeding them, close-up moments.",audio:"Trending upbeat/joyful — search 'wholesome' in TikTok sounds",
+   caption:"Not on the itinerary but somehow the best part of the whole trip 🦘\n\nSave this if you're planning a Tasmania trip — this is unmissable.\n\n📍 Bonorong Wildlife Sanctuary, Tasmania\n\n#Tasmania #Kangaroos #Australia #WildlifeAustralia #AustraliaTravel #TasmaniaTravel #CoupleTravel #HiddenGems",
+   hashtags:["#Tasmania","#Kangaroos","#Australia","#WildlifeAustralia","#AustraliaTravel","#TasmaniaTravel","#CoupleTravel","#HiddenGems"],seo:"kangaroo sanctuary Tasmania, Bonorong Wildlife, things to do Tasmania, Tasmania travel tips",tip:"Film Sahand feeding a kangaroo — his reaction is pure share-bait.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:3,week:1,day:"Sunday",date:"05/04/2026",time:"1:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Humor",status:"Draft",length:"15–20 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"Our Airbnb in Tasmania gave main character energy… but make it haunted",why:"'Main character' + 'haunted' contrast = instant humor. High comment potential"},
-     {text:"We paid for 'cozy cabin vibes' and got this instead",why:"Expectation vs reality = proven viral format. Everyone relates to Airbnb disappointment"},
-     {text:"The Airbnb said 'unique decor'. The Airbnb lied.",why:"Dry humor format performing strongly in 2026 — simple, punchy, shareable"},
-     {text:"Rating our Tasmania Airbnb: the decor edition",why:"Rating format invites audience to judge with you — drives comment engagement"},
-     {text:"POV: you open the door to your Airbnb in Tasmania",why:"Classic POV setup — viewer becomes you, experiencing the reveal in real time"}
-   ],
-   angle:"Humor + relatability. Weird Airbnb decor is universally relatable and drives shares.",
-   footage:"Walk-through of the Airbnb, zoom in on each weird decor detail, your reaction face.",
-   audio:"Trending funny/ironic — search 'unexpected' or 'plot twist' sounds",
-   caption:`We booked this thinking 'cozy cabin vibes'…
-
-We were not prepared 😂
-
-Drop a 🏚️ if your Airbnb has ever given you the ick
-
-#Airbnb #Tasmania #TravelFail #AirbnbFails #TravelHumor #Australia #CoupleTravel #Relatable`,
-   hashtags:["#Airbnb","#Tasmania","#TravelFail","#AirbnbFails","#TravelHumor","#Australia","#CoupleTravel","#Relatable"],
-   seo:"weird Airbnb Tasmania, funny Airbnb decor, Tasmania Airbnb, travel fails funny travel",
-   tip:"Fast cuts between weird details. Keep energy light and funny, not complaining.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
-  {id:4,week:1,day:"Monday",date:"05/04/2026",time:"1:00pm AEST",city:"Bruny Island, Tasmania",platform:["IG","TikTok"],type:"Aesthetic",status:"Draft",length:"15–20 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"I need someone to explain to me how this is real",why:"Disbelief hook = validated awe. Viewer trusts your genuine reaction over sales-y language"},
-     {text:"Australia is so unfairly beautiful it should be illegal",why:"Humorous exaggeration — relatable and shareable, encourages tags"},
-     {text:"The place I almost didn't go to in Tasmania",why:"Near-miss regret hook — implies hidden gem status, drives saves"},
-     {text:"This is what the edge of the world looks like",why:"Poetic hook performs well with cinematic footage — emotional resonance"},
-     {text:"POV: you take a ferry and arrive in paradise",why:"POV + transformation is a classic scroll-stopper for travel content"}
-   ],
-   angle:"Pure beauty reset. After 3 hook-driven videos, one cinematic piece drives saves and resets your feed aesthetic.",
-   footage:"Best Bruny Island landscape shots — ocean, cliffs, sky. Slow cinematic cuts.",
-   audio:"Emotional/cinematic trending sound — something beautiful and slow",
-   caption:`Bruny Island, Tasmania 🌊
-
-One of the most underrated places in all of Australia. I genuinely couldn't believe somewhere this beautiful was a short ferry ride from Hobart.
-
-Save this for your Australia bucket list — you will not regret it.
-
-📍 Bruny Island, Tasmania, Australia
-
-#BrunyIsland #Tasmania #Australia #HiddenGems #AustraliaTravel #NatureAustralia #TravelAustralia #Wanderlust`,
-   hashtags:["#BrunyIsland","#Tasmania","#Australia","#HiddenGems","#AustraliaTravel","#NatureAustralia","#TravelAustralia","#Wanderlust"],
-   seo:"Bruny Island Tasmania, things to do Tasmania, hidden gems Australia, Tasmania nature",
-   tip:"Save-driver video. State the location clearly in caption for SEO.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
-  // ── WEEK 2 ──
+   selectedHook:"",hooks:[{text:"Our Airbnb in Tasmania gave main character energy… but make it haunted",why:"'Main character' + 'haunted' contrast = instant humor"},{text:"We paid for 'cozy cabin vibes' and got this instead",why:"Expectation vs reality — universally relatable"},{text:"The Airbnb said 'unique decor'. The Airbnb lied.",why:"Dry humor format performing strongly right now"},{text:"Rating our Tasmania Airbnb: the decor edition",why:"Rating format invites audience to judge with you"},{text:"POV: you open the door to your Airbnb in Tasmania",why:"Classic POV — viewer experiences the reveal in real time"}],
+   angle:"Humor + relatability. Weird Airbnb decor is universally relatable and drives shares.",footage:"Walk-through of Airbnb, zoom into weird decor details, your reaction face.",audio:"Trending funny/ironic — search 'unexpected' in TikTok sounds",
+   caption:"We booked this thinking 'cozy cabin vibes'…\n\nWe were not prepared 😂\n\nDrop a 🏚️ if your Airbnb has ever given you the ick\n\n#Airbnb #Tasmania #TravelFail #AirbnbFails #TravelHumor #Australia #CoupleTravel #Relatable",
+   hashtags:["#Airbnb","#Tasmania","#TravelFail","#AirbnbFails","#TravelHumor","#Australia","#CoupleTravel","#Relatable"],seo:"weird Airbnb Tasmania, funny Airbnb decor, Tasmania Airbnb, travel fails",tip:"Fast cuts between weird details. Keep energy light and funny.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
+  {id:4,week:1,day:"Monday",date:"06/04/2026",time:"1:00pm AEST",city:"Bruny Island, Tasmania",platform:["IG","TikTok"],type:"Aesthetic",status:"Draft",length:"15–20 sec",
+   selectedHook:"",hooks:[{text:"I need someone to explain to me how this is real",why:"Disbelief hook = validated awe. Viewer trusts genuine reaction"},{text:"Australia is so unfairly beautiful it should be illegal",why:"Humorous exaggeration — relatable and shareable"},{text:"The place I almost didn't go to in Tasmania",why:"Near-miss regret hook — implies hidden gem status"},{text:"This is what the edge of the world looks like",why:"Poetic hook works beautifully with cinematic footage"},{text:"POV: you take a ferry and arrive in paradise",why:"POV + transformation — classic scroll-stopper for travel"}],
+   angle:"Pure beauty reset. After 3 hook-driven videos, one cinematic piece drives saves.",footage:"Best Bruny Island landscape shots — ocean, cliffs, sky. Slow cinematic cuts.",audio:"Emotional/cinematic trending sound — something beautiful and slow",
+   caption:"Bruny Island, Tasmania 🌊\n\nOne of the most underrated places in Australia.\n\nSave this for your bucket list — you will not regret it.\n\n📍 Bruny Island, Tasmania\n\n#BrunyIsland #Tasmania #Australia #HiddenGems #AustraliaTravel #NatureAustralia #Wanderlust",
+   hashtags:["#BrunyIsland","#Tasmania","#Australia","#HiddenGems","#AustraliaTravel","#NatureAustralia","#Wanderlust"],seo:"Bruny Island Tasmania, things to do Tasmania, hidden gems Australia",tip:"Save-driver video. State the location clearly in caption for SEO.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:5,week:2,day:"Wednesday",date:"09/04/2026",time:"12:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Couple",status:"Draft",length:"20 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"Sahand wanted a beer. I wanted a view. Tasmania gave us both",why:"Character-driven couple hook — names Sahand (recognisable to your audience), creates anticipation"},
-     {text:"This is what a Saturday afternoon looks like when you live in Australia",why:"'When you live in Australia' triggers aspiration + lifestyle envy simultaneously"},
-     {text:"We found a brewery in the middle of nowhere and I cried a little",why:"Unexpected emotional reaction to a simple moment = genuine and shareable"},
-     {text:"POV: your wife drags you to a brewery with this view",why:"Reverses the usual dynamic (you chose the view) — funny and surprising for your audience"},
-     {text:"The place in Tasmania that made us never want to leave",why:"Strong desire statement — implies the destination is exceptional, drives saves"}
-   ],
-   angle:"Couple content + aspirational experience. Sahand in frame is your proven formula — brewery + view = share-worthy.",
-   footage:"Arrival at brewery, beer tasting, wide shot of view behind you, clink of glasses.",
-   audio:"Trending warm/cozy — search 'golden hour' or 'relaxing' sounds",
-   caption:`This is what a Saturday afternoon looks like in Tasmania ✨
-
-We stumbled into this brewery with zero expectations and left absolutely obsessed. The scenery hits different when there's a cold craft beer in your hand.
-
-Tag who you'd bring here 🍻
-
-📍 Tasmania, Australia
-
-#Tasmania #Brewery #CoupleTravel #Australia #TravelAustralia #CraftBeer #CoupleGoals #TasmaniaTravel`,
-   hashtags:["#Tasmania","#Brewery","#CoupleTravel","#Australia","#TravelAustralia","#CraftBeer","#CoupleGoals","#TasmaniaTravel"],
-   seo:"Tasmania brewery, craft beer Tasmania, things to do Tasmania couples, Tasmania travel",
-   tip:"'Tag who you'd bring here' in caption drives comments. Always use it on couple content.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"Sahand wanted a beer. I wanted a view. Tasmania gave us both",why:"Character-driven couple hook — names Sahand, creates anticipation"},{text:"This is what a Saturday afternoon looks like when you live in Australia",why:"'When you live in Australia' triggers aspiration + lifestyle envy"},{text:"We found a brewery in the middle of nowhere and I cried a little",why:"Unexpected emotional reaction to simple moment = genuine and shareable"},{text:"POV: your wife drags you to a brewery with this view",why:"Reverses the usual dynamic — funny and surprising"},{text:"The place in Tasmania that made us never want to leave",why:"Strong desire statement — implies the destination is exceptional"}],
+   angle:"Couple content + aspirational experience. Sahand in frame is your proven formula.",footage:"Arrival at brewery, beer tasting, wide shot of view, clink of glasses.",audio:"Trending warm/cozy — search 'golden hour' sounds",
+   caption:"This is what a Saturday afternoon looks like in Tasmania ✨\n\nTag who you'd bring here 🍻\n\n📍 Tasmania, Australia\n\n#Tasmania #Brewery #CoupleTravel #Australia #CraftBeer #CoupleGoals",
+   hashtags:["#Tasmania","#Brewery","#CoupleTravel","#Australia","#CraftBeer","#CoupleGoals"],seo:"Tasmania brewery, craft beer Tasmania, things to do Tasmania couples",tip:"'Tag who you'd bring here' drives comments. Always use on couple content.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:6,week:2,day:"Friday",date:"11/04/2026",time:"12:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Hidden Gem",status:"Draft",length:"20–25 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"POV: you're in the middle of nowhere Tasmania and you find THIS",why:"'THIS' capitalised = visual reveal hook. Curiosity gap forces full watch-through"},
-     {text:"No signal. No map. The best pastry of my life.",why:"Three-beat minimalist structure — punchy, poetic, highly shareable format"},
-     {text:"The random bakery in Tasmania that broke the internet (for me)",why:"'Broke the internet (for me)' adds self-aware humor while implying it's that good"},
-     {text:"I drove an hour into nowhere and found this — worth every second",why:"Journey + reward structure. Viewer stays to see if the payoff justifies the effort"},
-     {text:"Australia's most hidden bakery is in the middle of Tasmania",why:"Superlative + specific location = SEO-rich hook that also stops the scroll"}
-   ],
-   angle:"Discovery + surprise. The random bakery is perfect hidden gem content — high save rate guaranteed.",
-   footage:"Remote road driving, arriving at bakery, the food, your reaction.",
-   audio:"Trending discovery/adventure sound — something with momentum",
-   caption:`No signal. No people. No idea this existed.
-
-And then — the best pastry I've had in Australia 🥐
-
-Drop a 🗺️ if you want the location and I'll put it in the comments!
-
-📍 Tasmania, Australia (location in comments 👇)
-
-#Tasmania #HiddenGems #AustraliaTravel #FoodieTravel #AustraliaFood #TravelAustralia #UnexpectedFinds #Bakery`,
-   hashtags:["#Tasmania","#HiddenGems","#AustraliaTravel","#FoodieTravel","#AustraliaFood","#TravelAustralia","#UnexpectedFinds","#Bakery"],
-   seo:"hidden bakery Tasmania, best bakery Australia, off beaten path Tasmania, Tasmania food",
-   tip:"Put location in COMMENTS not caption — forces engagement and boosts comment count.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
-  {id:7,week:2,day:"Sunday",date:"14/04/2026",time:"1:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Couple",status:"Draft",length:"15–20 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"My husband BBQing with this view… I think I'm winning at life",why:"'Winning at life' = aspirational self-satisfaction. Relatable and shareable to couples"},
-     {text:"The view from our Airbnb made Sahand cook. That says everything.",why:"Humorous implication — the view was so good it motivated him. Unexpected and funny"},
-     {text:"This is what it looks like when you choose Tasmania over anywhere else",why:"Comparison hook — implies Tasmania wins against all competition, validates viewer saves"},
-     {text:"Nobody told me living in Australia meant this could be my weekend",why:"'Nobody told me' lifestyle hook — implies insider advantage to followers in Australia"},
-     {text:"POV: your wife planned the whole trip and somehow got this right",why:"Playful self-deprecation + vindication — couple audiences will tag their partners"}
-   ],
-   angle:"Aspirational couple content. People share this with their partners. High shares = algorithm gold.",
-   footage:"Sahand at the BBQ, wide shot showing stunning landscape behind him, both of you in frame.",
-   audio:"Dreamy/romantic trending sound — something soft and beautiful",
-   caption:`Life is good 🙏
-
-Tasmania really said 'let me humble you with my beauty' and I said okay 😂
-
-Who's your person you'd do this with? ❤️
-
-#Tasmania #CoupleGoals #AustraliaTravel #BBQ #NatureAustralia #CoupleTravel #TasmaniaTravel #Gratitude`,
-   hashtags:["#Tasmania","#CoupleGoals","#AustraliaTravel","#BBQ","#NatureAustralia","#CoupleTravel","#TasmaniaTravel","#Gratitude"],
-   seo:"Tasmania nature, Tasmania Airbnb views, couple travel Australia, beautiful Tasmania",
-   tip:"'Who's your person' question drives couple comment replies — always use on couple content.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"POV: you're in the middle of nowhere Tasmania and you find THIS",why:"'THIS' capitalised = visual reveal hook. Curiosity gap forces full watch"},{text:"No signal. No map. The best pastry of my life.",why:"Three-beat minimalist structure — punchy, poetic, shareable"},{text:"The random bakery in Tasmania that broke the internet (for me)",why:"Self-aware humor while implying it's genuinely that good"},{text:"I drove an hour into nowhere and found this — worth every second",why:"Journey + reward structure keeps viewer watching"},{text:"Australia's most hidden bakery is in the middle of Tasmania",why:"Superlative + specific location = SEO-rich hook"}],
+   angle:"Discovery + surprise. The random bakery is perfect hidden gem content — high save rate.",footage:"Remote road, arriving at bakery, the food, your reaction.",audio:"Trending discovery/adventure — something with momentum",
+   caption:"No signal. No people. No idea this existed.\n\nAnd then — the best pastry I've had in Australia 🥐\n\nDrop a 🗺️ and I'll put the location in comments!\n\n#Tasmania #HiddenGems #AustraliaTravel #FoodieTravel #UnexpectedFinds",
+   hashtags:["#Tasmania","#HiddenGems","#AustraliaTravel","#FoodieTravel","#UnexpectedFinds"],seo:"hidden bakery Tasmania, best bakery Australia, off beaten path Tasmania",tip:"Put location in COMMENTS not caption — forces engagement.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
+  {id:7,week:2,day:"Sunday",date:"13/04/2026",time:"1:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Couple",status:"Draft",length:"15–20 sec",
+   selectedHook:"",hooks:[{text:"My husband BBQing with this view… I think I'm winning at life",why:"'Winning at life' = aspirational self-satisfaction. Couples share this"},{text:"The view from our Airbnb made Sahand cook. That says everything.",why:"Humorous implication — funny and unexpected"},{text:"This is what it looks like when you choose Tasmania over anywhere else",why:"Comparison hook — implies Tasmania wins against all competition"},{text:"Nobody told me living in Australia meant this could be my weekend",why:"'Nobody told me' lifestyle hook — insider advantage"},{text:"POV: your wife planned the whole trip and somehow got this right",why:"Playful self-deprecation — couples will tag their partners"}],
+   angle:"Aspirational couple content. People share this with their partners. High shares.",footage:"Sahand at the BBQ, stunning landscape behind him, both of you in frame.",audio:"Dreamy/romantic trending sound",
+   caption:"Life is good 🙏\n\nTasmania really said 'let me humble you with my beauty' 😂\n\nWho's your person you'd do this with? ❤️\n\n#Tasmania #CoupleGoals #AustraliaTravel #BBQ #CoupleTravel",
+   hashtags:["#Tasmania","#CoupleGoals","#AustraliaTravel","#BBQ","#CoupleTravel"],seo:"Tasmania nature, couple travel Australia, beautiful Tasmania",tip:"'Who's your person' drives couple comment replies.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:8,week:2,day:"Monday",date:"14/04/2026",time:"1:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Cheat Sheet",status:"Draft",length:"30–35 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"They said Tasmania isn't worth visiting. They were completely wrong.",why:"Direct counter-narrative — proven viral hook structure (your Bogotá reel used this and got 567 saves)"},
-     {text:"Everything you think you know about Tasmania is wrong",why:"Bold challenge to existing beliefs — triggers curiosity and defensive/agreeing comments"},
-     {text:"5 days in Tasmania: what nobody tells you before you go",why:"'What nobody tells you' = insider knowledge hook. Very high save rate for itinerary content"},
-     {text:"I almost didn't go to Tasmania. Here's why that would have been a disaster",why:"Personal near-miss regret hook — drives emotional investment before the tips even start"},
-     {text:"The Australia trip everyone skips and shouldn't",why:"Contrarian recommendation — validates the audience for considering something 'different'"}
-   ],
-   angle:"Counter-narrative + cheat sheet. Modelled on your 58K-view Bogotá reel. This is your save-driver of the week.",
-   footage:"Quick cuts of all best Tasmania moments — MONA, kangaroos, Bruny, brewery, bakery.",
-   audio:"Trending upbeat/inspiring — something with forward momentum",
-   caption:`They said Tasmania wasn't worth it. They clearly hadn't been.
-
-Here's what to do in 5 days in Tasmania 🗺️
-
-Day 1 → Arrive Hobart · Salamanca Market · waterfront dinner
-Day 2 → MONA Museum · prepare to be fascinated
-Day 3 → Bruny Island day trip · ferry + stunning coastline
-Day 4 → Bonorong kangaroo sanctuary + brewery stop
-Day 5 → Drive the midlands · hidden gems along the way
-
-Save this before your next Australia trip ✈️
-
-#Tasmania #Australia #TravelTips #TasmaniaTravel #AustraliaTravel #TravelItinerary #HiddenGems #ThingsToDo`,
-   hashtags:["#Tasmania","#Australia","#TravelTips","#TasmaniaTravel","#AustraliaTravel","#TravelItinerary","#HiddenGems","#ThingsToDo","#TravelGuide"],
-   seo:"Tasmania itinerary, things to do Tasmania, Tasmania travel guide, 5 days Tasmania, Tasmania hidden gems",
-   tip:"Modelled on your Bogotá reel (567 saves). Strong counter-hook + itinerary = saves machine.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
-  // ── WEEK 3 ──
+   selectedHook:"",hooks:[{text:"They said Tasmania isn't worth visiting. They were completely wrong.",why:"Direct counter-narrative — your Bogotá reel used this and got 567 saves"},{text:"Everything you think you know about Tasmania is wrong",why:"Bold challenge to beliefs — triggers curiosity and comments"},{text:"5 days in Tasmania: what nobody tells you before you go",why:"'What nobody tells you' = insider knowledge. Very high save rate"},{text:"I almost didn't go to Tasmania. Here's why that would have been a disaster",why:"Personal near-miss regret hook"},{text:"The Australia trip everyone skips and shouldn't",why:"Contrarian recommendation — validates the audience"}],
+   angle:"Counter-narrative + cheat sheet. Modelled on your 58K-view Bogotá reel. Save-driver.",footage:"Quick cuts of all best Tasmania moments — MONA, kangaroos, Bruny, brewery, bakery.",audio:"Trending upbeat/inspiring",
+   caption:"They said Tasmania wasn't worth it. They clearly hadn't been.\n\n5 days in Tasmania 🗺️\n\nDay 1 → Hobart, Salamanca Market\nDay 2 → MONA Museum\nDay 3 → Bruny Island ferry day trip\nDay 4 → Kangaroo sanctuary + brewery\nDay 5 → Midlands drive, hidden gems\n\nSave this before your next Australia trip ✈️\n\n#Tasmania #Australia #TravelTips #TasmaniaTravel #TravelItinerary #HiddenGems",
+   hashtags:["#Tasmania","#Australia","#TravelTips","#TasmaniaTravel","#TravelItinerary","#HiddenGems"],seo:"Tasmania itinerary, things to do Tasmania, 5 days Tasmania, Tasmania hidden gems",tip:"Modelled on your Bogotá reel (567 saves). Strong counter-hook + itinerary = saves machine.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:9,week:3,day:"Wednesday",date:"16/04/2026",time:"12:00pm AEST",city:"Melbourne",platform:["IG","TikTok"],type:"Living Abroad",status:"Draft",length:"15 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"POV: a random Thursday 1pm in Australia",why:"Classic POV slice-of-life — your best-performing TikTok format. Aspirational daily life content"},
-     {text:"This is what your Thursday looks like when you moved to Melbourne",why:"'When you moved to Melbourne' triggers both aspiration and immigrant identity simultaneously"},
-     {text:"Melbourne is criminally underrated and I will die on this hill",why:"Strong opinion hook — invites agrees AND disagrees (both increase engagement)"},
-     {text:"The thing about living in Melbourne that nobody prepares you for",why:"'Nobody prepares you for' implies secret knowledge — high curiosity trigger"},
-     {text:"I traded my hometown for Melbourne and this is what my Thursday looks like",why:"Comparison hook — before/after structure that your immigrant audience deeply resonates with"}
-   ],
-   angle:"Living abroad slice-of-life. Melbourne everyday life is aspirational to your international audience.",
-   footage:"Melbourne CBD, coffee shop, Yarra River, laneways, city skyline. Fast beautiful cuts.",
-   audio:"Trending aesthetic/dreamy — something that feels like a slow beautiful day",
-   caption:`This is what a Thursday looks like when you traded your hometown for Melbourne ✨
-
-Still can't believe this is my everyday life.
-
-Living abroad was the scariest decision I ever made — and the best.
-
-#Melbourne #Australia #LivingAbroad #Immigrant #LatinaMelbourne #MelbourneLife #AustraliaLife #ExpatsAustralia`,
-   hashtags:["#Melbourne","#Australia","#LivingAbroad","#Immigrant","#LatinaMelbourne","#MelbourneLife","#AustraliaLife","#ExpatsAustralia"],
-   seo:"living in Melbourne, expat Australia, Latina Melbourne, moving abroad Australia, life in Australia",
-   tip:"Connects your travel content to your 'Latina living abroad' identity. Builds loyalty.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"POV: a random Thursday 1pm in Australia",why:"Classic POV slice-of-life — aspirational daily life content"},{text:"This is what your Thursday looks like when you moved to Melbourne",why:"'When you moved to Melbourne' triggers aspiration and immigrant identity"},{text:"Melbourne is criminally underrated and I will die on this hill",why:"Strong opinion — invites both agreement and debate"},{text:"The thing about living in Melbourne that nobody prepares you for",why:"'Nobody prepares you for' implies secret knowledge"},{text:"I traded my hometown for Melbourne and this is what my Thursday looks like",why:"Comparison hook — your immigrant audience resonates deeply"}],
+   angle:"Living abroad slice-of-life. Melbourne everyday life is aspirational to your international audience.",footage:"Melbourne CBD, coffee shop, Yarra River, laneways, city skyline.",audio:"Trending aesthetic/dreamy",
+   caption:"This is what a Thursday looks like when you traded your hometown for Melbourne ✨\n\nStill can't believe this is my everyday life.\n\n#Melbourne #Australia #LivingAbroad #Immigrant #LatinaMelbourne #MelbourneLife",
+   hashtags:["#Melbourne","#Australia","#LivingAbroad","#Immigrant","#LatinaMelbourne","#MelbourneLife"],seo:"living in Melbourne, expat Australia, Latina Melbourne, moving abroad Australia",tip:"Connects your travel content to your 'Latina living abroad' identity. Builds loyalty.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:10,week:3,day:"Friday",date:"18/04/2026",time:"12:00pm AEST",city:"Melbourne",platform:["IG","TikTok"],type:"Recommendation",status:"Draft",length:"20 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"This is not your average dinner spot in Melbourne",why:"Understated intrigue — 'not your average' implies exceptional without over-selling"},
-     {text:"The most elevated dining experience in Melbourne that nobody talks about",why:"'Nobody talks about' = hidden gem framing for a restaurant. High save potential"},
-     {text:"I took Sahand here for our anniversary and he hasn't stopped talking about it",why:"Personal story hook — authentic recommendation feels more trustworthy than generic"},
-     {text:"Fine dining + Melbourne skyline + this view = I can't explain it",why:"Ellipsis hook — incomplete sentence forces viewer to watch to understand what 'it' is"},
-     {text:"The Melbourne restaurant that made me question every other meal I've had",why:"Superlative personal reaction — triggers food lovers to save immediately"}
-   ],
-   angle:"Local luxury recommendation. High save rate. Good for Melbourne-based audience and UGC opportunities.",
-   footage:"Restaurant exterior, interior, the Melbourne view from above, the food, your reaction.",
-   audio:"Trending elegant/sophisticated — something that feels luxurious",
-   caption:`Fine dining. Melbourne skyline. This combination is unfair 😍
-
-If you're looking for the most elevated dinner experience in Melbourne — this is it.
-
-📍 @Atria.dining — save this for your next special occasion
-
-#Melbourne #MelbourneFoodie #FoodMelbourne #LuxuryDining #MelbourneRestaurants #ThingsToDo #MelbourneEats #AustraliaFood`,
-   hashtags:["#Melbourne","#MelbourneFoodie","#FoodMelbourne","#LuxuryDining","#MelbourneRestaurants","#ThingsToDo","#MelbourneEats","#AustraliaFood"],
-   seo:"best restaurants Melbourne, luxury dining Melbourne, Melbourne rooftop restaurant, fine dining Melbourne",
-   tip:"Tag the restaurant — they may reshare it, giving you a free audience boost.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"This is not your average dinner spot in Melbourne",why:"Understated intrigue — implies exceptional without over-selling"},{text:"The most elevated dining experience in Melbourne that nobody talks about",why:"'Nobody talks about' = hidden gem framing. High save potential"},{text:"I took Sahand here for our anniversary and he hasn't stopped talking about it",why:"Personal story hook — authentic recommendation feels trustworthy"},{text:"Fine dining + Melbourne skyline + this view = I can't explain it",why:"Ellipsis forces viewer to watch to understand what 'it' is"},{text:"The Melbourne restaurant that made me question every other meal I've had",why:"Superlative personal reaction — triggers food lovers to save immediately"}],
+   angle:"Local luxury recommendation. High save rate. Good for Melbourne-based audience and UGC opportunities.",footage:"Restaurant exterior, interior, Melbourne view from above, the food, your reaction.",audio:"Trending elegant/sophisticated",
+   caption:"Fine dining. Melbourne skyline. This combination is unfair 😍\n\nThe most elevated night out in Melbourne.\n\n📍 @Atria.dining\n\n#Melbourne #MelbourneFoodie #LuxuryDining #MelbourneRestaurants #MelbourneEats",
+   hashtags:["#Melbourne","#MelbourneFoodie","#LuxuryDining","#MelbourneRestaurants","#MelbourneEats"],seo:"best restaurants Melbourne, luxury dining Melbourne, fine dining Melbourne",tip:"Tag the restaurant — they may reshare it and boost your reach.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:11,week:3,day:"Sunday",date:"20/04/2026",time:"1:00pm AEST",city:"Melbourne",platform:["IG","TikTok"],type:"Teaser",status:"Draft",length:"20–25 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"I'm going back to Colombia for the first time in a while… here's what I'm most nervous about",why:"Vulnerability + anticipation = emotional investment before you even land. Primes Colombian audience"},
-     {text:"Packing for Colombia after years of living abroad feels different every time",why:"Immigrant emotional nuance — deeply relatable to your 24.5% Colombian IG audience"},
-     {text:"POV: you're flying home to Colombia and you don't know how you feel",why:"Complex emotional POV — not just happy, not just sad. Authentic and shareable"},
-     {text:"Colombia, I'm coming home. My heart is not ready.",why:"Short, emotional, powerful — works beautifully with airport/packing footage"},
-     {text:"Things I always forget until I land back in Colombia",why:"List-format teaser — creates anticipation for the series about to start"}
-   ],
-   angle:"Anticipation + vulnerability. This teaser primes your audience for Colombia before you even land.",
-   footage:"You packing, Colombian passport, photo of Colombia, airport vibes, Sahand helping.",
-   audio:"Emotional/nostalgic trending sound — anticipation and warmth",
-   caption:`Colombia is calling and I cannot wait to answer 🇨🇴
-
-There's something about going back to your home country that hits differently every time. More emotional than you expect. More beautiful than you remember.
-
-Follow along — the Colombia series starts next week 🌿
-
-#Colombia #GoingHome #LivingAbroad #ColombiaTravel #LatinAmerica #Colombiana #Expat #HomeCountry`,
-   hashtags:["#Colombia","#GoingHome","#LivingAbroad","#ColombiaTravel","#LatinAmerica","#Colombiana","#Expat","#HomeCountry"],
-   seo:"Colombian living abroad, going back to Colombia, expat Colombia, Colombia travel, Colombiana",
-   tip:"Post at 8am AEST on Saturday (hits Colombia Friday evening — prime engagement time).",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
-  // ── WEEK 4 / COLOMBIA ──
+   selectedHook:"",hooks:[{text:"I'm going back to Colombia for the first time in a while… here's what I'm most nervous about",why:"Vulnerability + anticipation = emotional investment before you even land"},{text:"Packing for Colombia after years of living abroad feels different every time",why:"Immigrant emotional nuance — deeply relatable to your 24.5% Colombian audience"},{text:"POV: you're flying home to Colombia and you don't know how you feel",why:"Complex emotional POV — authentic and shareable"},{text:"Colombia, I'm coming home. My heart is not ready.",why:"Short, emotional, powerful — works beautifully with packing/airport footage"},{text:"Things I always forget until I land back in Colombia",why:"List-format teaser — creates anticipation for the series"}],
+   angle:"Anticipation + vulnerability. Primes your Colombian audience (24.5% IG) before you land.",footage:"You packing, Colombian passport, photo of Colombia, airport vibes.",audio:"Emotional/nostalgic trending sound",
+   caption:"Colombia is calling and I cannot wait to answer 🇨🇴\n\nThere's something about going back to your home country that hits differently every time.\n\nFollow along — the Colombia series starts next week 🌿\n\n#Colombia #GoingHome #LivingAbroad #ColombiaTravel #Colombiana #Expat",
+   hashtags:["#Colombia","#GoingHome","#LivingAbroad","#ColombiaTravel","#Colombiana","#Expat"],seo:"Colombian living abroad, going back to Colombia, expat Colombia",tip:"Post at 8am AEST Saturday (hits Colombia Friday evening — prime engagement).",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:12,week:4,day:"Tuesday",date:"21/04/2026",time:"8:00am AEST",city:"Bogotá, Colombia",platform:["IG","TikTok"],type:"Experience",status:"Draft",length:"20–25 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"I forgot how alive this country makes me feel",why:"Emotional homecoming — simple, raw, deeply resonant. Your Colombian audience will share this widely"},
-     {text:"Nothing prepares you for the feeling of landing in Colombia when it's your home",why:"Complex immigrant emotion — can't be faked. Extremely shareable among diaspora"},
-     {text:"Colombia hits different when you've been living on the other side of the world",why:"Distance makes the heart grow fonder framing — universally relatable to expats"},
-     {text:"POV: you land in Colombia after living abroad for years",why:"POV + immigrant experience — strong identity hook for your core audience"},
-     {text:"I have lived in 4 countries and nothing feels like Colombia",why:"Comparative superlative — validates Colombia and validates your expert traveller status"}
-   ],
-   angle:"Emotional return. Your Colombian audience (24.5% IG) will share this widely. Post at 8am AEST = Colombia afternoon.",
-   footage:"Landing, first street scenes, colours, energy, food, people. Film your face when you land.",
-   audio:"Emotional/homecoming — warmth and belonging. Search 'regreso' or 'home' sounds",
-   caption:`There are places in this world that do something to you that no other place can.
-
-Colombia is that place for me.
-
-I'm home 🇨🇴❤️
-
-#Colombia #ColombiaTravel #Home #LivingAbroad #Colombiana #LatinAmerica #TravelColombia #BeautifulColombia`,
-   hashtags:["#Colombia","#ColombiaTravel","#Home","#LivingAbroad","#Colombiana","#LatinAmerica","#TravelColombia","#BeautifulColombia"],
-   seo:"Colombia travel, Colombiana abroad, beautiful Colombia, visit Colombia, Colombia vibes",
-   tip:"Film your genuine face when you step off the plane. Real emotion is your most powerful content.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"I forgot how alive this country makes me feel",why:"Emotional homecoming — simple, raw, widely shared by diaspora"},{text:"Nothing prepares you for the feeling of landing in Colombia when it's your home",why:"Complex immigrant emotion — can't be faked. Extremely shareable"},{text:"Colombia hits different when you've been living on the other side of the world",why:"Distance makes the heart grow fonder — universally relatable to expats"},{text:"POV: you land in Colombia after living abroad for years",why:"POV + immigrant experience — strong identity hook"},{text:"I have lived in 4 countries and nothing feels like Colombia",why:"Comparative superlative — validates Colombia and your expert status"}],
+   angle:"Emotional return. Your Colombian audience will share this widely. Post at 8am AEST.",footage:"Landing, first street scenes, colours, energy, food, people. Film your face when you land.",audio:"Emotional/homecoming — search 'regreso' or 'home' sounds",
+   caption:"There are places in this world that do something to you that no other place can.\n\nColombia is that place for me.\n\nI'm home 🇨🇴❤️\n\n#Colombia #ColombiaTravel #Home #LivingAbroad #Colombiana #LatinAmerica",
+   hashtags:["#Colombia","#ColombiaTravel","#Home","#LivingAbroad","#Colombiana","#LatinAmerica"],seo:"Colombia travel, Colombiana abroad, beautiful Colombia, visit Colombia",tip:"Film your genuine face when you land. Real emotion is your most powerful content.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:13,week:4,day:"Thursday",date:"23/04/2026",time:"8:00am AEST",city:"Cartagena, Colombia",platform:["IG","TikTok"],type:"Experience",status:"Draft",length:"20–25 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"Nobody warned me Cartagena would hit this hard",why:"'Nobody warned me' = proven viral hook. Implies the place exceeded all expectations"},
-     {text:"Cartagena is the most beautiful place I've ever been. And I've been everywhere.",why:"Strong superlative from a credible frequent traveller — drives saves and shares"},
-     {text:"I've been to 40+ countries and Cartagena still makes me emotional",why:"Authority + emotion combination — credibility makes the recommendation trustworthy"},
-     {text:"POV: you arrive in Cartagena for the first time",why:"Classic POV reveal hook — Cartagena's colours land as a visual shock. Perfect for first frame"},
-     {text:"This is why everyone is suddenly talking about Colombia",why:"'Why everyone is talking about' = trending FOMO hook — drives clicks from curious non-followers"}
-   ],
-   angle:"First impression + colour shock. Cartagena's walled city is visually stunning. Post at 8am AEST = Colombia afternoon prime time.",
-   footage:"Old city walls, colourful streets, flower balconies, heat, local life, food.",
-   audio:"Trending warm/tropical — something vibrant and summery",
-   caption:`I've been here before but somehow Cartagena manages to surprise me every single time.
-
-The colours, the warmth, the energy — there is nowhere else on earth quite like this.
-
-Save this if Cartagena is on your list 🌺
-
-📍 Cartagena de Indias, Colombia 🇨🇴
-
-#Cartagena #Colombia #ColombiaTravel #TravelColombia #VisitColombia #CartagenaColombia #LatinAmerica #ColombiaVibes`,
-   hashtags:["#Cartagena","#Colombia","#ColombiaTravel","#TravelColombia","#VisitColombia","#CartagenaColombia","#LatinAmerica","#ColombiaVibes"],
-   seo:"Cartagena Colombia, things to do Cartagena, Cartagena travel guide, Colombia travel, visit Cartagena",
-   tip:"Post at 8am AEST to hit Colombia afternoon peak — your Colombian diaspora shares this most.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"Nobody warned me Cartagena would hit this hard",why:"'Nobody warned me' = proven viral hook. Implies exceeded expectations"},{text:"Cartagena is the most beautiful place I've ever been. And I've been everywhere.",why:"Strong superlative from a credible frequent traveller"},{text:"I've been to 40+ countries and Cartagena still makes me emotional",why:"Authority + emotion combination — credibility makes the recommendation land"},{text:"POV: you arrive in Cartagena for the first time",why:"Classic POV reveal — Cartagena's colours land as visual shock"},{text:"This is why everyone is suddenly talking about Colombia",why:"Trending FOMO hook — drives clicks from curious non-followers"}],
+   angle:"First impression + colour shock. Post at 8am AEST = Colombia afternoon prime time.",footage:"Old city walls, colourful streets, flower balconies, heat, local life, food.",audio:"Trending warm/tropical — something vibrant",
+   caption:"I've been here before but somehow Cartagena manages to surprise me every single time.\n\nSave this if Cartagena is on your list 🌺\n\n📍 Cartagena de Indias, Colombia 🇨🇴\n\n#Cartagena #Colombia #ColombiaTravel #TravelColombia #VisitColombia #LatinAmerica",
+   hashtags:["#Cartagena","#Colombia","#ColombiaTravel","#TravelColombia","#VisitColombia","#LatinAmerica"],seo:"Cartagena Colombia, things to do Cartagena, Cartagena travel guide",tip:"Post at 8am AEST to hit Colombia afternoon peak.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:14,week:4,day:"Saturday",date:"25/04/2026",time:"8:00am AEST",city:"Cartagena, Colombia",platform:["IG","TikTok"],type:"Couple",status:"Draft",length:"20–25 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"POV: your wife is Colombian and she took you to Cartagena",why:"'Your wife is Colombian' = unique identity hook. Sahand's outsider perspective is the angle"},
-     {text:"I brought my Iranian husband to Cartagena and filmed his face the whole time",why:"Cultural contrast hook — two worlds colliding is universally fascinating and shareable"},
-     {text:"Sahand tried Colombian food for the first time. Here's what happened.",why:"Food reaction hooks are massively viral — his genuine first reactions are gold"},
-     {text:"His reaction to Cartagena was not what I expected",why:"'Not what I expected' implies surprise — could be good or funny. Curiosity gap"},
-     {text:"When your husband realises why you never stop talking about Colombia",why:"Relatable couple dynamic — validates Colombian pride. Your audience will share this"}
-   ],
-   angle:"Sahand experiencing Cartagena through your eyes. His genuine reactions to Colombian culture is your highest-potential couple content.",
-   footage:"Sahand trying Colombian food, his reactions, both of you in the walled city, colours, local moments.",
-   audio:"Trending funny/warm — mix of chaos and love",
-   caption:`He asked what Colombia is like.
-
-I said it's complicated to explain.
-
-Now he understands 🇨🇴❤️
-
-(His reaction to the food was everything)
-
-#Colombia #Cartagena #CoupleTravel #ColombiaTravel #IranianColombian #CoupleGoals #TravelCouple #ColombianFood`,
-   hashtags:["#Colombia","#Cartagena","#CoupleTravel","#ColombiaTravel","#IranianColombian","#CoupleGoals","#TravelCouple","#ColombianFood"],
-   seo:"couple travel Colombia, Colombian food reaction, visiting Colombia, Cartagena couple, travel couple",
-   tip:"Film Sahand trying arepas, patacones, or aguardiente. His honest face = viral content.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"POV: your wife is Colombian and she took you to Cartagena",why:"'Your wife is Colombian' = unique identity hook. Sahand's outsider perspective is the angle"},{text:"I brought my Iranian husband to Cartagena and filmed his face the whole time",why:"Cultural contrast hook — two worlds colliding is fascinating and shareable"},{text:"Sahand tried Colombian food for the first time. Here's what happened.",why:"Food reaction hooks are massively viral"},{text:"His reaction to Cartagena was not what I expected",why:"'Not what I expected' implies surprise — curiosity gap"},{text:"When your husband realises why you never stop talking about Colombia",why:"Relatable couple dynamic — validates Colombian pride"}],
+   angle:"Sahand experiencing Cartagena. His genuine reactions to Colombian culture = highest-potential couple content.",footage:"Sahand trying Colombian food, his reactions, both of you in the walled city.",audio:"Trending funny/warm",
+   caption:"He asked what Colombia is like.\n\nI said it's complicated to explain.\n\nNow he understands 🇨🇴❤️\n\n#Colombia #Cartagena #CoupleTravel #ColombiaTravel #CoupleGoals #ColombianFood",
+   hashtags:["#Colombia","#Cartagena","#CoupleTravel","#ColombiaTravel","#CoupleGoals","#ColombianFood"],seo:"couple travel Colombia, Colombian food reaction, visiting Colombia",tip:"Film Sahand trying arepas or aguardiente. His honest face = viral content.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:15,week:4,day:"Monday",date:"27/04/2026",time:"8:00am AEST",city:"Pereira / Eje Cafetero",platform:["IG","TikTok"],type:"Hidden Gem",status:"Draft",length:"25–30 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"This is Colombia's best kept secret and I'm tired of people not knowing about it",why:"Righteous indignation hook — you feel strongly, which makes viewers trust your recommendation"},
-     {text:"Everyone goes to Cartagena. Nobody talks about this region.",why:"Counter-narrative structure — works because it's both true AND creates FOMO for the unknown"},
-     {text:"The most beautiful region in Colombia that international travellers skip",why:"'International travellers skip' validates viewer for finding this — makes them feel clever for saving"},
-     {text:"I grew up near here and it still takes my breath away",why:"Personal connection + sustained awe = trustworthy recommendation from an insider"},
-     {text:"UNESCO listed. Coffee country. And you've probably never heard of it.",why:"Authority (UNESCO) + intrigue combo — intellectual hook for curious travel audience"}
-   ],
-   angle:"Hidden gem counter-narrative. Eje Cafetero is criminally underposted in English — you can own this niche internationally.",
-   footage:"Coffee farms, traditional jeep rides, green mountains, coffee picking, local food, terraced landscape.",
-   audio:"Trending adventurous/discovery — something with wonder and movement",
-   caption:`Everyone goes to Cartagena and Medellín.
-
-Almost nobody talks about Eje Cafetero — and that needs to change.
-
-This is Colombia's coffee heartland. UNESCO listed. Breathtakingly beautiful. And still somehow under the radar for international visitors.
-
-Save this and add it to your Colombia itinerary 🌿☕
-
-📍 Eje Cafetero, Colombia 🇨🇴
-
-#EjeCafetero #Colombia #ColombiaTravel #CoffeeFarm #VisitColombia #HiddenGems #ColombiaCoffee #TravelColombia`,
-   hashtags:["#EjeCafetero","#Colombia","#ColombiaTravel","#CoffeeFarm","#VisitColombia","#HiddenGems","#ColombiaCoffee","#TravelColombia"],
-   seo:"Eje Cafetero Colombia, coffee region Colombia, things to do Colombia, Colombia hidden gems, Salento Colombia",
-   tip:"English-language Eje Cafetero content is rare — this is a genuine SEO gap you can own.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"This is Colombia's best kept secret and I'm tired of people not knowing about it",why:"Righteous indignation hook — you feel strongly, viewers trust the recommendation"},{text:"Everyone goes to Cartagena. Nobody talks about this region.",why:"Counter-narrative structure — true AND creates FOMO for the unknown"},{text:"The most beautiful region in Colombia that international travellers skip",why:"'International travellers skip' validates viewer for finding this"},{text:"I grew up near here and it still takes my breath away",why:"Personal connection + sustained awe = trustworthy insider recommendation"},{text:"UNESCO listed. Coffee country. And you've probably never heard of it.",why:"Authority (UNESCO) + intrigue combo — intellectual hook"}],
+   angle:"Hidden gem counter-narrative. Eje Cafetero underposted in English — you can own this niche.",footage:"Coffee farms, traditional jeep rides, green mountains, coffee picking, local food.",audio:"Trending adventurous/discovery",
+   caption:"Everyone goes to Cartagena and Medellín.\n\nAlmost nobody talks about Eje Cafetero — and that needs to change.\n\nUNESCO listed. Breathtakingly beautiful. Still under the radar.\n\nSave this 🌿☕\n\n📍 Eje Cafetero, Colombia 🇨🇴\n\n#EjeCafetero #Colombia #ColombiaTravel #CoffeeFarm #HiddenGems #ColombiaCoffee",
+   hashtags:["#EjeCafetero","#Colombia","#ColombiaTravel","#CoffeeFarm","#HiddenGems","#ColombiaCoffee"],seo:"Eje Cafetero Colombia, coffee region Colombia, Colombia hidden gems, Salento Colombia",tip:"English-language Eje Cafetero content is rare — genuine SEO gap you can own.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:16,week:4,day:"Wednesday",date:"29/04/2026",time:"8:00am AEST",city:"Pereira, Colombia",platform:["IG","TikTok"],type:"Humor",status:"Draft",length:"20 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"My husband came to Colombia and I think he's never going back to Australia",why:"Humorous exaggeration of Sahand's reaction — implies Colombia is that good"},
-     {text:"POV: your wife takes you to her hometown and you fall in love with it",why:"Perspective shift to Sahand's POV — your audience imagines their own partners having this experience"},
-     {text:"He's been in Colombia for 3 days and already prefers it to Melbourne",why:"Specific timeframe (3 days) makes it feel real. Relatable and funny for expat audience"},
-     {text:"I think Colombia broke my husband in the best possible way",why:"'Broke in the best way' = charming and puzzling hook — forces viewer to watch to understand"},
-     {text:"When your husband discovers why you never stop talking about your country",why:"Vindication hook — your Colombian audience will tag everyone they know"}
-   ],
-   angle:"Sahand falling in love with Colombia. Humor + couple dynamic + cultural pride = three viral ingredients.",
-   footage:"Sahand eating, exploring, reacting, laughing. His genuine joy and confusion at Colombian culture.",
-   audio:"Trending funny/upbeat — something playful",
-   caption:`3 days in Colombia and he's already questioning every life choice that led him to Australia 😂
-
-I'm not even sorry 🇨🇴❤️
-
-#Colombia #CoupleTravel #ColombiaTravel #ColombianFood #CoupleGoals #Pereira #TravelCouple #Colombia2026`,
-   hashtags:["#Colombia","#CoupleTravel","#ColombiaTravel","#ColombianFood","#CoupleGoals","#Pereira","#TravelCouple","#Colombia2026"],
-   seo:"couple travel Colombia, Pereira Colombia, Sahand Colombia, Colombian food, travel humor",
-   tip:"The funnier and more genuine Sahand's reactions, the higher this will perform.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
-  {id:17,week:4,day:"Friday",date:"01/05/2026",time:"8:00am AEST",city:"Eje Cafetero / Valle Cocora",platform:["IG","TikTok"],type:"Aesthetic",status:"Draft",length:"20–25 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"The tallest palm trees in the world are in Colombia and I had no idea",why:"Surprising fact hook — education + beauty combination drives saves and shares"},
-     {text:"Valle Cocora looks like someone designed it in a video game",why:"Hyperreality hook — your Brisbane 'video game city' post proves this angle works for you"},
-     {text:"I've been to 40+ countries and this valley is unlike anything I've seen",why:"Expert endorsement hook — credibility from a frequent traveller makes the recommendation land"},
-     {text:"This is what Colombia looks like when you leave the cities",why:"Counter-expectation — most people think Colombia = cities. Nature angle surprises them"},
-     {text:"POV: you hike into Colombia's most magical valley",why:"POV + 'magical' is earned here — Valle Cocora genuinely looks otherworldly"}
-   ],
-   angle:"Pure beauty + surprising fact. Valle Cocora is visually striking enough to stop any scroll.",
-   footage:"Towering wax palms, misty valley, hiking path, you small against the landscape, wide cinematic shots.",
-   audio:"Cinematic/awe-inspiring trending sound — something grand and beautiful",
-   caption:`The tallest palm trees in the world are in Colombia.
-
-And they grow in a valley so beautiful it looks like it was designed by someone who wanted to prove nature is the best artist.
-
-📍 Valle Cocora, Eje Cafetero 🇨🇴
-
-Save this for your Colombia trip — this is a must.
-
-#ValleCocora #EjeCafetero #Colombia #ColombiaTravel #NatureColombia #HiddenGems #TravelColombia #WaxPalms`,
-   hashtags:["#ValleCocora","#EjeCafetero","#Colombia","#ColombiaTravel","#NatureColombia","#HiddenGems","#TravelColombia","#WaxPalms"],
-   seo:"Valle Cocora Colombia, wax palms Colombia, Eje Cafetero things to do, Colombia nature travel",
-   tip:"Film yourself small against the palms — the scale is the jaw-dropping element.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"My husband came to Colombia and I think he's never going back to Australia",why:"Humorous exaggeration of Sahand's reaction"},{text:"POV: your wife takes you to her hometown and you fall in love with it",why:"Perspective shift — audience imagines their own partners"},{text:"He's been in Colombia for 3 days and already prefers it to Melbourne",why:"Specific timeframe makes it feel real. Relatable and funny"},{text:"I think Colombia broke my husband in the best possible way",why:"'Broke in the best way' is charming and puzzling"},{text:"When your husband discovers why you never stop talking about your country",why:"Vindication hook — Colombian audience will tag everyone"}],
+   angle:"Sahand falling in love with Colombia. Humor + couple dynamic + cultural pride.",footage:"Sahand eating, exploring, reacting, laughing. His genuine joy.",audio:"Trending funny/upbeat",
+   caption:"3 days in Colombia and he's already questioning every life choice that led him to Australia 😂\n\nI'm not even sorry 🇨🇴❤️\n\n#Colombia #CoupleTravel #ColombiaTravel #CoupleGoals #Pereira",
+   hashtags:["#Colombia","#CoupleTravel","#ColombiaTravel","#CoupleGoals","#Pereira"],seo:"couple travel Colombia, Pereira Colombia, Colombian food, travel humor",tip:"The funnier and more genuine Sahand's reactions, the higher this performs.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
+  {id:17,week:4,day:"Friday",date:"01/05/2026",time:"8:00am AEST",city:"Valle Cocora, Eje Cafetero",platform:["IG","TikTok"],type:"Aesthetic",status:"Draft",length:"20–25 sec",
+   selectedHook:"",hooks:[{text:"The tallest palm trees in the world are in Colombia and I had no idea",why:"Surprising fact hook — education + beauty drives saves and shares"},{text:"Valle Cocora looks like someone designed it in a video game",why:"Your Brisbane 'video game city' post proves this angle works for you"},{text:"I've been to 40+ countries and this valley is unlike anything I've seen",why:"Expert endorsement — credibility makes the recommendation land"},{text:"This is what Colombia looks like when you leave the cities",why:"Counter-expectation — most people think Colombia = cities"},{text:"POV: you hike into Colombia's most magical valley",why:"POV + 'magical' is earned here — Valle Cocora is otherworldly"}],
+   angle:"Pure beauty + surprising fact. Valle Cocora is visually striking enough to stop any scroll.",footage:"Towering wax palms, misty valley, hiking path, you small against the landscape.",audio:"Cinematic/awe-inspiring trending sound",
+   caption:"The tallest palm trees in the world are in Colombia.\n\nAnd they grow in a valley so beautiful it doesn't look real.\n\n📍 Valle Cocora, Eje Cafetero 🇨🇴\n\nSave this for your Colombia trip.\n\n#ValleCocora #EjeCafetero #Colombia #ColombiaTravel #NatureColombia #HiddenGems",
+   hashtags:["#ValleCocora","#EjeCafetero","#Colombia","#ColombiaTravel","#NatureColombia","#HiddenGems"],seo:"Valle Cocora Colombia, wax palms Colombia, Eje Cafetero things to do, Colombia nature",tip:"Film yourself small against the palms — the scale is the jaw-dropping element.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:18,week:4,day:"Sunday",date:"03/05/2026",time:"8:00am AEST",city:"Bogotá, Colombia",platform:["IG","TikTok"],type:"Cheat Sheet",status:"Draft",length:"30–35 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"Bogotá is boring — they said. We did this in 24 hours.",why:"Your exact proven hook from your 58K-view reel. It worked once — do it again with fresh footage"},
-     {text:"Everything you need to do in Bogotá that nobody puts in the tourist guides",why:"Anti-guidebook hook — implies insider knowledge. Very high save rate"},
-     {text:"The 24-hour Bogotá itinerary that will change how you see Colombia",why:"Transformation promise hook — implies this isn't just tips, it's a revelation"},
-     {text:"Stop sleeping on Bogotá. Here's why it's actually Colombia's best city.",why:"Controversial opinion hook — invites both agreement and debate. Great for comments"},
-     {text:"I've done Bogotá 10 times. This is the only itinerary you need.",why:"Authority + definitive recommendation — 'only itinerary you need' is powerful and clickable"}
-   ],
-   angle:"Second Bogotá cheat sheet — different footage and updated angle from your first. With 65 follows from that video, do it again.",
-   footage:"Fresh Bogotá footage — Monserrate, Gold Museum, La Candelaria, Andrés DC, street food.",
-   audio:"Trending upbeat/exploring — something with energy and movement",
-   caption:`They say Bogotá is boring.
-
-They have clearly never done it right.
-
-24 hours in Bogotá done properly 🇨🇴
-
-Morning → Breakfast at Puerta Falsa (since 1816 — yes really)
-→ Gold Museum (prepare to be shocked)
-→ Walk Calle Séptima, Bolívar Square
-→ Emerald market
-
-Afternoon → Monserrate cable car (best view of the city)
-→ Colombian coffee at a specialty café
-
-Evening → Andrés DC for dinner + the most Colombian night of your life
-
-Save this. You need it. 📍
-
-#Bogotá #Colombia #ColombiaTravel #TravelItinerary #HiddenGems #BogotaTravel #ThingsToDoInBogota #TravelColombia`,
-   hashtags:["#Bogotá","#Colombia","#ColombiaTravel","#TravelItinerary","#HiddenGems","#BogotaTravel","#ThingsToDoInBogota","#TravelColombia"],
-   seo:"Bogotá itinerary, things to do Bogotá, Bogotá travel guide, 24 hours Bogotá Colombia, Bogotá hidden gems",
-   tip:"This format gave you 65 new followers and 567 saves last time. Repeat it every Colombia city.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"Bogotá is boring — they said. We did this in 24 hours.",why:"Your exact proven hook from your 58K-view reel — do it again with fresh footage"},{text:"Everything you need to do in Bogotá that nobody puts in the tourist guides",why:"Anti-guidebook hook — implies insider knowledge. Very high save rate"},{text:"The 24-hour Bogotá itinerary that will change how you see Colombia",why:"Transformation promise — implies this is more than tips, it's a revelation"},{text:"Stop sleeping on Bogotá. Here's why it's actually Colombia's best city.",why:"Controversial opinion — invites agreement AND debate"},{text:"I've done Bogotá 10 times. This is the only itinerary you need.",why:"Authority + definitive recommendation — powerful and clickable"}],
+   angle:"Second Bogotá cheat sheet — different footage. With 65 follows from that video, repeat the formula.",footage:"Fresh Bogotá footage — Monserrate, Gold Museum, La Candelaria, Andrés DC, street food.",audio:"Trending upbeat/exploring",
+   caption:"They say Bogotá is boring.\n\nThey have clearly never done it right.\n\n24 hours in Bogotá 🇨🇴\n\nMorning → Puerta Falsa breakfast (since 1816)\n→ Gold Museum\n→ Calle Séptima walk\n\nAfternoon → Monserrate cable car (best view in the city)\n→ Colombian specialty coffee\n\nEvening → Andrés DC for the most Colombian night of your life\n\nSave this 📍\n\n#Bogotá #Colombia #ColombiaTravel #TravelItinerary #HiddenGems #ThingsToDoInBogota",
+   hashtags:["#Bogotá","#Colombia","#ColombiaTravel","#TravelItinerary","#HiddenGems","#ThingsToDoInBogota"],seo:"Bogotá itinerary, things to do Bogotá, 24 hours Bogotá Colombia",tip:"This format gave you 65 new followers last time. Repeat it for every Colombia city.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:19,week:4,day:"Tuesday",date:"05/05/2026",time:"8:00am AEST",city:"Bogotá, Colombia",platform:["IG","TikTok"],type:"Living Abroad",status:"Draft",length:"20–25 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"POV: you're working from Colombia while your family thinks you're on holiday",why:"Relatable remote work + travel humor — the 'digital nomad secret' many aspire to"},
-     {text:"Work from home but make it Bogotá",why:"Simple wordplay on a familiar phrase — punchy, shareable, aspirational"},
-     {text:"My office today vs my colleagues' offices today",why:"Side-by-side comparison hook — high engagement because it invites comments from office workers"},
-     {text:"The thing no one tells you about working from Colombia",why:"'What no one tells you' = reliable hook. Could be productivity boost, food, weather, family"},
-     {text:"I told my manager I was working from home. I was technically right.",why:"Playful confession — humor + relatability = high share rate among working professionals"}
-   ],
-   angle:"Work-from-Colombia content. Shows the 'freedom' life your followers aspire to — deeply tied to your north star narrative.",
-   footage:"You working on laptop with Bogotá view, coffee, Colombian street outside window.",
-   audio:"Trending productive/aesthetic — something that feels like focus and freedom simultaneously",
-   caption:`My 'office view' for the next few weeks 💻🇨🇴
-
-Working from Colombia while eating my mom's cooking is not something I will ever take for granted.
-
-Who else is living the laptop life? 👇
-
-#WorkFromAnywhere #Colombia #DigitalNomad #WorkFromColombia #LivingAbroad #Colombiana #RemoteWork #TravelAndWork`,
-   hashtags:["#WorkFromAnywhere","#Colombia","#DigitalNomad","#WorkFromColombia","#LivingAbroad","#Colombiana","#RemoteWork","#TravelAndWork"],
-   seo:"work from Colombia, digital nomad Colombia, remote work travel, living abroad Colombia, work from home travel",
-   tip:"This is your 'freedom lifestyle' content — it's aspirational for your Arup-trapped self AND your audience.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
-
+   selectedHook:"",hooks:[{text:"POV: you're working from Colombia while your family thinks you're on holiday",why:"Relatable remote work + travel humor — aspiration and humor together"},{text:"Work from home but make it Bogotá",why:"Simple wordplay on a familiar phrase — punchy, shareable, aspirational"},{text:"My office today vs my colleagues' offices today",why:"Side-by-side comparison — high engagement from office workers"},{text:"The thing no one tells you about working from Colombia",why:"'What no one tells you' = reliable hook"},{text:"I told my manager I was working from home. I was technically right.",why:"Playful confession — humor + relatability = high share rate"}],
+   angle:"Work-from-Colombia content. Shows the 'freedom' life your followers aspire to.",footage:"You working on laptop with Bogotá view, coffee, Colombian street outside window.",audio:"Trending productive/aesthetic",
+   caption:"My 'office view' for the next few weeks 💻🇨🇴\n\nWorking from Colombia while eating my mom's cooking is not something I will ever take for granted.\n\n#WorkFromAnywhere #Colombia #DigitalNomad #LivingAbroad #Colombiana #RemoteWork",
+   hashtags:["#WorkFromAnywhere","#Colombia","#DigitalNomad","#LivingAbroad","#Colombiana","#RemoteWork"],seo:"work from Colombia, digital nomad Colombia, remote work travel, living abroad Colombia",tip:"This is your 'freedom lifestyle' content — aspirational for your Arup-trapped audience.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
   {id:20,week:4,day:"Thursday",date:"07/05/2026",time:"8:00am AEST",city:"Bogotá, Colombia",platform:["IG","TikTok"],type:"Experience",status:"Draft",length:"20 sec",
-   selectedHook:"",
-   hooks:[
-     {text:"I went to a Colombian party and nothing has been the same since",why:"Dramatic life-change hook — implies the experience was so good it altered her perspective"},
-     {text:"This is what a night out in Bogotá looks like and I'm sorry but Australia can't compete",why:"Comparison hook — invites both agreement from Colombians AND debate from Australians"},
-     {text:"Andrés DC: the most Colombian experience you will ever have",why:"Definitive superlative — when you've been everywhere, 'most Colombian' is a real credential"},
-     {text:"POV: you're at Andrés DC in Bogotá and you understand everything now",why:"'Understand everything' = philosophical hook for a party — mysterious and shareable"},
-     {text:"The party that Colombians are obsessed with and you've probably never heard of",why:"Insider knowledge + FOMO = reliable save and share trigger"}
-   ],
-   angle:"Andrés DC nightlife — iconic Colombian experience. High entertainment value, shareable content.",
-   footage:"Andrés DC interior (wild decor), dancing, food, the energy and chaos of the place.",
-   audio:"Trending Latin/party — reggaeton or something that matches the energy",
-   caption:`If you go to Bogotá and you don't go to Andrés DC, did you even go to Bogotá?
-
-This place is part restaurant, part party, part Colombian fever dream — and I am obsessed.
-
-📍 Andrés DC, Bogotá 🇨🇴
-
-#AndresDC #Bogotá #Colombia #ColombiaTravel #ColombianNightlife #BogotaNightlife #TravelColombia #LatinNightlife`,
-   hashtags:["#AndresDC","#Bogotá","#Colombia","#ColombiaTravel","#ColombianNightlife","#BogotaNightlife","#TravelColombia","#LatinNightlife"],
-   seo:"Andrés DC Bogotá, nightlife Bogotá Colombia, things to do Bogotá night, best clubs Bogotá",
-   tip:"The interior of Andrés DC is visually insane — let it speak for itself. Your reaction face carries the rest.",
-   views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""}
+   selectedHook:"",hooks:[{text:"I went to a Colombian party and nothing has been the same since",why:"Dramatic life-change hook — implies the experience altered her perspective"},{text:"This is what a night out in Bogotá looks like and I'm sorry but Australia can't compete",why:"Comparison hook — invites debate AND agreement"},{text:"Andrés DC: the most Colombian experience you will ever have",why:"Definitive superlative — 'most Colombian' is a real credential"},{text:"POV: you're at Andrés DC in Bogotá and you understand everything now",why:"'Understand everything' = mysterious and shareable"},{text:"The party that Colombians are obsessed with and you've probably never heard of",why:"Insider knowledge + FOMO = reliable save and share trigger"}],
+   angle:"Andrés DC nightlife — iconic Colombian experience. High entertainment value.",footage:"Andrés DC interior (wild decor), dancing, food, the energy and chaos.",audio:"Trending Latin/party",
+   caption:"If you go to Bogotá and you don't go to Andrés DC, did you even go to Bogotá?\n\n📍 Andrés DC, Bogotá 🇨🇴\n\n#AndresDC #Bogotá #Colombia #ColombiaTravel #ColombianNightlife #TravelColombia",
+   hashtags:["#AndresDC","#Bogotá","#Colombia","#ColombiaTravel","#ColombianNightlife","#TravelColombia"],seo:"Andrés DC Bogotá, nightlife Bogotá Colombia, things to do Bogotá night",tip:"The interior of Andrés DC is visually insane — let it speak for itself.",views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""}
 ];
 
-// ─────────────────────────────────────────────
-// STATE
-// ─────────────────────────────────────────────
-let currentFilter = 'all';
-let currentPhase = 'all';
-let sheetsUrl = localStorage.getItem('lina_sheets_url') || '';
-let selectedHookId = null;
-let selectedHookIdx = null;
-
-// ─────────────────────────────────────────────
-// RENDER CALENDAR
-// ─────────────────────────────────────────────
-const weekMeta = {
-  1:{label:"Week 1",theme:"Tasmania · Re-enter with a bang",dates:"Wed 1 – Mon 6 Apr"},
-  2:{label:"Week 2",theme:"Tasmania · Build depth & saves",dates:"Wed 8 – Mon 13 Apr"},
-  3:{label:"Week 3",theme:"Melbourne bridge + Colombia teaser",dates:"Wed 15 – Sun 20 Apr"},
-  4:{label:"Week 4",theme:"Colombia launches 🇨🇴",dates:"Tue 21 Apr onwards 🇨🇴"}
+// UGC DATA
+let ugcData = {
+  prospects:[
+    {id:"u1",name:"Sun Bum Sunscreen",type:"Travel SPF · UGC reel 30 sec",rate:"$150–250 AUD",notes:"Mid-size brand, active UGC programme, beach/travel aesthetic fits perfectly. Email their marketing team directly."},
+    {id:"u2",name:"Osprey Packs (small pack)",type:"Travel bag · UGC video",rate:"$200–350 AUD",notes:"More reachable than Away. Huge travel creator community. Tag them in organic content first to get on their radar."},
+    {id:"u3",name:"Lonely Planet",type:"Travel guide · Reel or Stories",rate:"$200–400 AUD",notes:"Active social media, runs influencer programmes. Colombia trip is a perfect angle for a pitch."},
+    {id:"u4",name:"Rappi (Colombia delivery app)",type:"App · UGC during Colombia trip",rate:"$150–300 AUD",notes:"Colombian tech unicorn, active creator collaborations. Pitch while you're in Colombia — local relevance is your advantage."},
+    {id:"u5",name:"Matador Network",type:"Travel media · Content partnership",rate:"$100–250 AUD",notes:"Travel media brand with creator programmes. Lower barrier than big brands. Good first collab for portfolio."},
+    {id:"u6",name:"Airalo (eSIM app)",type:"Travel app · UGC reel",rate:"$150–300 AUD",notes:"eSIM app perfect for international travellers. Highly relevant to your Colombia trip. They actively seek micro-creators."},
+    {id:"u7",name:"iVisa",type:"Travel tech · UGC content",rate:"$150–250 AUD",notes:"Online visa service — relevant to immigration/travel niche. Fits your 'Latina living abroad' identity."},
+    {id:"u8",name:"Booking.com Creator",type:"Travel booking · UGC reel",rate:"$300–500 AUD",notes:"Apply via Booking.com Creator Programme — they work with micro-creators (1K+ followers). Colombia hotels angle."}
+  ],
+  pitched:[],
+  won:[
+    {id:"u9",name:"Monopoly Dreams Melbourne",type:"Experience · Unpaid collab",rate:"Portfolio ✓",notes:"Completed. Use as case study in media kit."}
+  ]
 };
 
-function getFilteredVideos(){
-  let v = [...videos];
-  if(currentFilter!=='all') v = v.filter(x=>x.status===currentFilter);
-  if(currentPhase==='colombia') v = v.filter(x=>x.week===4);
-  else if(currentPhase!=='all') v = v.filter(x=>x.week===parseInt(currentPhase));
+// STATE
+let filterStatus = 'all';
+let filterPhase = 'all';
+let sheetsUrl = localStorage.getItem('lina_sheets_url') || '';
+let apiKey = localStorage.getItem('lina_api_key') || '';
+let editingId = null;
+let editingUGCId = null;
+let selectedHookIdx = null;
+let pendingStats = null;
+let dragSrc = null;
+
+// ══════════════════════════════════════════════
+// CALENDAR RENDER
+// ══════════════════════════════════════════════
+const wMeta = {
+  1:{label:"Week 1",theme:"Tasmania · Re-enter with a bang",dates:"Wed 1 – Mon 6 Apr"},
+  2:{label:"Week 2",theme:"Tasmania · Build depth & saves",dates:"Wed 9 – Mon 14 Apr"},
+  3:{label:"Week 3",theme:"Melbourne bridge + Colombia teaser",dates:"Wed 16 – Sun 20 Apr"},
+  4:{label:"Week 4",theme:"Colombia launches 🇨🇴",dates:"Tue 21 Apr onwards"}
+};
+
+function getFV(){
+  let v=[...videos];
+  if(filterStatus!=='all') v=v.filter(x=>x.status===filterStatus);
+  if(filterPhase==='colombia') v=v.filter(x=>x.week===4);
+  else if(filterPhase!=='all') v=v.filter(x=>x.week===parseInt(filterPhase));
   return v;
 }
 
-function renderCalendar(){
-  const vids = getFilteredVideos();
-  const byWeek = {};
-  vids.forEach(v=>{if(!byWeek[v.week])byWeek[v.week]=[];byWeek[v.week].push(v);});
-  let html='';
-  Object.keys(byWeek).sort((a,b)=>a-b).forEach(w=>{
-    const m = weekMeta[w]||{label:`Week ${w}`,theme:'',dates:''};
-    html+=`<div class="week-block">
-      <div class="week-header">
-        <span class="wl">${m.label}</span>
-        <span class="wt">${m.theme}</span>
-        <div class="wline"></div>
-        <span class="wt" style="color:var(--terra);white-space:nowrap;">${m.dates}</span>
+function renderCal(){
+  const vids=getFV();
+  const byW={};
+  vids.forEach(v=>{if(!byW[v.week])byW[v.week]=[];byW[v.week].push(v);});
+  let h='';
+  if(filterPhase!=='colombia'&&filterPhase==='all'||filterPhase==='all'){
+    h+=`<div class="col-bnr">
+      <span class="col-flag">🇨🇴</span>
+      <div class="col-info">
+        <div class="col-title">Colombia series — Apr 18 to May 23</div>
+        <div class="col-sub">Post at 8:00am AEST to hit Colombian afternoon peak · Dermatologo Mon Apr 20</div>
+        <div class="col-dates">
+          <span class="cpill"><strong>Fri 18 Apr</strong> Depart Melbourne</span>
+          <span class="cpill"><strong>Tue 21 Apr</strong> Bogotá</span>
+          <span class="cpill"><strong>Wed 22–Mon 26</strong> Cartagena + Wedding Sat 25</span>
+          <span class="cpill"><strong>Mon 27 Apr–Sat 2 May</strong> Pereira / Eje Cafetero</span>
+          <span class="cpill"><strong>Sun 3–Thu 21 May</strong> Bogotá WFH</span>
+          <span class="cpill"><strong>Sat 23 May</strong> Return Melbourne</span>
+        </div>
       </div>
-      <div class="cards-grid">${byWeek[w].map(v=>renderCard(v)).join('')}</div>
     </div>`;
+  }
+  Object.keys(byW).sort((a,b)=>a-b).forEach(w=>{
+    const m=wMeta[w]||{label:`Week ${w}`,theme:'',dates:''};
+    h+=`<div class="wblk"><div class="whdr"><span class="wl">${m.label}</span><span class="wt">${m.theme}</span><div class="wline"></div><span class="wdt">${m.dates}</span></div>
+    <div class="cgrid">${byW[w].map(v=>renderCard(v)).join('')}</div></div>`;
   });
-  if(!html) html='<div style="text-align:center;padding:60px;color:var(--stone);font-size:14px;">No videos match this filter.</div>';
-  document.getElementById('view-calendar').innerHTML=html;
-  document.getElementById('total-count').textContent=videos.length;
+  if(!h) h='<div style="text-align:center;padding:60px;color:var(--stone);">No videos match this filter.</div>';
+  document.getElementById('view-calendar').innerHTML=h;
+  document.getElementById('tc').textContent=videos.length;
 }
 
 function renderCard(v){
-  const sc = v.status.toLowerCase().replace(' ','-');
-  const hook = v.selectedHook || (v.hooks&&v.hooks[0]&&v.hooks[0].text) || '';
-  return `<div class="card" onclick="openModal(${v.id})">
-    <div class="card-top">
+  const sc=v.status.toLowerCase().replace(' ','-');
+  const hook=v.selectedHook||(v.hooks&&v.hooks[0]&&v.hooks[0].text)||'';
+  return `<div class="card" onclick="openDetail(${v.id})">
+    <button class="card-edit-btn" onclick="event.stopPropagation();openEdit(${v.id})">✏️ Edit</button>
+    <div class="ctop">
       <div class="cdb">
-        <span class="cd-day">${v.day}</span>
-        <span class="cd-date">${v.date}</span>
-        <span class="cd-time">🕐 ${v.time}</span>
-        ${v.city?`<span class="cd-city">📍 ${v.city}</span>`:''}
+        <span class="cday">${v.day}</span>
+        <span class="cdate">${v.date}</span>
+        <span class="ctime">🕐 ${v.time}</span>
+        ${v.city?`<span class="ccity">📍 ${v.city}</span>`:''}
       </div>
-      <div class="cbadges">
-        ${v.platform.map(p=>`<span class="badge b-${p==='IG'?'ig':'tt'}">${p}</span>`).join('')}
-        <span class="badge b-type">${v.type}</span>
-        <span class="badge b-${sc}">${v.status}</span>
+      <div class="cbdg">
+        ${v.platform.map(p=>`<span class="bdg b-${p==='IG'?'ig':'tt'}">${p}</span>`).join('')}
+        <span class="bdg b-type">${v.type}</span>
+        <span class="bdg b-${sc}">${v.status}</span>
       </div>
     </div>
-    <div class="card-body">
-      <div class="c-hook">"${hook}"</div>
-      <div class="c-angle">${(v.angle||'').split('.')[0]}.</div>
-      <div class="c-meta">
+    <div class="cbody">
+      <div class="chook">"${hook}"</div>
+      <div class="cangle">${(v.angle||'').split('.')[0]}.</div>
+      <div class="cmeta">
         <span class="chip">⏱ ${v.length}</span>
-        <span class="chip">🎵 ${(v.audio||'').split('—')[0].trim()}</span>
         <span class="chip">🪝 ${v.hooks?v.hooks.length:0} hooks</span>
+        ${v.views?`<span class="chip">👁 ${v.views}</span>`:''}
       </div>
-      <div class="c-tags">${(v.hashtags||[]).slice(0,5).join(' ')}</div>
+      <div class="ctags">${(v.hashtags||[]).slice(0,5).join(' ')}</div>
     </div>
-    <div class="card-footer">
-      <span class="c-seo"><strong>SEO:</strong> ${(v.seo||'').split(',')[0]}</span>
-      <select class="status-sel" onclick="event.stopPropagation()" onchange="updateStatus(${v.id},this.value)">
+    <div class="cfoot">
+      <span class="cseo"><strong>SEO:</strong> ${(v.seo||'').split(',')[0]}</span>
+      <select class="ssel" onclick="event.stopPropagation()" onchange="updStatus(${v.id},this.value)">
         <option ${v.status==='Draft'?'selected':''}>Draft</option>
         <option ${v.status==='Editing'?'selected':''}>Editing</option>
         <option ${v.status==='Scheduled'?'selected':''}>Scheduled</option>
@@ -1101,270 +768,567 @@ function renderCard(v){
   </div>`;
 }
 
-// ─────────────────────────────────────────────
-// METRICS
-// ─────────────────────────────────────────────
-function renderMetrics(){
-  const hook = v=>(v.selectedHook||(v.hooks&&v.hooks[0]&&v.hooks[0].text)||'').substring(0,42)+'...';
-  document.getElementById('metrics-tbody').innerHTML = videos.map(v=>`
-    <tr>
-      <td style="font-weight:600;color:var(--terra);">${v.id}</td>
-      <td style="max-width:180px;font-size:11px;">${hook(v)}</td>
-      <td style="white-space:nowrap;">${v.date}</td>
-      <td>${v.platform.join('+')}</td>
-      <td><input class="mi" placeholder="—" value="${v.views||''}" onchange="updateMetric(${v.id},'views',this.value)"></td>
-      <td><input class="mi" placeholder="—" value="${v.likes||''}" onchange="updateMetric(${v.id},'likes',this.value)"></td>
-      <td><input class="mi" placeholder="—" value="${v.saves||''}" onchange="updateMetric(${v.id},'saves',this.value)"></td>
-      <td><input class="mi" placeholder="—" value="${v.shares||''}" onchange="updateMetric(${v.id},'shares',this.value)"></td>
-      <td><input class="mi" placeholder="—" value="${v.follows||''}" onchange="updateMetric(${v.id},'follows',this.value)"></td>
-      <td><input class="mi" placeholder="—" value="${v.watchtime||''}" onchange="updateMetric(${v.id},'watchtime',this.value)" style="width:85px"></td>
-    </tr>`).join('');
-}
-
-// ─────────────────────────────────────────────
-// MODAL — DETAIL
-// ─────────────────────────────────────────────
-function openModal(id){
-  const v = videos.find(x=>x.id===id);
+// ══════════════════════════════════════════════
+// DETAIL MODAL
+// ══════════════════════════════════════════════
+function openDetail(id){
+  const v=videos.find(x=>x.id===id);
   if(!v) return;
-  selectedHookId = id;
-  selectedHookIdx = v.hooks ? v.hooks.findIndex(h=>h.text===v.selectedHook) : -1;
-
-  document.getElementById('modal-title').textContent = `Video ${v.id} · ${v.day}, ${v.date}`;
-
-  const hooksHtml = v.hooks ? v.hooks.map((h,i)=>`
-    <div class="hook-opt ${v.selectedHook===h.text?'selected':''}" id="hopt-${i}" onclick="selectHook(${id},${i})">
-      <div class="hook-num">#${i+1}</div>
-      <div>
-        <div class="hook-text">"${h.text}"</div>
-        <div class="hook-why">↳ ${h.why}</div>
-      </div>
-    </div>`).join('') : '';
-
-  document.getElementById('modal-body').innerHTML = `
-    <div class="mg2" style="margin-bottom:18px;">
-      <div class="ib"><div class="ibl">Post day & time</div><div class="ibv t">${v.day} · ${v.time}</div></div>
+  editingId=id;
+  selectedHookIdx=v.hooks?v.hooks.findIndex(h=>h.text===v.selectedHook):-1;
+  document.getElementById('dm-title').textContent=`Video ${v.id} · ${v.day}, ${v.date}`;
+  const hooksH=v.hooks?v.hooks.map((h,i)=>`
+    <div class="hopt ${v.selectedHook===h.text?'sel':''}" id="hopt-${i}" onclick="selHook(${i})">
+      <div class="hnum">#${i+1}</div>
+      <div><div class="htxt">"${h.text}"</div><div class="hwhy">↳ ${h.why}</div></div>
+    </div>`).join(''):'';
+  document.getElementById('dm-body').innerHTML=`
+    <div class="mg2" style="margin-bottom:16px;">
+      <div class="ib"><div class="ibl">Day & time</div><div class="ibv t">${v.day} · ${v.time}</div></div>
       <div class="ib"><div class="ibl">Location</div><div class="ibv">📍 ${v.city||'—'}</div></div>
       <div class="ib"><div class="ibl">Video length</div><div class="ibv">${v.length}</div></div>
       <div class="ib"><div class="ibl">Platform</div><div class="ibv">${v.platform.join(' + ')}</div></div>
     </div>
-
-    <div class="ms"><div class="ms-title">🪝 Choose your hook (tap to select, then click Use)</div>
-      <div class="hooks-grid">${hooksHtml}</div>
-      <button class="use-hook-btn" onclick="applySelectedHook()">✓ Use selected hook</button>
+    <div class="ms"><div class="ms-title">🪝 Choose your hook</div>
+      <div class="hooks-list">${hooksH}</div>
+      <button class="use-hook" onclick="applyHook()">✓ Use selected hook</button>
     </div>
-
-    <div class="ms"><div class="ms-title">Why this works</div><div class="mt">${v.angle}</div></div>
-    <div class="ms"><div class="ms-title">Footage to use</div><div class="mt">${v.footage}</div></div>
-    <div class="ms"><div class="ms-title">🎵 Audio direction</div><div class="mt">${v.audio}</div></div>
-    <div class="ms"><div class="ms-title">Caption (ready to paste)</div><div class="caption-box">${v.caption}</div></div>
-    <div class="ms"><div class="ms-title">Hashtags</div><div class="modal-tags">${(v.hashtags||[]).map(h=>`<span class="mt-tag ht">${h}</span>`).join('')}</div></div>
-    <div class="ms"><div class="ms-title">SEO keywords (hide in video as tiny text)</div><div class="modal-tags">${(v.seo||'').split(',').map(s=>`<span class="mt-tag se">${s.trim()}</span>`).join('')}</div></div>
-    <div class="ms"><div class="ms-title">💡 Pro tip</div><div class="mt" style="color:var(--terra);font-weight:500;">${v.tip}</div></div>
+    <div class="ms"><div class="ms-title">Why this works</div><div class="mtext">${v.angle}</div></div>
+    <div class="ms"><div class="ms-title">Footage to use</div><div class="mtext">${v.footage}</div></div>
+    <div class="ms"><div class="ms-title">🎵 Audio direction</div><div class="mtext">${v.audio}</div></div>
+    <div class="ms"><div class="ms-title">Caption (tap to copy)</div>
+      <div class="capbox" onclick="copyText(this)" style="cursor:pointer;" title="Tap to copy">${v.caption}</div>
+    </div>
+    <div class="ms"><div class="ms-title">Hashtags</div><div class="mtags">${(v.hashtags||[]).map(h=>`<span class="mt-ht">${h}</span>`).join('')}</div></div>
+    <div class="ms"><div class="ms-title">SEO keywords (hide as tiny text in video)</div><div class="mtags">${(v.seo||'').split(',').map(s=>`<span class="mt-se">${s.trim()}</span>`).join('')}</div></div>
+    <div class="ms"><div class="ms-title">💡 Pro tip</div><div class="mtext" style="color:var(--terra);font-weight:500;">${v.tip}</div></div>
+    <div style="margin-top:16px;display:flex;gap:8px;"><button class="btn-p" onclick="closeM('detail-ov');openEdit(${id})">✏️ Edit this video</button><button class="btn-s" onclick="closeM('detail-ov')">Close</button></div>
   `;
-
-  document.getElementById('modal').classList.add('open');
+  openM('detail-ov');
 }
 
-function selectHook(vid,idx){
-  selectedHookIdx = idx;
-  document.querySelectorAll('.hook-opt').forEach((el,i)=>{
-    el.classList.toggle('selected',i===idx);
+function selHook(i){
+  selectedHookIdx=i;
+  document.querySelectorAll('.hopt').forEach((el,j)=>el.classList.toggle('sel',j===i));
+}
+
+function applyHook(){
+  const v=videos.find(x=>x.id===editingId);
+  if(!v||selectedHookIdx===null||!v.hooks[selectedHookIdx]) return;
+  v.selectedHook=v.hooks[selectedHookIdx].text;
+  toast('Hook selected ✓','ok');
+  closeM('detail-ov');
+  renderCal();
+}
+
+function copyText(el){
+  navigator.clipboard.writeText(el.textContent).then(()=>toast('Caption copied! ✓','ok'));
+}
+
+// ══════════════════════════════════════════════
+// EDIT MODAL
+// ══════════════════════════════════════════════
+function buildEditForm(v,isNew){
+  const plats=['IG','TikTok','IG + TikTok'];
+  const types=['Experience','Couple','Hidden Gem','Cheat Sheet','Living Abroad','Humor','Aesthetic','Teaser','Recommendation','Other'];
+  const statuses=['Draft','Editing','Scheduled','Posted'];
+  const platforms=isNew?'IG + TikTok':(v.platform||[]).join(' + ');
+  return `
+    <div class="fg2">
+      <div class="fl"><label>Day</label><input id="ef-day" value="${isNew?'':v.day}"></div>
+      <div class="fl"><label>Date (DD/MM/YYYY)</label><input id="ef-date" value="${isNew?'':v.date}"></div>
+      <div class="fl"><label>Post time</label><input id="ef-time" value="${isNew?'12:00pm AEST':v.time}"></div>
+      <div class="fl"><label>City / Location</label><input id="ef-city" value="${isNew?'':v.city||''}"></div>
+      <div class="fl"><label>Week</label><input id="ef-week" type="number" value="${isNew?1:v.week}" min="1" max="10"></div>
+      <div class="fl"><label>Content type</label><select id="ef-type">${types.map(t=>`<option ${(!isNew&&v.type===t)?'selected':''}>${t}</option>`).join('')}</select></div>
+      <div class="fl"><label>Platform</label><select id="ef-platform">${plats.map(p=>`<option ${p===platforms?'selected':''}>${p}</option>`).join('')}</select></div>
+      <div class="fl"><label>Status</label><select id="ef-status">${statuses.map(s=>`<option ${(!isNew&&v.status===s)?'selected':''}>${s}</option>`).join('')}</select></div>
+      <div class="fl fgfull"><label>Video length</label><input id="ef-length" value="${isNew?'20–30 sec':v.length}"></div>
+      <div class="fl fgfull"><label>Selected hook (paste chosen hook here)</label><input id="ef-selfhook" value="${isNew?'':v.selectedHook||''}"></div>
+      <div class="fl fgfull"><label>Hook 1</label><input id="ef-h0" value="${isNew?'':(v.hooks&&v.hooks[0]?v.hooks[0].text:'')}"></div>
+      <div class="fl fgfull"><label>Hook 2</label><input id="ef-h1" value="${isNew?'':(v.hooks&&v.hooks[1]?v.hooks[1].text:'')}"></div>
+      <div class="fl fgfull"><label>Hook 3</label><input id="ef-h2" value="${isNew?'':(v.hooks&&v.hooks[2]?v.hooks[2].text:'')}"></div>
+      <div class="fl fgfull"><label>Hook 4</label><input id="ef-h3" value="${isNew?'':(v.hooks&&v.hooks[3]?v.hooks[3].text:'')}"></div>
+      <div class="fl fgfull"><label>Hook 5</label><input id="ef-h4" value="${isNew?'':(v.hooks&&v.hooks[4]?v.hooks[4].text:'')}"></div>
+      <div class="fl fgfull"><label>Angle / why it works</label><textarea id="ef-angle">${isNew?'':v.angle||''}</textarea></div>
+      <div class="fl fgfull"><label>Footage to use</label><textarea id="ef-footage">${isNew?'':v.footage||''}</textarea></div>
+      <div class="fl fgfull"><label>Audio direction</label><input id="ef-audio" value="${isNew?'':v.audio||''}"></div>
+      <div class="fl fgfull"><label>Caption</label><textarea id="ef-caption" style="min-height:120px;">${isNew?'':v.caption||''}</textarea></div>
+      <div class="fl fgfull"><label>Hashtags (space separated)</label><input id="ef-hashtags" value="${isNew?'':(v.hashtags||[]).join(' ')}"></div>
+      <div class="fl fgfull"><label>SEO keywords</label><input id="ef-seo" value="${isNew?'':v.seo||''}"></div>
+      <div class="fl fgfull"><label>Pro tip</label><input id="ef-tip" value="${isNew?'':v.tip||''}"></div>
+    </div>
+    <div class="fact">
+      ${!isNew?`<button class="btn-d" onclick="deleteVideo(${v.id})">🗑 Delete</button>`:''}
+      <button class="btn-s" onclick="closeM('${isNew?'add-ov':'edit-ov'}')">Cancel</button>
+      <button class="btn-p" onclick="${isNew?'submitAdd()':'submitEdit('+v.id+')'}">${isNew?'Add video':'Save changes'}</button>
+    </div>`;
+}
+
+function openEdit(id){
+  const v=videos.find(x=>x.id===id);
+  if(!v) return;
+  editingId=id;
+  document.getElementById('em-title').textContent=`Edit: ${v.day}, ${v.date}`;
+  document.getElementById('eform').innerHTML=buildEditForm(v,false);
+  openM('edit-ov');
+}
+
+function submitEdit(id){
+  const v=videos.find(x=>x.id===id);
+  if(!v) return;
+  const g=i=>document.getElementById(i)?.value||'';
+  v.day=g('ef-day'); v.date=g('ef-date'); v.time=g('ef-time'); v.city=g('ef-city');
+  v.week=parseInt(g('ef-week'))||v.week;
+  v.type=g('ef-type'); v.status=g('ef-status'); v.length=g('ef-length');
+  v.selectedHook=g('ef-selfhook');
+  const plat=g('ef-platform');
+  v.platform=plat.includes('+')?plat.split(' + ').map(s=>s.trim()):[plat];
+  v.hooks=[0,1,2,3,4].map(i=>({text:g(`ef-h${i}`),why:v.hooks&&v.hooks[i]?v.hooks[i].why:''})).filter(h=>h.text);
+  v.angle=g('ef-angle'); v.footage=g('ef-footage'); v.audio=g('ef-audio');
+  v.caption=g('ef-caption');
+  v.hashtags=g('ef-hashtags').split(' ').filter(Boolean);
+  v.seo=g('ef-seo'); v.tip=g('ef-tip');
+  closeM('edit-ov');
+  renderCal();
+  toast('Video updated ✓','ok');
+}
+
+function openAdd(){
+  document.getElementById('add-form').innerHTML=buildEditForm({},true);
+  openM('add-ov');
+}
+
+function submitAdd(){
+  const g=i=>document.getElementById(i)?.value||'';
+  const plat=g('ef-platform');
+  const newV={
+    id:Math.max(...videos.map(v=>v.id))+1,
+    week:parseInt(g('ef-week'))||1,
+    day:g('ef-day'),date:g('ef-date'),time:g('ef-time')||'12:00pm AEST',
+    city:g('ef-city'),
+    platform:plat.includes('+')?plat.split(' + ').map(s=>s.trim()):[plat],
+    type:g('ef-type'),status:g('ef-status')||'Draft',length:g('ef-length')||'20 sec',
+    selectedHook:g('ef-selfhook'),
+    hooks:[0,1,2,3,4].map(i=>({text:g(`ef-h${i}`),why:''})).filter(h=>h.text),
+    angle:g('ef-angle'),footage:g('ef-footage'),audio:g('ef-audio'),
+    caption:g('ef-caption'),
+    hashtags:g('ef-hashtags').split(' ').filter(Boolean),
+    seo:g('ef-seo'),tip:g('ef-tip'),
+    views:'',likes:'',saves:'',shares:'',follows:'',watchtime:''
+  };
+  videos.push(newV);
+  closeM('add-ov');
+  renderCal();
+  toast('Video added ✓','ok');
+}
+
+function deleteVideo(id){
+  if(!confirm('Delete this video? This cannot be undone.')) return;
+  videos=videos.filter(v=>v.id!==id);
+  closeM('edit-ov');
+  renderCal();
+  toast('Video deleted','');
+}
+
+// ══════════════════════════════════════════════
+// UGC
+// ══════════════════════════════════════════════
+function renderUGC(){
+  const cols={
+    prospects:{label:'🎯 Prospects — to pitch',cls:'p'},
+    pitched:{label:'📩 Pitched — awaiting',cls:'pt'},
+    won:{label:'🎉 Won — active / done',cls:'w'}
+  };
+  const board=document.getElementById('ugc-board');
+  board.innerHTML=Object.entries(cols).map(([key,{label,cls}])=>`
+    <div class="ucol" id="ucol-${key}" ondragover="ugcDragOver(event,'${key}')" ondrop="ugcDrop(event,'${key}')" ondragleave="ugcDragLeave(event)">
+      <div class="ucol-hdr ${cls}">${label} <span class="ucol-count">${ugcData[key].length}</span></div>
+      <div class="ucol-drop" id="drop-${key}">Drop here</div>
+      ${ugcData[key].map(c=>renderUCard(c,key)).join('')}
+      <button class="add-ugc-btn" onclick="openAddUGC('${key}')">+ Add</button>
+    </div>`).join('');
+}
+
+function renderUCard(c,col){
+  return `<div class="ucard" draggable="true" id="uc-${c.id}"
+    ondragstart="ugcDragStart(event,'${c.id}','${col}')"
+    ondragend="ugcDragEnd(event)">
+    <div class="ub"><span class="ub-name">${c.name}</span>
+      <button class="ucard-edit" onclick="event.stopPropagation();openEditUGC('${c.id}','${col}')">✏️</button>
+    </div>
+    <div class="ut">${c.type}</div>
+    <div class="ur">${c.rate}</div>
+    ${c.notes?`<div class="un">${c.notes}</div>`:''}
+    <select class="ugc-status-sel" onchange="moveUGC('${c.id}','${col}',this.value)">
+      <option value="prospects" ${col==='prospects'?'selected':''}>🎯 Prospects</option>
+      <option value="pitched" ${col==='pitched'?'selected':''}>📩 Pitched</option>
+      <option value="won" ${col==='won'?'selected':''}>🎉 Won</option>
+    </select>
+  </div>`;
+}
+
+function moveUGC(id,fromCol,toCol){
+  if(fromCol===toCol) return;
+  const idx=ugcData[fromCol].findIndex(c=>c.id===id);
+  if(idx<0) return;
+  const card=ugcData[fromCol].splice(idx,1)[0];
+  ugcData[toCol].push(card);
+  renderUGC();
+  toast(`Moved to ${toCol} ✓`,'ok');
+}
+
+// Drag and drop
+let dragUGCId=null, dragUGCCol=null;
+function ugcDragStart(e,id,col){
+  dragUGCId=id; dragUGCCol=col;
+  e.dataTransfer.effectAllowed='move';
+  setTimeout(()=>document.getElementById('uc-'+id)?.classList.add('dragging'),0);
+}
+function ugcDragEnd(e){
+  document.querySelectorAll('.ucard').forEach(c=>c.classList.remove('dragging'));
+  document.querySelectorAll('.ucol-drop').forEach(d=>{d.style.background='';d.style.borderColor='';});
+}
+function ugcDragOver(e,col){
+  e.preventDefault();
+  const d=document.getElementById('drop-'+col);
+  if(d){d.style.background='var(--terra-l)';d.style.borderColor='var(--terra)';}
+}
+function ugcDragLeave(e){
+  const d=e.currentTarget.querySelector('.ucol-drop');
+  if(d){d.style.background='';d.style.borderColor='';}
+}
+function ugcDrop(e,toCol){
+  e.preventDefault();
+  if(dragUGCId) moveUGC(dragUGCId,dragUGCCol,toCol);
+  document.querySelectorAll('.ucol-drop').forEach(d=>{d.style.background='';d.style.borderColor='';});
+}
+
+// Touch drag for mobile
+let touchCard=null,touchCol=null,touchClone=null;
+function setupTouchDrag(){
+  document.addEventListener('touchstart',e=>{
+    const card=e.target.closest('.ucard');
+    if(!card) return;
+    touchCard=card;
+    touchCol=card.closest('.ucol').id.replace('ucol-','');
+    touchClone=card.cloneNode(true);
+    touchClone.style.cssText='position:fixed;opacity:.8;pointer-events:none;z-index:999;width:'+card.offsetWidth+'px;';
+    document.body.appendChild(touchClone);
+  },{passive:true});
+  document.addEventListener('touchmove',e=>{
+    if(!touchClone) return;
+    const t=e.touches[0];
+    touchClone.style.left=t.clientX-touchClone.offsetWidth/2+'px';
+    touchClone.style.top=t.clientY-20+'px';
+  },{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(!touchCard||!touchClone) return;
+    const t=e.changedTouches[0];
+    const el=document.elementFromPoint(t.clientX,t.clientY);
+    const ucol=el?.closest('.ucol');
+    if(ucol){
+      const toCol=ucol.id.replace('ucol-','');
+      const cardId=touchCard.id.replace('uc-','');
+      if(toCol!==touchCol) moveUGC(cardId,touchCol,toCol);
+    }
+    touchClone.remove(); touchClone=null; touchCard=null; touchCol=null;
   });
 }
 
-function applySelectedHook(){
-  if(selectedHookId===null||selectedHookIdx===null) return;
-  const v = videos.find(x=>x.id===selectedHookId);
-  if(!v||!v.hooks[selectedHookIdx]) return;
-  v.selectedHook = v.hooks[selectedHookIdx].text;
-  toast('Hook selected ✓','ok');
-  closeModal();
-  renderCalendar();
+function openAddUGC(defaultCol){
+  editingUGCId=null;
+  document.getElementById('ugc-m-title').textContent='Add brand';
+  document.getElementById('ub-name').value='';
+  document.getElementById('ub-type').value='';
+  document.getElementById('ub-rate').value='';
+  document.getElementById('ub-notes').value='';
+  document.getElementById('ub-col').value=defaultCol||'prospects';
+  openM('ugc-ov');
 }
 
-function closeModal(){document.getElementById('modal').classList.remove('open');}
-function closeModalOutside(e){if(e.target===document.getElementById('modal'))closeModal();}
-
-// ─────────────────────────────────────────────
-// ADD VIDEO MODAL
-// ─────────────────────────────────────────────
-function openAddModal(){document.getElementById('add-modal').classList.add('open');}
-function closeAddModal(){document.getElementById('add-modal').classList.remove('open');}
-function closeAddOutside(e){if(e.target===document.getElementById('add-modal'))closeAddModal();}
-
-function submitAddVideo(){
-  const g = id=>document.getElementById(id).value.trim();
-  const week = parseInt(g('f-week'))||videos.length+1;
-  const newVideo = {
-    id: Math.max(...videos.map(v=>v.id))+1,
-    week, day:g('f-day'), date:g('f-date'), time:g('f-time')||'12:00pm AEST',
-    city:g('f-city'), platform:g('f-platform').split('+').map(s=>s.trim()),
-    type:g('f-type'), status:'Draft', length:g('f-length')||'15–30 sec',
-    selectedHook:g('f-hook'),
-    hooks:[{text:g('f-hook'),why:'Your hook'},'','','',''],
-    angle:g('f-angle'), footage:g('f-footage'), audio:g('f-audio'),
-    caption:g('f-caption'),
-    hashtags:g('f-hashtags').split(' ').filter(Boolean),
-    seo:g('f-seo'), tip:g('f-tip'),
-    views:'',likes:'',saves:'',shares:'',follows:'',watchtime:''
-  };
-  videos.push(newVideo);
-  closeAddModal();
-  renderCalendar();
-  toast('Video added ✓','ok');
-  // Clear form
-  ['f-day','f-date','f-time','f-city','f-hook','f-angle','f-footage','f-audio','f-caption','f-hashtags','f-seo','f-tip']
-    .forEach(id=>{document.getElementById(id).value='';});
+function openEditUGC(id,col){
+  const card=[...ugcData.prospects,...ugcData.pitched,...ugcData.won].find(c=>c.id===id);
+  if(!card) return;
+  editingUGCId={id,col};
+  document.getElementById('ugc-m-title').textContent='Edit brand';
+  document.getElementById('ub-name').value=card.name;
+  document.getElementById('ub-type').value=card.type;
+  document.getElementById('ub-rate').value=card.rate;
+  document.getElementById('ub-notes').value=card.notes||'';
+  document.getElementById('ub-col').value=col;
+  openM('ugc-ov');
 }
 
-// ─────────────────────────────────────────────
-// ACTIONS
-// ─────────────────────────────────────────────
-function updateStatus(id,val){
-  const v=videos.find(x=>x.id===id);
-  if(v){v.status=val;renderCalendar();}
-}
-function updateMetric(id,field,val){
-  const v=videos.find(x=>x.id===id);
-  if(v) v[field]=val;
-}
-function filterStatus(s){
-  currentFilter=s;
-  switchView('calendar');
-  renderCalendar();
-}
-function filterPhase(p,btn){
-  currentPhase=p;
-  document.querySelectorAll('.pill-filter button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderCalendar();
+function submitUGC(){
+  const name=document.getElementById('ub-name').value.trim();
+  if(!name){toast('Brand name required','err');return;}
+  const col=document.getElementById('ub-col').value;
+  if(editingUGCId){
+    const arr=ugcData[editingUGCId.col];
+    const idx=arr.findIndex(c=>c.id===editingUGCId.id);
+    if(idx>=0) arr.splice(idx,1);
+    ugcData[col].push({id:editingUGCId.id,name,type:document.getElementById('ub-type').value,rate:document.getElementById('ub-rate').value,notes:document.getElementById('ub-notes').value});
+  } else {
+    ugcData[col].push({id:'u'+Date.now(),name,type:document.getElementById('ub-type').value,rate:document.getElementById('ub-rate').value,notes:document.getElementById('ub-notes').value});
+  }
+  closeM('ugc-ov');
+  renderUGC();
+  toast('Brand saved ✓','ok');
 }
 
-// ─────────────────────────────────────────────
-// VIEW SWITCHING
-// ─────────────────────────────────────────────
-const titles={calendar:'Content Calendar',schedule:'Work Schedule',metrics:'Performance Tracker',ugc:'UGC & Collabs',sheets:'Google Sheets Sync'};
-function switchView(v){
-  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
-  document.getElementById(`view-${v}`).classList.add('active');
-  document.querySelectorAll('.nb').forEach(x=>x.classList.remove('active'));
-  const nb=document.getElementById(`nav-${v}`);
-  if(nb) nb.classList.add('active');
-  document.getElementById('view-title').textContent=titles[v]||v;
-  document.getElementById('phase-filter').style.display=v==='calendar'?'flex':'none';
-  if(v==='metrics') renderMetrics();
-  if(v==='sheets') document.getElementById('sheets-url').value=sheetsUrl;
-  closeSidebar();
+// ══════════════════════════════════════════════
+// ANALYTICS UPLOAD
+// ══════════════════════════════════════════════
+function openUploadModal(){
+  const sel=document.getElementById('upload-vid-sel');
+  sel.innerHTML='<option value="">Select a video…</option>'+
+    videos.map(v=>`<option value="${v.id}">${v.id}. ${v.day} ${v.date} — ${(v.selectedHook||(v.hooks&&v.hooks[0]?v.hooks[0].text:'')||'').substring(0,40)}...</option>`).join('');
+  document.getElementById('ai-result').classList.remove('show');
+  pendingStats=null;
+  openM('upload-ov');
 }
 
-// ─────────────────────────────────────────────
-// MOBILE SIDEBAR
-// ─────────────────────────────────────────────
-function toggleSidebar(){
-  document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('mob-overlay').classList.toggle('open');
+function dragOver(e){e.preventDefault();document.getElementById('upload-zone').classList.add('drag');}
+function dragLeave(e){document.getElementById('upload-zone').classList.remove('drag');}
+function handleDrop(e){
+  e.preventDefault();
+  document.getElementById('upload-zone').classList.remove('drag');
+  const file=e.dataTransfer.files[0];
+  if(file&&file.type.startsWith('image/')) processImage(file);
 }
-function closeSidebar(){
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('mob-overlay').classList.remove('open');
+function handleUpload(e){
+  const file=e.target.files[0];
+  if(file) processImage(file);
 }
 
-// ─────────────────────────────────────────────
-// GOOGLE SHEETS SYNC
-// ─────────────────────────────────────────────
+async function processImage(file){
+  const key=localStorage.getItem('lina_api_key');
+  if(!key){toast('Add your API key in AI Assistant tab first','err');return;}
+  const resultDiv=document.getElementById('ai-result');
+  resultDiv.classList.add('show');
+  document.getElementById('ai-result-title').textContent='📊 AI reading your analytics…';
+  document.getElementById('ai-stat-row').innerHTML='<div style="padding:10px;color:var(--stone);font-style:italic;grid-column:1/-1;">Analysing screenshot…</div>';
+  document.getElementById('ai-comment').textContent='';
+  document.getElementById('apply-btn').style.display='none';
+
+  const base64=await fileToBase64(file);
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01'},
+      body:JSON.stringify({
+        model:'claude-opus-4-5',max_tokens:600,
+        messages:[{role:'user',content:[
+          {type:'image',source:{type:'base64',media_type:file.type,data:base64}},
+          {type:'text',text:'This is a screenshot of Instagram or TikTok analytics for a travel content creator. Extract the exact numbers you can see and return ONLY valid JSON in this exact format with no other text: {"views":"","likes":"","saves":"","shares":"","follows":"","watchtime":"","comment":"one sentence analysis of the performance"}\n\nIf a number is not visible use empty string. Watchtime should include the unit (e.g. "8 sec"). The comment should be specific and useful, e.g. "Strong saves-to-views ratio of 1.2% suggests this is a cheat sheet/save-worthy format."'}
+        ]}]
+      })
+    });
+    const d=await res.json();
+    const text=d.content[0].text;
+    let stats;
+    try{ stats=JSON.parse(text); }
+    catch(e){
+      const match=text.match(/\{[\s\S]*\}/);
+      stats=match?JSON.parse(match[0]):{comment:"Could not parse stats from screenshot. Please try again with a clearer image."};
+    }
+    pendingStats=stats;
+    document.getElementById('ai-result-title').textContent='📊 Stats extracted';
+    document.getElementById('ai-stat-row').innerHTML=
+      ['views','likes','saves','shares'].map(k=>`<div class="ai-stat"><div class="ai-stat-val">${stats[k]||'—'}</div><div class="ai-stat-lbl">${k}</div></div>`).join('');
+    document.getElementById('ai-comment').textContent=stats.comment||'';
+    document.getElementById('apply-btn').style.display='block';
+  }catch(err){
+    document.getElementById('ai-result-title').textContent='Error reading screenshot';
+    document.getElementById('ai-stat-row').innerHTML='<div style="color:var(--terra);grid-column:1/-1;font-size:12px;">'+err.message+'</div>';
+  }
+}
+
+function applyStats(){
+  const vidId=parseInt(document.getElementById('upload-vid-sel').value);
+  if(!vidId){toast('Select a video first','err');return;}
+  if(!pendingStats){toast('No stats to apply','err');return;}
+  const v=videos.find(x=>x.id===vidId);
+  if(!v) return;
+  if(pendingStats.views) v.views=pendingStats.views;
+  if(pendingStats.likes) v.likes=pendingStats.likes;
+  if(pendingStats.saves) v.saves=pendingStats.saves;
+  if(pendingStats.shares) v.shares=pendingStats.shares;
+  if(pendingStats.follows) v.follows=pendingStats.follows;
+  if(pendingStats.watchtime) v.watchtime=pendingStats.watchtime;
+  closeM('upload-ov');
+  renderCal();
+  renderMetrics();
+  toast('Stats applied to video '+vidId+' ✓','ok');
+}
+
+function fileToBase64(file){
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=()=>res(r.result.split(',')[1]);
+    r.onerror=rej;
+    r.readAsDataURL(file);
+  });
+}
+
+// ══════════════════════════════════════════════
+// AI ASSISTANT
+// ══════════════════════════════════════════════
+function saveApiKey(){
+  const key=document.getElementById('api-key-input').value.trim();
+  if(!key){toast('Paste your API key first','err');return;}
+  localStorage.setItem('lina_api_key',key);
+  apiKey=key;
+  document.getElementById('api-status').textContent='✓ API key saved. AI Assistant and analytics upload are now active.';
+  document.getElementById('api-status').style.color='var(--sage)';
+  toast('API key saved ✓','ok');
+}
+
+function askAI(q){
+  document.getElementById('ai-input').value=q;
+  sendAI();
+}
+
+async function sendAI(){
+  const key=localStorage.getItem('lina_api_key');
+  const inp=document.getElementById('ai-input');
+  const q=inp.value.trim();
+  if(!q) return;
+  if(!key){toast('Add your API key first','err');sw('ai');return;}
+  inp.value='';
+  const msgs=document.getElementById('ai-msgs');
+  msgs.innerHTML+=`<div class="ai-msg user">${q}</div>`;
+  msgs.innerHTML+=`<div class="ai-msg bot loading" id="ai-loading">Thinking…</div>`;
+  msgs.scrollTop=msgs.scrollHeight;
+
+  const context=`You are a social media strategy assistant for Lina, a Colombian civil engineer and GIS specialist living in Melbourne, Australia. She runs travel content accounts @linatravelss (IG, 3791 followers, 830K monthly views) and @linatravelss_ (TikTok, 1045 followers). Her proven formula: text-on-screen + trending audio, POV hooks, experience/relatable angles. Best performing: Bogotá itinerary (58K views, 567 saves), Dubai bad experience TikTok (165K likes). She is going to Colombia mid-April (Bogotá, Cartagena, Eje Cafetero) returning May 23. Current videos planned: ${videos.slice(0,5).map(v=>`Video ${v.id} (${v.type}, ${v.date}, ${v.city})`).join(', ')}. Be specific, strategic, and direct. No generic advice. Keep responses concise and actionable.`;
+
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01'},
+      body:JSON.stringify({model:'claude-opus-4-5',max_tokens:500,system:context,messages:[{role:'user',content:q}]})
+    });
+    const d=await res.json();
+    const reply=d.content?.[0]?.text||'Sorry, I had trouble with that. Try again.';
+    document.getElementById('ai-loading').remove();
+    msgs.innerHTML+=`<div class="ai-msg bot">${reply.replace(/\n/g,'<br>')}</div>`;
+  }catch(err){
+    document.getElementById('ai-loading').remove();
+    msgs.innerHTML+=`<div class="ai-msg bot" style="color:var(--terra);">Error: ${err.message}. Check your API key.</div>`;
+  }
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+// ══════════════════════════════════════════════
+// METRICS
+// ══════════════════════════════════════════════
+function renderMetrics(){
+  document.getElementById('mtbody').innerHTML=videos.map(v=>`
+    <tr>
+      <td style="font-weight:700;color:var(--terra);">${v.id}</td>
+      <td style="max-width:160px;font-size:10.5px;">${((v.selectedHook||'').substring(0,40)||'—')}…</td>
+      <td style="white-space:nowrap;font-size:10.5px;">${v.date}</td>
+      <td style="font-size:10.5px;">${v.platform.join('+')}</td>
+      <td><input class="mi" placeholder="—" value="${v.views||''}" onchange="updM(${v.id},'views',this.value)"></td>
+      <td><input class="mi" placeholder="—" value="${v.likes||''}" onchange="updM(${v.id},'likes',this.value)"></td>
+      <td><input class="mi" placeholder="—" value="${v.saves||''}" onchange="updM(${v.id},'saves',this.value)"></td>
+      <td><input class="mi" placeholder="—" value="${v.shares||''}" onchange="updM(${v.id},'shares',this.value)"></td>
+      <td><input class="mi" placeholder="—" value="${v.follows||''}" onchange="updM(${v.id},'follows',this.value)"></td>
+      <td><input class="mi" placeholder="—" value="${v.watchtime||''}" onchange="updM(${v.id},'watchtime',this.value)" style="width:80px"></td>
+    </tr>`).join('');
+}
+function updM(id,f,v){const x=videos.find(v=>v.id===id);if(x)x[f]=v;}
+
+// ══════════════════════════════════════════════
+// GOOGLE SHEETS
+// ══════════════════════════════════════════════
 function saveUrl(){
   sheetsUrl=document.getElementById('sheets-url').value.trim();
   localStorage.setItem('lina_sheets_url',sheetsUrl);
   toast('URL saved ✓','ok');
 }
-
-async function testConnection(){
+async function testConn(){
   const url=document.getElementById('sheets-url').value.trim();
-  if(!url){toast('Paste your Apps Script URL first','err');return;}
-  const el=document.getElementById('conn-status');
+  if(!url){toast('Paste your URL first','err');return;}
+  const el=document.getElementById('conn-st');
   el.textContent='Testing…';
   try{
     const r=await fetch(url+'?action=load');
     const d=await r.json();
-    el.textContent=d.ok?'✓ Connected — '+d.videos.length+' videos in sheet':'✗ Error: '+d.error;
+    el.textContent=d.ok?`✓ Connected — ${d.videos.length} videos in sheet`:`✗ Error: ${d.error}`;
     el.style.color=d.ok?'var(--sage)':'var(--terra)';
-  }catch(e){
-    el.textContent='✗ Could not connect — check URL and deployment settings';
-    el.style.color='var(--terra)';
-  }
+  }catch(e){el.textContent='✗ Could not connect';el.style.color='var(--terra)';}
 }
-
-async function saveToSheets(){
-  if(!sheetsUrl){switchView('sheets');toast('Set your Sheets URL first','err');return;}
-  toast('Saving to Sheets…','');
+async function saveSheets(){
+  if(!sheetsUrl){sw('sheets');toast('Set your Sheets URL first','err');return;}
+  toast('Saving…','');
   try{
     const r=await fetch(sheetsUrl,{method:'POST',body:JSON.stringify({action:'save_all',videos})});
     const d=await r.json();
-    if(d.ok) toast('✓ Saved to Google Sheets — '+d.rows_written+' rows written','ok');
-    else toast('Error: '+d.error,'err');
-  }catch(e){toast('Connection error — check Sheets URL in Sync settings','err');}
+    toast(d.ok?`✓ Saved — ${d.rows_written} rows`:'Error: '+d.error,d.ok?'ok':'err');
+  }catch(e){toast('Connection error','err');}
 }
-
-async function loadFromSheets(){
-  if(!sheetsUrl){switchView('sheets');toast('Set your Sheets URL first','err');return;}
-  toast('Loading from Sheets…','');
+async function loadSheets(){
+  if(!sheetsUrl){sw('sheets');toast('Set your Sheets URL first','err');return;}
+  toast('Loading…','');
   try{
     const r=await fetch(sheetsUrl+'?action=load');
     const d=await r.json();
-    if(d.ok&&d.videos.length>0){
-      videos=d.videos;
-      renderCalendar();
-      toast('✓ Loaded '+d.videos.length+' videos from Sheets','ok');
-    } else if(d.ok){
-      toast('Sheet is empty — save first','err');
-    } else {
-      toast('Error: '+d.error,'err');
-    }
-  }catch(e){toast('Connection error — check Sheets URL in Sync settings','err');}
+    if(d.ok&&d.videos.length>0){videos=d.videos;renderCal();toast(`✓ Loaded ${d.videos.length} videos`,'ok');}
+    else toast(d.ok?'Sheet empty — save first':'Error: '+d.error,'err');
+  }catch(e){toast('Connection error','err');}
 }
 
-// ─────────────────────────────────────────────
-// TOAST
-// ─────────────────────────────────────────────
-let toastTimer;
+// ══════════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════════
+function updStatus(id,val){const v=videos.find(x=>x.id===id);if(v){v.status=val;renderCal();}}
+function fs(s){filterStatus=s;sw('calendar');renderCal();}
+function fp(p,btn){filterPhase=p;document.querySelectorAll('.pf button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderCal();}
+
+const vTitles={calendar:'Content Calendar',schedule:'Work Schedule',metrics:'Performance',ugc:'UGC & Collabs',ai:'AI Assistant',sheets:'Sheets Sync'};
+function sw(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.getElementById(`view-${v}`).classList.add('active');
+  document.querySelectorAll('.nb').forEach(x=>x.classList.remove('active'));
+  document.getElementById(`nav-${v}`)?.classList.add('active');
+  document.getElementById('ptitle').textContent=vTitles[v]||v;
+  document.getElementById('pf').style.display=v==='calendar'?'flex':'none';
+  if(v==='metrics') renderMetrics();
+  if(v==='ugc') renderUGC();
+  if(v==='sheets') document.getElementById('sheets-url').value=sheetsUrl;
+  if(v==='ai'&&apiKey) document.getElementById('api-key-input').value=apiKey;
+  closeSB();
+}
+
+function openM(id){document.getElementById(id).classList.add('open');}
+function closeM(id){document.getElementById(id).classList.remove('open');}
+function closeOv(id,e){if(e.target===document.getElementById(id))closeM(id);}
+
+function toggleSB(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('mob-ov').classList.toggle('open');}
+function closeSB(){document.getElementById('sidebar').classList.remove('open');document.getElementById('mob-ov').classList.remove('open');}
+
+let toastT;
 function toast(msg,type){
   const el=document.getElementById('toast');
-  el.textContent=msg;
-  el.className='toast show '+(type||'');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>el.classList.remove('show'),3000);
+  el.textContent=msg;el.className='toast show '+(type||'');
+  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3000);
 }
 
-// ─────────────────────────────────────────────
-// COLOMBIA BANNER in calendar
-// ─────────────────────────────────────────────
-function addColombiaBanner(){
-  const cal=document.getElementById('view-calendar');
-  const banner=`<div class="col-banner">
-    <span class="col-flag">🇨🇴</span>
-    <div class="col-info">
-      <div class="col-title">Colombia series — Apr 18 to May 23</div>
-      <div class="col-sub">Post at 8:00am AEST to hit Colombian afternoon peak · Dermatologo Apr 20 · Post Colombia content from Apr 21</div>
-      <div class="col-dates">
-        <span class="col-pill"><strong>Apr 18</strong> Depart Melbourne</span>
-        <span class="col-pill"><strong>Tue 21 Apr (arrive Sun 19)</strong> Bogotá</span>
-        <span class="col-pill"><strong>Wed 22 – Mon 26 Apr</strong> Cartagena + Wedding</span>
-        <span class="col-pill"><strong>Mon 27 Apr – Sat 2 May</strong> Pereira / Eje Cafetero</span>
-        <span class="col-pill"><strong>Sun 3 – Thu 21 May (WFH)</strong> Bogotá (WFH)</span>
-        <span class="col-pill"><strong>May 23</strong> Return Melbourne</span>
-      </div>
-    </div>
-  </div>`;
-  cal.insertAdjacentHTML('afterbegin',banner);
-}
-
-// ─────────────────────────────────────────────
+// ══════════════════════════════════════════════
 // INIT
-// ─────────────────────────────────────────────
-renderCalendar();
-addColombiaBanner();
-document.getElementById('phase-filter').style.display='flex';
+// ══════════════════════════════════════════════
+renderCal();
+document.getElementById('pf').style.display='flex';
+if(sheetsUrl) document.getElementById('sheets-url').value=sheetsUrl;
+if(apiKey){
+  document.getElementById('api-key-input').value=apiKey;
+  document.getElementById('api-status').textContent='✓ API key loaded. AI Assistant active.';
+  document.getElementById('api-status').style.color='var(--sage)';
+}
+setupTouchDrag();
 </script>
 </body>
 </html>
