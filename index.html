@@ -274,7 +274,6 @@ code{background:var(--sand);padding:1px 6px;border-radius:4px;font-family:monosp
   <button class="nb" onclick="switchView('schedule')" id="nav-schedule"><span class="ic">⏱️</span>Work Schedule</button>
   <button class="nb" onclick="switchView('metrics')" id="nav-metrics"><span class="ic">📊</span>Performance</button>
   <button class="nb" onclick="switchView('ugc')" id="nav-ugc"><span class="ic">💼</span>UGC & Collabs</button>
-  <button class="nb" onclick="switchView('sheets')" id="nav-sheets"><span class="ic">🔗</span>Sheets Sync</button>
   <button class="nb" onclick="switchView('ai')" id="nav-ai"><span class="ic">🤖</span>AI Assistant</button>
   <div class="divider"></div>
   <div class="nav-label">Filter status</div>
@@ -310,8 +309,9 @@ code{background:var(--sand);padding:1px 6px;border-radius:4px;font-family:monosp
       <button onclick="filterPhase('colombia',this)">🇨🇴 Col</button>
     </div>
     <button class="sync-btn add" onclick="openAddModal()">+ Add video</button>
-    <button class="sync-btn save" onclick="saveToSheets()">↑ Save to Sheets</button>
-    <button class="sync-btn load" onclick="loadFromSheets()">↓ Load from Sheets</button>
+    <button class="sync-btn save" onclick="saveToSheets()" title="Save all data to Google Sheets">↑ Sheets</button>
+    <button class="sync-btn load" onclick="loadFromSheets()" title="Load data from Google Sheets">↓ Sheets</button>
+    <button class="sync-btn load" onclick="promptSheetsUrl()" title="Configure Sheets URL" style="padding:8px 10px;font-size:11px;">⚙️</button>
   </div>
 </header>
 
@@ -421,32 +421,6 @@ UGC rate: $[X] per video (usage rights included, no posting required).
 Happy to send my media kit. Let me know!
 
 Lina · @linatravelss · @linatravelss_</div>
-  </div>
-</div>
-
-<!-- SHEETS SYNC VIEW -->
-<div class="view" id="view-sheets">
-  <div class="setup-box">
-    <div class="setup-title">Connect to Google Sheets</div>
-    <div class="setup-steps">
-      <div class="setup-step"><div class="step-num">1</div><div>Go to <strong>script.google.com</strong> → New project → paste the <code>Code.gs</code> file contents</div></div>
-      <div class="setup-step"><div class="step-num">2</div><div>Click <strong>Deploy → New deployment → Web App</strong><br>Execute as: <strong>Me</strong> · Access: <strong>Anyone</strong></div></div>
-      <div class="setup-step"><div class="step-num">3</div><div>Copy the Web App URL and paste it below</div></div>
-      <div class="setup-step"><div class="step-num">4</div><div>Click <strong>"Save to Sheets"</strong> in the top bar to push all your content to a beautifully formatted Google Sheet</div></div>
-    </div>
-    <input type="url" class="url-input" id="sheets-url" placeholder="https://script.google.com/macros/s/YOUR_ID/exec" value="">
-    <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;">
-      <button class="sync-btn save" onclick="saveUrl()">Save URL</button>
-      <button class="sync-btn load" onclick="testConnection()">Test connection</button>
-    </div>
-    <div id="conn-status" style="margin-top:10px;font-size:11.5px;color:var(--stone);"></div>
-  </div>
-  <div style="background:var(--warm);border:1px solid var(--stone-l);border-radius:14px;padding:22px;">
-    <div class="ms-title">What syncs to Google Sheets</div>
-    <div style="font-size:12.5px;line-height:1.9;color:var(--ink);margin-top:10px;">
-      Your sheet will have two tabs: <strong>Content Calendar</strong> (all 33 columns, colour-coded by status, week headers, Status dropdown) and <strong>Meta</strong> (your stats, posting schedule, Colombia itinerary summary).<br><br>
-      You can edit Status, Selected Hook, and metrics directly in Sheets — then click <strong>Load from Sheets</strong> in the app to pull changes back.
-    </div>
   </div>
 </div>
 
@@ -612,7 +586,7 @@ Lina · @linatravelss · @linatravelss_</div>
 // ─────────────────────────────────────────────
 let videos = [
   // ── WEEK 1 ──
-  {id:1,week:1,day:"Wednesday",date:"01/04/2026",time:"12:00pm AEST",city:"Hobart, Tasmania",platform:["IG","TikTok"],type:"Controversy",status:"Draft",length:"20–30 sec",
+  {id:1,week:1,day:"Wednesday",date:"01/04/2026",time:"12:00pm AEST",city:"Hobart, Tasmania",platform:["IG","TikTok"],type:"Controversy",status:"Posted",length:"20–30 sec",
    selectedHook:"",
    hooks:[
      {text:"This museum might be the most unsettling place I've ever been to",why:"Controversy triggers curiosity — 'unsettling' stops the scroll immediately"},
@@ -630,7 +604,7 @@ let videos = [
    tip:"Post this first — controversy drives comments which signals the algorithm early.",
    views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
 
-  {id:2,week:1,day:"Friday",date:"03/04/2026",time:"12:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Experience",status:"Draft",length:"15–25 sec",
+  {id:2,week:1,day:"Tuesday",date:"07/04/2026",time:"12:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Experience",status:"Editing",length:"15–25 sec",
    selectedHook:"",
    hooks:[
      {text:"POV: you drove 2 hours and accidentally found 300 kangaroos",why:"POV + 'accidentally' = perfect surprise hook. Numbers make it specific and credible"},
@@ -648,7 +622,7 @@ let videos = [
    tip:"Film Sahand feeding a kangaroo if possible — his reaction is pure share-bait.",
    views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
 
-  {id:3,week:1,day:"Sunday",date:"05/04/2026",time:"1:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Humor",status:"Draft",length:"15–20 sec",
+  {id:3,week:1,day:"Thursday",date:"09/04/2026",time:"1:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Humor",status:"Draft",length:"15–20 sec",
    selectedHook:"",
    hooks:[
      {text:"Our Airbnb in Tasmania gave main character energy… but make it haunted",why:"'Main character' + 'haunted' contrast = instant humor. High comment potential"},
@@ -666,7 +640,7 @@ let videos = [
    tip:"Fast cuts between weird details. Keep energy light and funny, not complaining.",
    views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
 
-  {id:4,week:1,day:"Monday",date:"05/04/2026",time:"1:00pm AEST",city:"Bruny Island, Tasmania",platform:["IG","TikTok"],type:"Aesthetic",status:"Draft",length:"15–20 sec",
+  {id:4,week:1,day:"Sunday",date:"12/04/2026",time:"1:00pm AEST",city:"Bruny Island, Tasmania",platform:["IG","TikTok"],type:"Aesthetic",status:"Draft",length:"15–20 sec",
    selectedHook:"",
    hooks:[
      {text:"I need someone to explain to me how this is real",why:"Disbelief hook = validated awe. Viewer trusts your genuine reaction over sales-y language"},
@@ -685,7 +659,7 @@ let videos = [
    views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
 
   // ── WEEK 2 ──
-  {id:5,week:2,day:"Wednesday",date:"09/04/2026",time:"12:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Couple",status:"Draft",length:"20 sec",
+  {id:5,week:2,day:"Monday",date:"13/04/2026",time:"12:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Couple",status:"Draft",length:"20 sec",
    selectedHook:"",
    hooks:[
      {text:"Sahand wanted a beer. I wanted a view. Tasmania gave us both",why:"Character-driven couple hook — names Sahand (recognisable to your audience), creates anticipation"},
@@ -703,7 +677,7 @@ let videos = [
    tip:"'Tag who you'd bring here' in caption drives comments. Always use it on couple content.",
    views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
 
-  {id:6,week:2,day:"Friday",date:"11/04/2026",time:"12:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Hidden Gem",status:"Draft",length:"20–25 sec",
+  {id:6,week:2,day:"Wednesday",date:"15/04/2026",time:"12:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Hidden Gem",status:"Draft",length:"20–25 sec",
    selectedHook:"",
    hooks:[
      {text:"POV: you're in the middle of nowhere Tasmania and you find THIS",why:"'THIS' capitalised = visual reveal hook. Curiosity gap forces full watch-through"},
@@ -721,7 +695,7 @@ let videos = [
    tip:"Put location in COMMENTS not caption — forces engagement and boosts comment count.",
    views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
 
-  {id:7,week:2,day:"Sunday",date:"14/04/2026",time:"1:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Couple",status:"Draft",length:"15–20 sec",
+  {id:7,week:2,day:"Friday",date:"17/04/2026",time:"1:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Couple",status:"Draft",length:"15–20 sec",
    selectedHook:"",
    hooks:[
      {text:"My husband BBQing with this view… I think I'm winning at life",why:"'Winning at life' = aspirational self-satisfaction. Relatable and shareable to couples"},
@@ -739,7 +713,7 @@ let videos = [
    tip:"'Who's your person' question drives couple comment replies — always use on couple content.",
    views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
 
-  {id:8,week:2,day:"Monday",date:"14/04/2026",time:"1:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Cheat Sheet",status:"Draft",length:"30–35 sec",
+  {id:8,week:2,day:"Sunday",date:"18/04/2026",time:"12:00pm AEST",city:"Tasmania",platform:["IG","TikTok"],type:"Cheat Sheet",status:"Draft",length:"30–35 sec",
    selectedHook:"",
    hooks:[
      {text:"They said Tasmania isn't worth visiting. They were completely wrong.",why:"Direct counter-narrative — proven viral hook structure (your Bogotá reel used this and got 567 saves)"},
@@ -758,7 +732,7 @@ let videos = [
    views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
 
   // ── WEEK 3 ──
-  {id:9,week:3,day:"Wednesday",date:"16/04/2026",time:"12:00pm AEST",city:"Melbourne",platform:["IG","TikTok"],type:"Living Abroad",status:"Draft",length:"15 sec",
+  {id:9,week:3,day:"Monday",date:"14/04/2026",time:"12:00pm AEST",city:"Melbourne",platform:["IG","TikTok"],type:"Living Abroad",status:"Draft",length:"15 sec",
    selectedHook:"",
    hooks:[
      {text:"POV: a random Thursday 1pm in Australia",why:"Classic POV slice-of-life — your best-performing TikTok format. Aspirational daily life content"},
@@ -776,7 +750,7 @@ let videos = [
    tip:"Connects your travel content to your 'Latina living abroad' identity. Builds loyalty.",
    views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
 
-  {id:10,week:3,day:"Friday",date:"18/04/2026",time:"12:00pm AEST",city:"Melbourne",platform:["IG","TikTok"],type:"Recommendation",status:"Draft",length:"20 sec",
+  {id:10,week:3,day:"Wednesday",date:"16/04/2026",time:"12:00pm AEST",city:"Melbourne",platform:["IG","TikTok"],type:"Recommendation",status:"Draft",length:"20 sec",
    selectedHook:"",
    hooks:[
      {text:"This is not your average dinner spot in Melbourne",why:"Understated intrigue — 'not your average' implies exceptional without over-selling"},
@@ -794,7 +768,7 @@ let videos = [
    tip:"Tag the restaurant — they may reshare it, giving you a free audience boost.",
    views:"",likes:"",saves:"",shares:"",follows:"",watchtime:""},
 
-  {id:11,week:3,day:"Sunday",date:"20/04/2026",time:"1:00pm AEST",city:"Melbourne",platform:["IG","TikTok"],type:"Teaser",status:"Draft",length:"20–25 sec",
+  {id:11,week:3,day:"Friday",date:"17/04/2026",time:"1:00pm AEST",city:"Melbourne",platform:["IG","TikTok"],type:"Teaser",status:"Draft",length:"20–25 sec",
    selectedHook:"",
    hooks:[
      {text:"I'm going back to Colombia for the first time in a while… here's what I'm most nervous about",why:"Vulnerability + anticipation = emotional investment before you even land. Primes Colombian audience"},
@@ -981,7 +955,7 @@ let videos = [
 // ─────────────────────────────────────────────
 let currentFilter = 'all';
 let currentPhase = 'all';
-let sheetsUrl = localStorage.getItem('lina_sheets_url') || '';
+let sheetsUrl = ''; // Set this to your Apps Script URL — paste it here once and never again
 let selectedHookId = null;
 let selectedHookIdx = null;
 
@@ -989,8 +963,8 @@ let selectedHookIdx = null;
 // RENDER CALENDAR
 // ─────────────────────────────────────────────
 const weekMeta = {
-  1:{label:"Week 1",theme:"Tasmania · Re-enter with a bang",dates:"Wed 1 – Mon 6 Apr"},
-  2:{label:"Week 2",theme:"Tasmania · Build depth & saves",dates:"Wed 8 – Mon 13 Apr"},
+  1:{label:"Week 1",theme:"Tasmania · Re-enter with a bang",dates:"Apr 1 – Apr 12"},
+  2:{label:"Week 2",theme:"Tasmania · Build depth & saves",dates:"Apr 9 – Apr 14"},
   3:{label:"Week 3",theme:"Melbourne bridge + Colombia teaser",dates:"Wed 15 – Sun 20 Apr"},
   4:{label:"Week 4",theme:"Colombia launches 🇨🇴",dates:"Tue 21 Apr onwards 🇨🇴"}
 };
@@ -1210,7 +1184,7 @@ function filterPhase(p,btn){
 // ─────────────────────────────────────────────
 // VIEW SWITCHING
 // ─────────────────────────────────────────────
-const titles={calendar:'Content Calendar',schedule:'Work Schedule',metrics:'Performance Tracker',ugc:'UGC & Collabs',sheets:'Google Sheets Sync',ai:'AI Assistant'};
+const titles={calendar:'Content Calendar',schedule:'Work Schedule',metrics:'Performance Tracker',ugc:'UGC & Collabs',ai:'AI Assistant'};
 function switchView(v){
   document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
   document.getElementById(`view-${v}`).classList.add('active');
@@ -1221,7 +1195,6 @@ function switchView(v){
   document.getElementById('phase-filter').style.display=v==='calendar'?'flex':'none';
   if(v==='metrics') renderMetrics();
   if(v==='ugc') renderUGC();
-  if(v==='sheets') document.getElementById('sheets-url').value=sheetsUrl;
   closeSidebar();
 }
 
@@ -1240,30 +1213,9 @@ function closeSidebar(){
 // ─────────────────────────────────────────────
 // GOOGLE SHEETS SYNC
 // ─────────────────────────────────────────────
-function saveUrl(){
-  sheetsUrl=document.getElementById('sheets-url').value.trim();
-  localStorage.setItem('lina_sheets_url',sheetsUrl);
-  toast('URL saved ✓','ok');
-}
-
-async function testConnection(){
-  const url=document.getElementById('sheets-url').value.trim();
-  if(!url){toast('Paste your Apps Script URL first','err');return;}
-  const el=document.getElementById('conn-status');
-  el.textContent='Testing…';
-  try{
-    const r=await fetch(url+'?action=load');
-    const d=await r.json();
-    el.textContent=d.ok?'✓ Connected — '+d.videos.length+' videos in sheet':'✗ Error: '+d.error;
-    el.style.color=d.ok?'var(--sage)':'var(--terra)';
-  }catch(e){
-    el.textContent='✗ Could not connect — check URL and deployment settings';
-    el.style.color='var(--terra)';
-  }
-}
 
 async function saveToSheets(){
-  if(!sheetsUrl){switchView('sheets');toast('Set your Sheets URL first','err');return;}
+  if(!sheetsUrl){toast('Sheets URL not configured — paste your Apps Script URL into the app source code','err');return;}
   toast('Saving to Sheets…','');
   try{
     const r=await fetch(sheetsUrl,{method:'POST',body:JSON.stringify({action:'save_all',videos})});
@@ -1274,7 +1226,7 @@ async function saveToSheets(){
 }
 
 async function loadFromSheets(){
-  if(!sheetsUrl){switchView('sheets');toast('Set your Sheets URL first','err');return;}
+  if(!sheetsUrl){toast('Sheets URL not configured — paste your Apps Script URL into the app source code','err');return;}
   toast('Loading from Sheets…','');
   try{
     const r=await fetch(sheetsUrl+'?action=load');
@@ -1312,7 +1264,7 @@ function addColombiaBanner(){
     <span class="col-flag">🇨🇴</span>
     <div class="col-info">
       <div class="col-title">Colombia series — Apr 18 to May 23</div>
-      <div class="col-sub">Post at 8:00am AEST to hit Colombian afternoon peak · Dermatologo Apr 20 · Post Colombia content from Apr 21</div>
+      <div class="col-sub">Post at 8:00am AEST to hit Colombian afternoon peak · Depart Apr 18 · Post Colombia content from Apr 21</div>
       <div class="col-dates">
         <span class="col-pill"><strong>Apr 18</strong> Depart Melbourne</span>
         <span class="col-pill"><strong>Tue 21 Apr (arrive Sun 19)</strong> Bogotá</span>
@@ -1640,6 +1592,17 @@ function clearAIChat() {
   document.getElementById('ai-feed').innerHTML = '<div class="ai-msg ai-assistant"><p>Chat cleared. Ready for your next question or screenshot.</p></div>';
 }
 
+
+function promptSheetsUrl(){
+  const url = prompt('Paste your Google Apps Script Web App URL:', sheetsUrl || '');
+  if(url && url.startsWith('http')){
+    sheetsUrl = url.trim();
+    localStorage.setItem('lina_sheets_url', sheetsUrl);
+    toast('Sheets URL saved ✓', 'ok');
+  }
+}
+// Load saved URL from localStorage on startup
+sheetsUrl = localStorage.getItem('lina_sheets_url') || sheetsUrl || '';
 
 // Init UGC on first load
 if(document.getElementById('view-ugc').classList.contains('active')) renderUGC();
